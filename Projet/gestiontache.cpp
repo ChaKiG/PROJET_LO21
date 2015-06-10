@@ -7,118 +7,6 @@
 
 
 
-TacheEditeur::TacheEditeur(Tache * tacheToEdit, QWidget* parent){
-    box = new QGridLayout(parent);
-    setLayout(box);
-
-    label_t = new QLabel("titre");
-    titre = new QLineEdit(tacheToEdit->getTitre());
-    box->addWidget(label_t, 1, 0);
-    box->addWidget(titre, 1, 1, 1, 4);
-    label_dispo = new QLabel("disponibilité");
-    dispo = new QDateEdit(tacheToEdit->getDateDisponibilite());
-    label_echeance = new QLabel("échéance");
-    echeance = new QDateEdit(tacheToEdit->getDateEcheance());
-    saveButton = new QPushButton("sauvegarder");
-    annuler = new QPushButton("annuler");
-    box->addWidget(label_dispo, 2, 0);
-    box->addWidget(dispo, 2, 1);
-    box->addWidget(annuler, 7, 0, 1, 3);
-    box->addWidget(saveButton, 7, 4, 1, 4);
-
-
-    prerequis = new QListWidget();
-    labelPrerequis = new QLabel("Prérequis :");
-    box->addWidget(labelPrerequis, 2, 3);
-    box->addWidget(prerequis, 3, 3, 3, 1);
-    std::vector<Tache*>::const_iterator ite = tacheToEdit->getPrerequis().begin();
-    while (ite != tacheToEdit->getPrerequis().end()){
-        QListWidgetItem * item = new QListWidgetItem((*ite)->getTitre());
-        prerequis->addItem(item);
-        ++ite;
-    }
-
-
-    if (dynamic_cast<TacheComposite*>(tacheToEdit)){
-        label_sousTaches = new QLabel("Sous Taches :");
-        sousTaches = new QListWidget();
-        box->addWidget(label_sousTaches, 2, 2);
-        box->addWidget(sousTaches, 3, 2, 1, 1);
-        box->addWidget(label_echeance, 3, 0);
-        box->addWidget(echeance, 3, 1);
-
-        std::vector<Tache*>::const_iterator ite = ((TacheComposite*)tacheToEdit)->getSousTaches().begin();
-        while (ite != ((TacheComposite*)tacheToEdit)->getSousTaches().end()){
-            QListWidgetItem * item = new QListWidgetItem((*ite)->getTitre());
-            sousTaches->addItem(item);
-            ite++;
-        }
-    }
-
-    else{					//si tache Unitaire
-        pre = new QCheckBox();
-        label_pre = new QLabel("preemptive");
-        box->addWidget(pre, 0, 5);
-        box->addWidget(label_pre, 0, 6);
-        labelDureeInitiale = new QLabel("durée Initiale");
-        heureDebut = new QSpinBox(this);
-        minDebut = new QSpinBox(this);
-
-        if (dynamic_cast<TacheUnitairePreemptee*>(tacheToEdit)){
-            pre->setChecked(true);
-            heureEffectue = new QSpinBox(this);
-            minEffectue = new QSpinBox(this);
-            labelDureeEffectue = new QLabel("durée Effectuée (si preemptive)");
-            heureEffectue->setValue(((TacheUnitairePreemptee*)tacheToEdit)->getDureeEffectuee().getDureeEnHeures());
-            heureEffectue->setSuffix(" heure(s)");
-            minEffectue->setValue(((TacheUnitairePreemptee*)tacheToEdit)->getDureeEffectuee().getResteDureeEnMinutes());
-            minEffectue->setSuffix(" minute(s)");
-            minEffectue->setSingleStep(15);
-            box->addWidget(heureEffectue, 5, 1);
-            box->addWidget(minEffectue, 5, 2);
-            box->addWidget(labelDureeEffectue, 5, 0);
-
-        }
-        else{
-            pre->setChecked(false);
-        }
-        heureDebut->setValue(((TacheUnitaire*)tacheToEdit)->getDuree().getDureeEnHeures());
-        heureDebut->setSuffix(" heure(s)");
-        minDebut->setValue(((TacheUnitaire*)tacheToEdit)->getDuree().getResteDureeEnMinutes());
-        minDebut->setSuffix(" minute(s)");
-        minDebut->setSingleStep(15);
-
-        box->addWidget(label_echeance, 3, 0);
-        box->addWidget(echeance, 3, 1);
-        box->addWidget(heureDebut, 4, 1);
-        box->addWidget(minDebut, 4, 2);
-        box->addWidget(labelDureeInitiale, 4, 0);
-    }
-
-
-    //QObject::connect(annuler, SIGNAL(clicked()), this, SLOT(close()));
-    //QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
-
-
-}
-
-/*
-void TacheEditeur::save(){
-Duree d(heure->value(),min->value());
-if(id->text()==tache->getId()){
-tache->setTitre(titre->toPlainText());
-tache->setDatesDisponibiliteEcheance(dispo->date(),echeance->date());
-tache->setDuree(d);
-if(pre->isChecked())
-tache->setPreemptive();
-else
-tache->setNonPreemptive();
-}
-}
-*/
-
-
-
 
 GestionTache::GestionTache(Projet &proj) : _proj(&proj){
 	lay = new QVBoxLayout();
@@ -316,8 +204,7 @@ void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 	if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
 	{
 		_proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
-	}
-	if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
+	}else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
 	{
         _proj->creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
 	}
@@ -345,6 +232,7 @@ void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
     //}
 	/* ////////////////////////////////////////////////////////////////////////*/
 
+	new GestionProj();
     close();
 
 }

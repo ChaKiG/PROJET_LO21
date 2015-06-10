@@ -95,12 +95,15 @@ public:
 	*  \param pre : prerequis a ajouter
 	*/
 	void ajoutPrerequi(Tache * pre);
-   
+    void delPrerequi(Tache * pre);
 	/*!
 	*  \brief ajoute une liste prérequis, renvoit exception si probleme>
 	*  \param vec : prerequis a ajouter
 	*/
 	void ajoutPrerequis(std::vector<Tache*> vec);   
+
+    void setprerequis(std::vector<Tache*> vec);
+
 
 	/*!
 	*  \brief modifie la date de disponibilite
@@ -113,6 +116,9 @@ public:
 	*  \param dEcheance : nouvelle date d'echeance
 	*/
     void setDateEcheance(const QDate & dEcheance);
+
+	void setDatesDisponibiliteEcheance(const QDate &dDispo, const QDate & dEcheance);
+
 	virtual ~Tache();                                          //<!destructeur>
 };
 
@@ -172,7 +178,7 @@ public:
 	 *  \brief modifie la duree de la tache
 	 *  \param nouvelleDuree : nouvelle duree de l'activite
 	 */
-    void setDuree(Duree & nouvelleDuree);
+	 void setDuree(Duree & nouvelleDuree){duree = nouvelleDuree;}
 };
 
 

@@ -9,7 +9,7 @@ CreationProgrammation::CreationProgrammation(QWidget * parent){
 	choisir = new QPushButton("choisir");
 	newActi = new QPushButton("nouvelle activite");
 	l = new QLabel("Choisir la tache a programmer");
-	arbre = ProjetManager::getInstance().creerArbre();
+    arbre = ProjetManager::getInstance().creerArbreProjets();
 	lay = new QGridLayout();
 
 	l_debut = new QLabel("choisir debut :");

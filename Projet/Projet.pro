@@ -16,7 +16,8 @@ SOURCES += \
     projet.cpp \
     fenetres_gestion_programmations.cpp \
     fenetres_gestion_projets.cpp \
-    main_window.cpp
+    main_window.cpp \
+    tache_editeur.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 DISTFILES += \
@@ -34,4 +35,5 @@ HEADERS += \
     projet.h \
     fenetres_gestion_programmations.h \
     fenetres_gestion_projets.h \
-    main_window.h
+    main_window.h \
+    tache_editeur.h

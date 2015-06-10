@@ -19,15 +19,8 @@ Evenement::~Evenement(){}
 
 Tache::Tache(int id, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre, Tache* parent):
 Evenement(id, titre), dateDispo(dDispo), dateEcheance(dEcheance), parent(parent), prerequis(std::vector<Tache*>()){
-	if (dEcheance < QDate::currentDate())
-		throw CalendarException("date d'echeance deja passee");
-	if (dEcheance < dDispo)
-		throw CalendarException("date d'echeance anterieure a la date de dispo");
-	if (dynamic_cast<TacheComposite*>(parent) != NULL)
-		dynamic_cast<TacheComposite*>(parent)->ajouterSousTache(this);
-	else if (parent != 0)
-		throw CalendarException("la tache parent n'est pas composite");
 	ajoutPrerequis(pre);
+	setDatesDisponibiliteEcheance(dDispo, dEcheance);
 }
 
 void Tache::setProgramme(bool effectue) {
@@ -76,32 +69,23 @@ void Tache::ajoutPrerequis(std::vector<Tache*> vec){
     }
 }
 
-void Tache::setDateDisponibilite(const QDate & dDispo) {
-    if(dDispo<dateEcheance)
-        throw CalendarException("date dispo inférieure a echeance");
-    else{
-        /*
-         *              on calcule la date dispo a partir des
-         *              echeances des prerequis ou on verifie
-         *              juste qu'elle soit apres ?
-         * */
-    }
-    dateDispo = dDispo;
+void Tache::setDatesDisponibiliteEcheance(const QDate &dDispo, const QDate & dEcheance){
+	if (dDispo>dEcheance)
+			throw CalendarException("date dispo superieure a echeance");
+	else{
+		std::vector<Tache*>::iterator ite = prerequis.begin();
+		while (ite != prerequis.end()){
+			if ((*ite)->getDateEcheance() < dEcheance)
+				throw CalendarException("date echeance inferieure a l'echeance d'un prerequis");
+			if ((*ite)->getDateDisponibilite() > dDispo)
+				throw CalendarException("date dispo inferieure a la dispo d'un prerequis");
+			++ite;
+		}
+		dateEcheance = dEcheance;
+		dateDispo = dDispo;
+	}
 }
 
-void Tache::setDateEcheance(const QDate & dEcheance){
-    if (dEcheance < dateDispo)
-        throw CalendarException("date echeance inferieure a date dispo");
-    else{
-        std::vector<Tache*>::iterator ite = prerequis.begin();
-        while(ite != prerequis.end()){
-            if((*ite)->getDateEcheance() < dEcheance)
-                throw CalendarException("date echeance inferieure a l'echeance d'un prerequis");
-            ++ite;
-        }
-    dateEcheance = dEcheance;
-    }
-}
 
 Tache::~Tache(){}
 

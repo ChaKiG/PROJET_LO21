@@ -74,7 +74,7 @@ public:
     const Projet& getProjet(const Tache *tacheCherchee) const;
     void supprimerProjet(const QString p);
 
-	QTreeWidget * creerArbre();
+    QTreeWidget * creerArbreProjets();
 };
 
 

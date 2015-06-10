@@ -18,6 +18,7 @@
 
 #include "projet.h"
 #include "programmation.h"
+#include "tache_editeur.h"
 #include "gestiontache.h"
 
 

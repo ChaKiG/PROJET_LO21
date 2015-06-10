@@ -7,7 +7,7 @@
 
 GestionProj::GestionProj(){
 	lay = new QGridLayout();
-	arbre = ProjetManager::getInstance().creerArbre();
+    arbre = ProjetManager::getInstance().creerArbreProjets();
 	nTache = new QPushButton("ajout Sous Tache (tache selectionnee)");
 	nTacheRacine = new QPushButton("ajout Tache (a la racine)");
 	addprojet = new QPushButton("ajout projet");
@@ -98,8 +98,8 @@ void GestionProj::majEdit(QTreeWidgetItem * item){
 			delete editeur;
 		QTreeWidgetItem * p = item->parent();
 		while (p->parent()) p = p->parent();
-		Tache * t = &(ProjetManager::getInstance().getProjet(p->text(0)).getTache(item->text(0)));
-		editeur = new TacheEditeur(t);      //envoi a la fenetre editeur
+		Tache * t = &(ProjetManager::getInstance().getProjet(p->text(0)).getTache(item->text(1).toInt()));
+        editeur = new TacheEditeur(t);      //envoi a la fenetre editeur
 		lay->addWidget(editeur, 3, 0);
 		editeur->show();
 	}

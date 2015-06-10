@@ -30,7 +30,6 @@ int main(int argc, char* argv[]) {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	projM.getProjet("proj1").creerTache("TacheComposite", "TacheComposite_Proj1_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(10));
-	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Tache* par_1 = &projM.getProjet("proj1").getTache("TacheComposite_Proj1_1");
@@ -45,7 +44,7 @@ int main(int argc, char* argv[]) {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	projM.getProjet("proj1").creerTache("TacheComposite", "SousSousTache1_composite", QDate::currentDate().addDays(4), QDate::currentDate().addDays(5), std::vector<Tache*>(), par_2);
+	projM.getProjet("proj1").creerTache("TacheComposite", "SousSousTache1_composite", QDate::currentDate().addDays(4), QDate::currentDate().addDays(6), std::vector<Tache*>(), par_2);
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +52,7 @@ int main(int argc, char* argv[]) {
 
 	std::vector<Tache*> pre_1;
 	pre_1.push_back(&projM.getProjet("proj1").getTache("SousSousTache1_composite"));
-	projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(5), QDate::currentDate().addDays(6), pre_1, par_2, Duree(120));
+	projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(4), QDate::currentDate().addDays(5), pre_1, par_2, Duree(120));
 
 
 

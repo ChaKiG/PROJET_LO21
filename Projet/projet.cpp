@@ -31,22 +31,27 @@ Tache* Projet::trouverTache(int id) const{
 
 
 Tache & Projet::creerTache(QString type, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre, Tache* parent, Duree du){
-	if (type == "TacheComposite"){
-		Tache * t = new TacheComposite(currentId++, titre, dDispo, dEcheance, pre, parent);
-		ajouterTache(t);
-		return *t;
-	}	
-	if (type == "TacheUnitaire"){
-		Tache * t = new TacheUnitaire(currentId++, titre, dDispo, dEcheance, du, pre, parent);
-		ajouterTache(t);
-		return *t;
-	}
-	if (type == "TacheUnitairePreemptee"){
-		Tache * t = new TacheUnitairePreemptee(currentId++, titre, dDispo, dEcheance, du, pre, parent);
-		ajouterTache(t);
-		return *t;
-	}
+	try{
+		if (type == "TacheComposite"){
+			Tache * t = new TacheComposite(currentId++, titre, dDispo, dEcheance, pre, parent);
+			ajouterTache(t);
+			return *t;
+		}
+		if (type == "TacheUnitaire"){
+			Tache * t = new TacheUnitaire(currentId++, titre, dDispo, dEcheance, du, pre, parent);
+			ajouterTache(t);
+			return *t;
+		}
+		if (type == "TacheUnitairePreemptee"){
+			Tache * t = new TacheUnitairePreemptee(currentId++, titre, dDispo, dEcheance, du, pre, parent);
+			ajouterTache(t);
+			return *t;
+		}
 		throw CalendarException("type impossible a creer");
+	}
+	catch (CalendarException & e){
+		QMessageBox::information(NULL, "erreur", e.getInfo());
+	}
 }
 
 
@@ -199,7 +204,7 @@ void ProjetManager::supprimerProjet(const QString t){
 
 
 
-QTreeWidget * ProjetManager::creerArbre(){
+QTreeWidget * ProjetManager::creerArbreProjets(){
 	QTreeWidget * arbre = new QTreeWidget();
 	const std::vector<Projet*> lProjets = getProjets();
 	std::vector<Projet*>::const_iterator iteProjets = lProjets.begin();
