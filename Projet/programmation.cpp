@@ -245,15 +245,16 @@ std::vector<Programmation*> ProgrammationManager::getSemaine(QDate & date) const
 }
 
 
-void ProgrammationManager::supprimerProgrammation(const QString t){
+void ProgrammationManager::supprimerProgrammationsEvt(const QString t){
     std::vector<Programmation*>::iterator ite = programmations.begin();
 	while (ite != programmations.end()){
 		if ((*ite)->getEvent()->getTitre() == t){
-			programmations.erase(ite);
 			if (dynamic_cast<TacheUnitairePreemptee*>((*ite)->getEvent()))
 				((TacheUnitairePreemptee*)(*ite)->getEvent())->subDureeEffectuee((*ite)->getDuree());
 			else
 				(*ite)->getEvent()->setProgramme(false);
+			delete *ite;
+			programmations.erase(ite);
 			return;
 		}
 		++ite;
@@ -273,6 +274,7 @@ void ProgrammationManager::supprimerProgrammation(int id){
 					delete (*ite)->getEvent();
 				else
 					(*ite)->getEvent()->setProgramme(false);
+			delete *ite;
 			programmations.erase(ite);
 			return;
 		}

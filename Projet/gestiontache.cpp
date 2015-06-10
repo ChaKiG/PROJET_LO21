@@ -315,14 +315,12 @@ void GestionSousTache::afficherpreemptive(){ // ajout des durées pour unitaire e
 void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 	if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
 	{
-        _proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
+		_proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
 	}
-
 	if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
 	{
         _proj->creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
 	}
-
 	else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
 	{
         _proj->creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
@@ -378,7 +376,7 @@ void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 
 
 		/* /////////////////Ne fonctionne pas////////////////////////////////////*/
-        if (Prerequis2->text().toStdString() != ""){ //ajout des prerequis si il y en a
+       // if (Prerequis2->text().toStdString() != ""){ //ajout des prerequis si il y en a
 			/*  const char* prerequis=Prerequis2->text().toStdString().c_str();
 			char tache[20];
 			char lettre =prerequis[0];
@@ -393,7 +391,7 @@ void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 			j=0;}
 			}*/
             //t->ajoutPrerequi(&(projM.getProjet(Projet2->text()).getTache(Prerequis2->text())));//fonctionne pour 1 seul prerequis
-		}
+		//}
 		/* ////////////////////////////////////////////////////////////////////////*/
 
     }

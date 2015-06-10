@@ -94,7 +94,7 @@ public:
 	const std::vector<Programmation*> & getProgrammations() const {return programmations; }
 	std::vector<Programmation*> getSemaine(QDate & date) const;
 	
-	void supprimerProgrammation(const QString p);
+	void supprimerProgrammationsEvt(const QString p);
 	void supprimerProgrammation(int id);	
 };
 

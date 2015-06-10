@@ -1,3 +1,20 @@
+#user
+Projet/Debug/
+Projet/Release/
+Projet/x64/
+*.vcxproj.filters
+*.vcxproj.user
+*.vcxproj
+*.sln
+*.sdf
+*.v12.suo
+*.xml
+*.opensdf
+*.pro.user
+
+
+
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

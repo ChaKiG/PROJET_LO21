@@ -252,6 +252,7 @@ void TacheComposite::supprimerSousTache(int idSousTache){
     std::vector<Tache*>::iterator ite = sousTaches.begin();
     while(ite != sousTaches.end()){
         if((*ite)->getId() == idSousTache){
+			delete *ite;
             sousTaches.erase(ite);
 			return;
         }
@@ -264,6 +265,7 @@ void TacheComposite::supprimerSousTache(const QString & titreSousTache){
     std::vector<Tache*>::iterator ite = sousTaches.begin();
     while(ite != sousTaches.end()){
         if((*ite)->getTitre() == titreSousTache){
+			delete *ite;
             sousTaches.erase(ite);
 			return;
         }

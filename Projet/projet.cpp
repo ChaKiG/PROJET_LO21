@@ -93,6 +93,7 @@ void Projet::supprimerTache(int id){
     std::vector<Tache*>::iterator ite = taches.begin();
 	while (ite != taches.end()){
 		if ((*ite)->getId() == id){
+			delete *ite;
 			taches.erase(ite);
 			return;
 		}
@@ -104,6 +105,7 @@ void Projet::supprimerTache(const QString & t){
     std::vector<Tache*>::iterator ite = taches.begin();
 	while (ite != taches.end()){
 		if ((*ite)->getTitre() == t){
+			delete *ite;
 			taches.erase(ite);
 			return;
 		}
@@ -186,6 +188,7 @@ void ProjetManager::supprimerProjet(const QString t){
 	std::vector<Projet*>::iterator ite = projets.begin();
 	while (ite != projets.end()){
 		if ((*ite)->getTitre() == t){
+			delete *ite;
 			projets.erase(ite);
 			return;
 		}
