@@ -31,23 +31,18 @@ Tache* Projet::trouverTache(int id) const{
 
 
 Tache & Projet::creerTache(QString type, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre, Tache* parent, Duree du){
-	try{
-		if (type == "TacheComposite"){
-			Tache * t = new TacheComposite(currentId++, titre, dDispo, dEcheance, pre, parent);
-			ajouterTache(t);
-			return *t;
-		}
-		if (type == "TacheUnitaire"){
-			Tache * t = new TacheUnitaire(currentId++, titre, dDispo, dEcheance, du, pre, parent);
-			ajouterTache(t);
-			return *t;
-		}
-		if (type == "TacheUnitairePreemptee"){
-			Tache * t = new TacheUnitairePreemptee(currentId++, titre, dDispo, dEcheance, du, pre, parent);
-			ajouterTache(t);
-			return *t;
-		}
-		throw CalendarException("type impossible a creer");
+    Tache *t = NULL;
+    try{
+        if (type == "TacheComposite")
+            t = new TacheComposite(currentId++, titre, dDispo, dEcheance, pre, parent);
+        if (type == "TacheUnitaire")
+            t = new TacheUnitaire(currentId++, titre, dDispo, dEcheance, du, pre, parent);
+        if (type == "TacheUnitairePreemptee")
+            t = new TacheUnitairePreemptee(currentId++, titre, dDispo, dEcheance, du, pre, parent);
+        if(t != NULL)
+            ajouterTache(t);
+        else
+            throw CalendarException("type impossible a creer");
 	}
 	catch (CalendarException & e){
 		QMessageBox::information(NULL, "erreur", e.getInfo());
@@ -118,6 +113,55 @@ void Projet::supprimerTache(const QString & t){
 	}
 	throw CalendarException("tache introuvable");
 }
+
+QTreeWidget * Projet::creerArbre() const{
+    QTreeWidget *arbre = new QTreeWidget();
+    std::vector<Tache*>::const_iterator ite = taches.begin();
+    while (ite != taches.end()){
+        if ((*ite)->getParent() == 0){
+            QTreeWidgetItem * item = new QTreeWidgetItem();
+            item->setText(0, (*ite)->getTitre());
+            item->setText(1, QString::number((*ite)->getId()));
+            if ((*ite)->isProgramme())
+                item->setBackgroundColor(0, QColor(0, 255, 0, 100));
+            else
+                item->setBackgroundColor(0, QColor(255, 0, 0, 100));
+            arbre->addTopLevelItem(item);
+            if (dynamic_cast<TacheComposite*>(*ite) != NULL)
+                AjouterSousTachesArbre((TacheComposite*)(*ite), *item);
+        }
+        ite++;
+    }
+    return arbre;
+}
+void Projet::AjouterSousTachesArbre(TacheComposite * t, QTreeWidgetItem & i) const {
+    const std::vector<Tache*> l = t->getSousTaches();
+    std::vector<Tache*>::const_iterator ite = l.begin();
+    while (ite != l.end()){
+        QTreeWidgetItem * item = new QTreeWidgetItem();
+        item->setText(0, (*ite)->getTitre());
+        item->setText(1, QString::number((*ite)->getId()));
+        i.addChild(item);
+        if ((*ite)->isProgramme())
+            item->setBackgroundColor(0, QColor(0, 255, 0, 100));
+        else
+            item->setBackgroundColor(0, QColor(255, 0, 0, 100));
+        if (dynamic_cast<TacheComposite*> (*ite) != NULL)
+            AjouterSousTachesArbre((TacheComposite*)(*ite), *item);
+        ite++;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 ProjetManager * ProjetManager::instance = 0;
 

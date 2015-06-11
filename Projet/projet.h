@@ -22,6 +22,7 @@ private:
 	Projet(const QString & t, const QDate & deb, const QDate & fin);
 	Tache* trouverTache(const QString & t) const;
 	Tache* trouverTache(int id) const ;
+    void AjouterSousTachesArbre(TacheComposite * t, QTreeWidgetItem & i) const;
 
 public:
     Tache & creerTache(QString type, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre = std::vector<Tache*>(), Tache* parent = 0, Duree du = Duree(0));
@@ -42,6 +43,8 @@ public:
     const QString getTitre()const { return titre; }
     const QDate getDebut()const { return debut; }
     const QDate getFin()const { return fin; }
+
+    QTreeWidget * creerArbre() const;
 
     ~Projet();
 };

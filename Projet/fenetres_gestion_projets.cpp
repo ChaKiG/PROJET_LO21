@@ -98,8 +98,9 @@ void GestionProj::majEdit(QTreeWidgetItem * item){
 			delete editeur;
 		QTreeWidgetItem * p = item->parent();
 		while (p->parent()) p = p->parent();
-		Tache * t = &(ProjetManager::getInstance().getProjet(p->text(0)).getTache(item->text(1).toInt()));
-        editeur = new TacheEditeur(t);      //envoi a la fenetre editeur
+        Projet * proj = &ProjetManager::getInstance().getProjet(p->text(0));
+        Tache * tache = &proj->getTache(item->text(1).toInt());
+        editeur = new TacheEditeur(proj, tache);      //envoi a la fenetre editeur
 		lay->addWidget(editeur, 3, 0);
 		editeur->show();
 	}

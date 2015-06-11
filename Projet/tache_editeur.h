@@ -28,13 +28,33 @@ private:
 	QPushButton* annuler, *saveButton;
     QListWidget *sousTaches, *prerequis;
     Tache* _tache;
+    Projet *_proj;
 
 public:
-    TacheEditeur(Tache * tacheToEdit, QWidget *parent = 0);
+    TacheEditeur(Projet * projet, Tache * tacheToEdit, QWidget *parent = 0);
 public slots:
     void addPre();
+    void majPre(QListWidgetItem *item);
     void delPre();
 	void save();
 };
+
+class AjoutPre : public QWidget{
+    Q_OBJECT
+private:
+    QGridLayout *lay;
+    QTreeWidget *arbre;
+    QPushButton *choisir;
+public:
+    AjoutPre(Projet * proj, Tache * tache);
+    ~AjoutPre();
+public slots:
+    void choix();
+signals:
+    void valuesent(QListWidgetItem*);
+};
+
+
+
 
 #endif

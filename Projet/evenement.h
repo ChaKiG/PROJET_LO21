@@ -102,7 +102,7 @@ public:
 	*/
 	void ajoutPrerequis(std::vector<Tache*> vec);   
 
-    void setprerequis(std::vector<Tache*> vec);
+    void setPrerequis(std::vector<Tache*> vec);
 
 
 	/*!

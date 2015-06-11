@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 
 	std::vector<Tache*> pre_1;
 	pre_1.push_back(&projM.getProjet("proj1").getTache("SousSousTache1_composite"));
-	projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(4), QDate::currentDate().addDays(5), pre_1, par_2, Duree(120));
+    projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(7), QDate::currentDate().addDays(8), pre_1, par_2, Duree(120));
 
 
 
@@ -60,14 +60,14 @@ int main(int argc, char* argv[]) {
 	projM.getProjet("proj1").creerTache("TacheUnitairePreemptee", "TacheUnitaire1_Preemptee", QDate::currentDate().addDays(3), QDate::currentDate().addDays(10), std::vector<Tache*>(), NULL, Duree(150));
 	projM.getProjet("proj1").creerTache("TacheUnitaire", "TacheUnitaire2", QDate::currentDate().addDays(10), QDate::currentDate().addDays(20), std::vector<Tache*>(), NULL, Duree(60));
 
-	projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(20), std::vector<Tache*>(), NULL, Duree(60));
+    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(9), std::vector<Tache*>(), NULL, Duree(60));
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	std::vector<Tache*> pre_6;
 	pre_6.push_back(&projM.getProjet("proj2").getTache("TacheUnitaireProj2_1"));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_2", QDate::currentDate().addDays(1), QDate::currentDate().addDays(10), pre_6, NULL, Duree(60));
+    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_2", QDate::currentDate().addDays(10), QDate::currentDate().addDays(15), pre_6, NULL, Duree(60));
 
 
 
