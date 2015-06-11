@@ -20,41 +20,42 @@
 #include <QTime>
 
 
-
+/*! \class Programmation
+* \brief entree de l'emploi du temps, referencie un evenement
+*/
 class Programmation{
 	friend class ProgrammationManager;
 private:
-	static int currentId;
-    int id;
-	QDate dateChoisie;
-	QTime horaireChoisi;
-	Duree duree;
-    Evenement * evt;
+    static int currentId;  //<!id de la prochaine programmation>
+    int id;    //<!id de la programmation>
+    QDate dateChoisie;    //<!date de la programmation>
+    QTime horaireChoisi;    //<!horaire de la programmation>
+    Duree duree;          //<!duree de la programmation>
+    Evenement * evt;      //<!evenement relatif a la programmation (Tache ou Activite)>
 
     Programmation(Evenement * event, const QDate & dateChoisie, const QTime& horaireChoisi, Duree dur = Duree(0));
 	Programmation operator=(Programmation & other);
 	Programmation(Programmation & other);
 
 public:
-	const QDate& getDateChoisie() const {return dateChoisie; }
-	const QTime& getHoraireChoisi() const {return horaireChoisi; }
-	const Duree& getDuree()const { return duree; }
-	Duree& getDuree() { return duree; }
+    const QDate& getDateChoisie() const {return dateChoisie; }   //<!renvoit la date choisie>
+    const QTime& getHoraireChoisi() const {return horaireChoisi; }  //<!renvoit l''interlocuteur'horaire choisi>
+    const Duree& getDuree()const { return duree; }     //<!renvoit la duree choisie>
 
-    void setDateChoisie(QDate d) { dateChoisie = d; }
-    void setHoraireChoisi(QTime t) { horaireChoisi = t; }
-    void setDuree(Duree d);
+    void setDateChoisie(QDate d) { dateChoisie = d; }   //<!modifie la date>
+    void setHoraireChoisi(QTime t) { horaireChoisi = t; }   //<!modifie l'horaire>
+    void setDuree(Duree d);         //<!modifie la duree>
 
-    int getId()const {return id;}
-	Evenement * getEvent() { return evt; }
-    const QTime getHoraireFin () const;
+    int getId()const {return id;}    //<!renvoit l'id de la programmation>
+    Evenement * getEvent() { return evt; }    //<!renvoit l'interlocuteur'evenement relatif>
+    const QTime getHoraireFin () const;    //<!renvoit l'horaire de fin de la programmation>
 
-    ~Programmation() {}
-
+    ~Programmation();  //<!destructeur, ne supprimme pas evenement relatif, a part si il s'agit d'une Activite>
 
 
-	bool operator>(const Programmation & other) const;
-	bool operator<(const Programmation & other) const;
+
+    bool operator>(const Programmation & other) const; //<!compare les dates et horaires choisis (renvoit true si other est apres this)>
+    bool operator<(const Programmation & other) const;   //<!compare les dates et horaires choisis>
 };
 
 
@@ -65,16 +66,19 @@ public:
 //////////         permet de regrouper toutes les programmations            /////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*! \class ProgrammationManager
+* \brief regroupe toutes les programmations, l'emploi du temps est créé grace a elle
+*/
 class ProgrammationManager{
 	friend class CreationProgrammationPreemptee;
 private:
-	std::vector<Programmation*> programmations;
-	static ProgrammationManager * instance;
+    std::vector<Programmation*> programmations;  //<!liste des programmations>
+    static ProgrammationManager * instance;  //<!signleton, on ne considere qu'un emploi du temps>
 
 
-	ProgrammationManager(){}
-    ~ProgrammationManager();
-	Programmation* trouverProgrammation(int id) const;
+    ProgrammationManager(){}   //<!private, l'appel se fait par getinstance()>
+    ~ProgrammationManager();   //<!private, la suppression se fait par libereInstance()>
+    Programmation* trouverProgrammation(int id) const;
 	Programmation* trouverDerniereProgrammation(Evenement * evt) const;
 	Programmation* createProgPreemptee(Evenement * event, QDate date, QTime horaire);
 	void addItem(Programmation* t);

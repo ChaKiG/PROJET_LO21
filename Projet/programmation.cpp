@@ -5,13 +5,12 @@
 
 int Programmation::currentId = 0;
 
-Programmation::Programmation(Evenement * event, const QDate & dateChoisie, const QTime & horaireChoisi, Duree dur) : id(++currentId), dateChoisie(dateChoisie), horaireChoisi(horaireChoisi), evt(event){
+Programmation::Programmation(Evenement * event, const QDate & dateChoisie, const QTime & horaireChoisi, Duree dur) : id(++currentId), dateChoisie(dateChoisie), horaireChoisi(horaireChoisi), duree(dur), evt(event){
 	try{
 		if (dynamic_cast<TacheUnitairePreemptee*>(event))
 			((TacheUnitairePreemptee*)event)->addDureeEffectuee(dur);
 		else
-			event->setProgramme(true);
-		duree = dur;
+            event->setProgramme(true);
 	}
 	catch (CalendarException & e){
 		QMessageBox::information(NULL, "erreur", e.getInfo());
@@ -35,7 +34,7 @@ Programmation Programmation::operator=(Programmation & other){
 	return *this;
 
 }
-Programmation::Programmation(Programmation & other) : id(other.id), dateChoisie(other.dateChoisie), horaireChoisi(other.horaireChoisi), evt(other.evt), duree(other.duree){}
+Programmation::Programmation(Programmation & other) : id(other.id), dateChoisie(other.dateChoisie), horaireChoisi(other.horaireChoisi), duree(other.duree), evt(other.evt){}
 
 void Programmation::setDuree(Duree d){
 	if (dynamic_cast<TacheUnitairePreemptee*>(evt)){
@@ -64,7 +63,10 @@ bool Programmation::operator<(const Programmation & other) const{
 	return (!(*this>other));
 }
 
-
+Programmation::~Programmation() {
+    if(dynamic_cast<ActiviteTraditionnelle*>(evt))
+        delete evt;
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////          PROGRAMMATION_MANAGER              //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

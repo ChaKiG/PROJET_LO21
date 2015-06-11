@@ -62,7 +62,7 @@ void GestionProj::importp(){
 void GestionProj::ajoutTacheRacine(){
     try{
         QTreeWidgetItem * proj = NULL;
-        if(proj = arbre->currentItem()){
+        if((proj = arbre->currentItem())){
             while(proj->parent())
                 proj = proj->parent();
             new GestionTache(ProjetManager::getInstance().getProjet(proj->text(0)));
@@ -76,7 +76,7 @@ void GestionProj::ajoutTacheRacine(){
 void GestionProj::ajoutTache(){
     try{
         QTreeWidgetItem * proj = NULL;
-        if(proj = arbre->currentItem()){
+        if((proj = arbre->currentItem())){
             while(proj->parent())
                 proj = proj->parent();
             Projet & ptr_proj = ProjetManager::getInstance().getProjet(proj->text(0));
@@ -338,8 +338,7 @@ void exportProjet::expprojet(){
 		//enregistrement des liens entre les taches (tableaux de pointeurs etc...
 		std::vector<Tache*> vectprojet1 = ProjetManager::getInstance().getProjet(box->currentText()).getTaches();
 		std::vector<Tache*>::iterator ite1 = vectprojet1.begin();
-		while (ite1 != vectprojet1.end()){
-			int i;
+        while (ite1 != vectprojet1.end()){
 			if (dynamic_cast<const TacheUnitairePreemptee*>(*ite1)){
 				stream.writeStartElement("TacheUnitairePreemptee");
 				stream.writeTextElement("id", QString::number((*ite1)->getId()));

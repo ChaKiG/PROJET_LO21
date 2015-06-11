@@ -202,45 +202,14 @@ void GestionSousTache::afficherpreemptive(){ // ajout des durées pour unitaire e
 
 void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 	if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
-	{
 		_proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
-	}else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
-	{
+    else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
         _proj->creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
-	}
 	else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
-	{
         _proj->creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
-	}
-
-	/* /////////////////Ne fonctionne pas////////////////////////////////////*/
-/*	if (Prerequis2->text().toStdString() != ""){ //ajout des prerequis si il y en a
-		/* const char* prerequis=Prerequis2->text().toStdString().c_str();
-		char tache[20];
-		char lettre =prerequis[0];
-		int i=0,j=0;
-		while (i<100){
-		if (lettre != ' '||lettre != '\n'){
-		tache[j]=lettre;
-		lettre=prerequis[++i];
-		j++;}
-		else{ QString tache2(*tache);
-		t->ajoutPrerequi(&(projM.getProjet(Projet2->text()).getTache(tache2)));
-		j=0;}
-		}*/
-     //   t->ajoutPrerequi(&(projM.getProjet(Projet2->text()).getTache(Prerequis2->text())));//fonctionne pour 1 seul prerequis
-    //}
-	/* ////////////////////////////////////////////////////////////////////////*/
-
 	new GestionProj();
     close();
-
 }
-
-
-
-
-
 
 
 
@@ -249,55 +218,66 @@ void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
     if (dynamic_cast<TacheComposite*>(&_tache))
 	{
 		if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
-		{
             _proj.creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date(),  std::vector<Tache*>(), &_tache);
-		}
-
 		if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
-		{
             _proj.creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
-		}
 		else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
-        {
             _proj.creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
-		}
-
-
-		/* /////////////////Ne fonctionne pas////////////////////////////////////*/
-       // if (Prerequis2->text().toStdString() != ""){ //ajout des prerequis si il y en a
-			/*  const char* prerequis=Prerequis2->text().toStdString().c_str();
-			char tache[20];
-			char lettre =prerequis[0];
-			int i=0,j=0;
-			while (i<100){
-			if (lettre != ' '||lettre != '\n'){
-			tache[j]=lettre;
-			lettre=prerequis[++i];
-			j++;}
-			else{ QString tache2(*tache);
-			t->ajoutPrerequi(&(projM.getProjet(Projet2->text()).getTache(tache2)));
-			j=0;}
-			}*/
-            //t->ajoutPrerequi(&(projM.getProjet(Projet2->text()).getTache(Prerequis2->text())));//fonctionne pour 1 seul prerequis
-		//}
-		/* ////////////////////////////////////////////////////////////////////////*/
-
+        close();
+    }else{
+        throw CalendarException("impossible d'ajouter une sous tache a une tache non composite");
+        close();
     }
-	//else   throw CalendarException("Impossible d'ajouter une sous tache à une tache non composite");
-    close();
 }
 
 
 
-
 GestionTache::~GestionTache(){
-	delete lay;
+    delete lay;
+    delete Preemptive;
+    delete Composite;
+    delete Unitaire;
+    delete Duree1;
+    delete Duree3;
+    delete Ech1;
+    delete Dispo1;
+    delete Projet1;
+    delete Prerequis1;
+    delete Titre1;
+    delete Duree2;
+    delete Duree4;
+    delete Ech2;
+    delete Dispo2;
+    delete Projet2;
+    delete Titre2;
+    delete Prerequis2;
+    delete Sauvegarder;
+    delete Annuler;
 }
 
 
 
 
 GestionSousTache::~GestionSousTache(){
-	delete lay;
+    delete lay;
+    delete Preemptive;
+    delete Composite;
+    delete Unitaire;
+    delete Duree1;
+    delete Duree3;
+    delete Ech1;
+    delete Dispo1;
+    delete Projet1;
+    delete Prerequis1;
+    delete Titre1;
+    delete Duree2;
+    delete Duree4;
+    delete Ech2;
+    delete Dispo2;
+    delete Projet2;
+    delete Titre2;
+    delete Prerequis2;
+    delete Sauvegarder;
+    delete Annuler;
 }
 

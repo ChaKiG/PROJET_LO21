@@ -95,6 +95,10 @@ public:
 	*  \param pre : prerequis a ajouter
 	*/
 	void ajoutPrerequi(Tache * pre);
+    /*!
+    *  \brief supprimme un prérequis, renvoit exception si probleme>
+    *  \param pre : prerequis a supprimmer
+    */
     void delPrerequi(Tache * pre);
 	/*!
 	*  \brief ajoute une liste prérequis, renvoit exception si probleme>
@@ -102,6 +106,11 @@ public:
 	*/
 	void ajoutPrerequis(std::vector<Tache*> vec);   
 
+    /*!
+    *  \brief remet a 0 les prerequis et ajoute les nouveaux>
+    * renvoit exception et remets les prerequis a l'etat antérieur si nouveaux prerequis impossibles
+    *  \param vec : prerequis a ajouter
+    */
     void setPrerequis(std::vector<Tache*> vec);
 
 
@@ -117,9 +126,14 @@ public:
 	*/
     void setDateEcheance(const QDate & dEcheance);
 
+    /*!
+    *  \brief modifie la date d'echeance et disponibilite
+    *  \param dDispo : nouvelle date de disponibilite
+    *  \param dEcheance : nouvelle date d'echeance
+    */
 	void setDatesDisponibiliteEcheance(const QDate &dDispo, const QDate & dEcheance);
 
-	virtual ~Tache();                                          //<!destructeur>
+    virtual ~Tache();                   //<!destructeur>
 };
 
 
@@ -190,7 +204,12 @@ class TacheUnitairePreemptee : public TacheUnitaire{
 	friend class Projet;
 private:
 	Duree dureeEffectuee;         //<!duree effectuee>
-	void checkPossible(std::string op, Duree d);   //<!verifie si la duree après opération est possible, renvoit exception si non>
+    /*!
+    *  \brief verifie si la duree après opération est possible, renvoit exception si non
+    *  \param op : operation a effectuer sur la duree
+    *  \param d : duree avec laquelle effectuer l'operation
+    */
+    void checkPossible(std::string op, Duree d);
 
 protected:
     TacheUnitairePreemptee(int id, const QString& titre, const QDate& dDispo, const QDate& dEcheance, Duree duree, const std::vector<Tache*> pre, Tache* parent) : TacheUnitaire(id, titre, dDispo, dEcheance, duree, pre, parent), dureeEffectuee(0){} 
@@ -261,7 +280,7 @@ protected:
 
 public:
 	
-	void updateProg();                                     //<!mets a jour le statut de la tache en fonction du statut de ses sous taches>
+    void updateProg();       //<!mets a jour le statut de la tache en fonction du statut de ses sous taches>
 
 	/*!
 	*  \brief ajoute une sous tache deja créée

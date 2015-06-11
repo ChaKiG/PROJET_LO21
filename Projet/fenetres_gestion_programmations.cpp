@@ -61,7 +61,7 @@ CreationProgrammation::~CreationProgrammation(){
 void CreationProgrammation::creerProg(){
 	try{
 		QTreeWidgetItem * p;
-		if (p = arbre->currentItem()){
+        if ((p = arbre->currentItem())){
 			if (p->parent()){
 				while (p->parent() != NULL)
 					p = p->parent();

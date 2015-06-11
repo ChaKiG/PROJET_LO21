@@ -97,6 +97,7 @@ void EmploiDuTemps::creerEdT(){
 void EmploiDuTemps::editItem(QTableWidgetItem * item){
 	Programmation & prog = ProgrammationManager::getInstance().getProgrammation(item->data(Qt::UserRole).toInt());
 	new ProgrammationEditeur(prog);
+    close();
 }
 
 void EmploiDuTemps::newProg(){

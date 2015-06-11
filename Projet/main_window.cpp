@@ -1047,5 +1047,7 @@ FenetreDepart::~FenetreDepart(){
 	delete exportEdt;
 	delete gestionProjet;
 	delete exit;
+    ProgrammationManager::libererInstance();
+    ProjetManager::libererInstance();
 }
 

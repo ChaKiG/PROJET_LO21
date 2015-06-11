@@ -82,5 +82,7 @@ int main(int argc, char* argv[]) {
     FenetreDepart * fenetre = new FenetreDepart();
 	fenetre->show();
 
-	return app.exec();
+
+
+    return app.exec();
 }

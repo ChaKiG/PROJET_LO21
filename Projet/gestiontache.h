@@ -33,7 +33,6 @@ class GestionTache : public QWidget{
     QDateEdit *Ech2, *Dispo2;
     std::vector<Tache*> pre;
     QLineEdit *Projet2, *Titre2, *Prerequis2;
-    TacheEditeur *editeur;
     QPushButton *Sauvegarder, *Annuler;
 	int verif;
     Tache *t;
@@ -59,8 +58,7 @@ class GestionSousTache : public QWidget{
 	QSpinBox* Duree2, *Duree4;
 	QDateEdit* Ech2, *Dispo2;
 	std::vector<Tache*> pre;
-	QLineEdit * Projet2, *Parent2, *Titre2, *Prerequis2;
-	TacheEditeur* editeur;
+    QLineEdit * Projet2, *Parent2, *Titre2, *Prerequis2;
 	QPushButton* Sauvegarder, *Annuler;
 	Tache* par;
 	int verif;

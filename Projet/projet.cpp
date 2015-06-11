@@ -43,10 +43,11 @@ Tache & Projet::creerTache(QString type, const QString & titre, const QDate & dD
             ajouterTache(t);
         else
             throw CalendarException("type impossible a creer");
-	}
+        return *t;
+    }
 	catch (CalendarException & e){
-		QMessageBox::information(NULL, "erreur", e.getInfo());
-	}
+        QMessageBox::information(NULL, "erreur", e.getInfo());
+    }
 }
 
 

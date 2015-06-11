@@ -101,7 +101,7 @@ TacheEditeur::TacheEditeur(Projet *projet, Tache * tacheToEdit, QWidget* parent)
 
 
 void TacheEditeur::addPre(){
-    AjoutPre * a = new AjoutPre(_proj, _tache);
+    AjoutPre * a = new AjoutPre(_proj);
     QObject::connect(a, SIGNAL(valuesent(QListWidgetItem*)), this, SLOT(majPre(QListWidgetItem*)));
 }
 
@@ -140,7 +140,7 @@ void TacheEditeur::save(){
 }
 
 
-AjoutPre::AjoutPre(Projet * proj, Tache * tache){
+AjoutPre::AjoutPre(Projet * proj){
     arbre = proj->creerArbre();
     choisir = new QPushButton("choisir");
     lay = new QGridLayout();

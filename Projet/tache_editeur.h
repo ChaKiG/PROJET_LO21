@@ -18,6 +18,8 @@
 class TacheEditeur : public QWidget{
 	Q_OBJECT
 private:
+    Projet *_proj;
+    Tache* _tache;
 	QGridLayout* box;
 	QLineEdit* titre;
 	QSpinBox* heureDebut, *minDebut;
@@ -27,8 +29,6 @@ private:
     QPushButton* ajoutPre, *suppPre;
 	QPushButton* annuler, *saveButton;
     QListWidget *sousTaches, *prerequis;
-    Tache* _tache;
-    Projet *_proj;
 
 public:
     TacheEditeur(Projet * projet, Tache * tacheToEdit, QWidget *parent = 0);
@@ -46,7 +46,7 @@ private:
     QTreeWidget *arbre;
     QPushButton *choisir;
 public:
-    AjoutPre(Projet * proj, Tache * tache);
+    AjoutPre(Projet * proj);
     ~AjoutPre();
 public slots:
     void choix();
