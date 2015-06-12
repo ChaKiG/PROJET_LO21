@@ -2,7 +2,10 @@
 
 
 
-Projet::Projet(const QString & t, const QDate & deb, const QDate & fin) : currentId(0), titre(t), debut(deb), fin(fin){}
+Projet::Projet(const QString & t, const QDate & deb, const QDate & fin) : currentId(0), titre(t), debut(deb), fin(fin){
+	if (deb > fin)
+		throw CalendarException("Le debut du projet doit etre avant la fin !");
+}
 
 Projet::~Projet()
 {

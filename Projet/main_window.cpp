@@ -308,9 +308,9 @@ void FenetreDepart::load()
 		if (ok && !text.isEmpty()){
 
 			file = text;
-			QDate debut, dfin;
+			QDate ddebutProj, dfinProj;
 			QString strdebut, strfin;
-			QString nom;
+			QString nomProj;
 			QFile fin(file + ".xml");
 			// If we can't open it, let's show an error message.
 			if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -339,21 +339,21 @@ void FenetreDepart::load()
 									QXmlStreamAttributes attributes = xml.attributes();
 									if (attributes.hasAttribute("nom"))
 									{
-										nom = attributes.value("nom").toString();
+										nomProj = attributes.value("nom").toString();
 
 									}
 									if (attributes.hasAttribute("debut"))
 									{
 										strdebut = attributes.value("debut").toString();
-										debut.fromString(strdebut, Qt::ISODate);
+										ddebutProj = QDate::fromString(strdebut, Qt::ISODate);
 									}
 									if (attributes.hasAttribute("fin"))
 									{
 										strfin = attributes.value("fin").toString();
-										dfin.fromString(strfin, Qt::ISODate);
+										dfinProj = QDate::fromString(strfin, Qt::ISODate);
 									}
 
-									ProjetManager::getInstance().ajouterProjet(nom, debut, dfin);
+									ProjetManager::getInstance().ajouterProjet(nomProj, ddebutProj, dfinProj);
 									while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Projet")) {
 
 										if (token == QXmlStreamReader::StartElement) {
@@ -416,7 +416,7 @@ void FenetreDepart::load()
 
 															}
 															//qDebug()<<"ajout tache "<<identificateur<<"\n";
-															ProjetManager::getInstance().getProjet(nom).creerTache("TacheUnitaire", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
+															ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheUnitaire", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
 
 														}
 														else {
@@ -476,7 +476,7 @@ void FenetreDepart::load()
 
 																}
 																//qDebug()<<"ajout tache "<<identificateur<<"\n";
-																Tache & t = ProjetManager::getInstance().getProjet(nom).creerTache("TacheUnitairePreemptee", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
+																Tache & t = ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheUnitairePreemptee", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
 																((TacheUnitairePreemptee&)t).addDureeEffectuee(dureeEffectuee);
 															}
 															else{
@@ -525,7 +525,7 @@ void FenetreDepart::load()
 
 																	}
 																	//qDebug()<<"ajout tache "<<identificateur<<"\n";
-																	ProjetManager::getInstance().getProjet(nom).creerTache("TacheComposite", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL);
+																	ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheComposite", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL);
 																}
 															}//fin du premier else
 														}//fin du deuxieme else
@@ -571,7 +571,7 @@ void FenetreDepart::load()
 																	if (xml.name() == "parent") {
 																		xml.readNext(); parentid = xml.text().toString();
 																		if (parentid != "NULL"){
-																			parent = &ProjetManager::getInstance().getProjet(nom).getTache(parentid);
+																			parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
 																		}
 																	}
 
@@ -582,7 +582,7 @@ void FenetreDepart::load()
 																				if (xml.name() == "id") {
 																					xml.readNext(); idpre = xml.text().toString();
 
-																					temprerequis = &ProjetManager::getInstance().getProjet(nom).getTache(idpre);
+																					temprerequis = &ProjetManager::getInstance().getProjet(nomProj).getTache(idpre);
 																					prerequis.push_back(temprerequis);
 																				}
 
@@ -597,10 +597,10 @@ void FenetreDepart::load()
 
 															}
 															//qDebug()<<"ajout tache "<<identificateur<<"\n";
-															ProjetManager::getInstance().getProjet(nom).getTache(id).ajoutPrerequis(prerequis);
+															ProjetManager::getInstance().getProjet(nomProj).getTache(id).ajoutPrerequis(prerequis);
 															if (parent)
 															{
-																ProjetManager::getInstance().getProjet(nom).getTache(id).setParent(parent);
+																ProjetManager::getInstance().getProjet(nomProj).getTache(id).setParent(parent);
 															}
 															prerequis.clear();
 														}
@@ -636,7 +636,7 @@ void FenetreDepart::load()
 																			xml.readNext(); parentid = xml.text().toString();
 
 																			if (parentid != "NULL"){
-																				parent = &ProjetManager::getInstance().getProjet(nom).getTache(parentid);
+																				parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
 
 																			}
 																		}
@@ -649,7 +649,7 @@ void FenetreDepart::load()
 																					if (xml.name() == "id") {
 																						xml.readNext(); idpre = xml.text().toString();
 
-																						temprerequis = &ProjetManager::getInstance().getProjet(nom).getTache(idpre);
+																						temprerequis = &ProjetManager::getInstance().getProjet(nomProj).getTache(idpre);
 																						prerequis.push_back(temprerequis);
 																					}
 
@@ -669,7 +669,7 @@ void FenetreDepart::load()
 																						xml.readNext(); idsoustaches = xml.text().toString();
 
 
-																						soustache = &ProjetManager::getInstance().getProjet(nom).getTache(idsoustaches);
+																						soustache = &ProjetManager::getInstance().getProjet(nomProj).getTache(idsoustaches);
 																						soustaches.push_back(soustache);
 																					}
 
@@ -685,12 +685,12 @@ void FenetreDepart::load()
 
 																}
 
-																ProjetManager::getInstance().getProjet(nom).getTache(id).ajoutPrerequis(prerequis);
+																ProjetManager::getInstance().getProjet(nomProj).getTache(id).ajoutPrerequis(prerequis);
 																if (parent)
 																{
-																	ProjetManager::getInstance().getProjet(nom).getTache(id).setParent(parent);
+																	ProjetManager::getInstance().getProjet(nomProj).getTache(id).setParent(parent);
 																}
-																dynamic_cast<TacheComposite*>(&ProjetManager::getInstance().getProjet(nom).getTache(id))->ajouterSousTaches(soustaches);
+																dynamic_cast<TacheComposite*>(&ProjetManager::getInstance().getProjet(nomProj).getTache(id))->ajouterSousTaches(soustaches);
 
 																soustaches.clear();
 																prerequis.clear();
