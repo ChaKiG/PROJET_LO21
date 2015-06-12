@@ -15,11 +15,8 @@ GestionTache::GestionTache(Projet &proj) : _proj(&proj){
 	Composite = new QRadioButton("Composite?");
 	Sauvegarder = new QPushButton("Sauvegarder");
     Annuler = new QPushButton("Annuler");
-	pre = std::vector<Tache*>();
     verif = 0;
 
-	Prerequis1 = new QLabel("Taches prérequises:");
-	Prerequis2 = new QLineEdit();
 
 	Duree1 = new QLabel("Duree heure:");
 	Duree2 = new QSpinBox(0);
@@ -49,8 +46,6 @@ GestionTache::GestionTache(Projet &proj) : _proj(&proj){
 	lay->addWidget(Dispo2);
 	lay->addWidget(Ech1);
 	lay->addWidget(Ech2);
-	lay->addWidget(Prerequis1);
-	lay->addWidget(Prerequis2);
 	lay->addWidget(Unitaire);
 	lay->addWidget(Preemptive);
 	lay->addWidget(Composite);
@@ -74,11 +69,8 @@ GestionSousTache::GestionSousTache(Projet &proj, Tache &tache) : _proj(proj), _t
 	Composite = new QRadioButton("Composite?");
 	Sauvegarder = new QPushButton("Sauvegarder");
     Annuler = new QPushButton("Annuler");
-    pre = std::vector<Tache*>();
     verif = 0;
 
-	Prerequis1 = new QLabel("Taches prérequises:");
-	Prerequis2 = new QLineEdit();
 
 	Duree1 = new QLabel("Duree heure:");
 	Duree2 = new QSpinBox(0);
@@ -105,8 +97,6 @@ GestionSousTache::GestionSousTache(Projet &proj, Tache &tache) : _proj(proj), _t
     lay->addWidget(Dispo2);
 	lay->addWidget(Ech1);
 	lay->addWidget(Ech2);
-	lay->addWidget(Prerequis1);
-	lay->addWidget(Prerequis2);
 	lay->addWidget(Unitaire);
 	lay->addWidget(Preemptive);
 	lay->addWidget(Composite);
@@ -242,7 +232,6 @@ GestionTache::~GestionTache(){
     delete Ech1;
     delete Dispo1;
     delete Projet1;
-    delete Prerequis1;
     delete Titre1;
     delete Duree2;
     delete Duree4;
@@ -250,7 +239,6 @@ GestionTache::~GestionTache(){
     delete Dispo2;
     delete Projet2;
     delete Titre2;
-    delete Prerequis2;
     delete Sauvegarder;
     delete Annuler;
 }
@@ -268,7 +256,6 @@ GestionSousTache::~GestionSousTache(){
     delete Ech1;
     delete Dispo1;
     delete Projet1;
-    delete Prerequis1;
     delete Titre1;
     delete Duree2;
     delete Duree4;
@@ -276,7 +263,6 @@ GestionSousTache::~GestionSousTache(){
     delete Dispo2;
     delete Projet2;
     delete Titre2;
-    delete Prerequis2;
     delete Sauvegarder;
     delete Annuler;
 }

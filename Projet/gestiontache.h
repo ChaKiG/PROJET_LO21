@@ -28,11 +28,10 @@ class GestionTache : public QWidget{
     QVBoxLayout *lay;
     QRadioButton *Preemptive, *Composite, *Unitaire;
     QTreeWidgetItem *p;
-    QLabel *Duree1, *Duree3, *Ech1, *Dispo1, *Projet1, *Prerequis1, *Titre1;
+    QLabel *Duree1, *Duree3, *Ech1, *Dispo1, *Projet1, *Titre1;
     QSpinBox *Duree2, *Duree4;
     QDateEdit *Ech2, *Dispo2;
-    std::vector<Tache*> pre;
-    QLineEdit *Projet2, *Titre2, *Prerequis2;
+	QLineEdit *Projet2, *Titre2;
     QPushButton *Sauvegarder, *Annuler;
 	int verif;
     Tache *t;
@@ -54,11 +53,10 @@ class GestionSousTache : public QWidget{
 	QRadioButton* Preemptive, *Composite, *Unitaire;
 	Tache *t;
 	QTreeWidgetItem * p, *tachecomp;
-	QLabel * Duree1, *Duree3, *Ech1, *Dispo1, *Projet1, *Parent1, *Titre1, *Prerequis1;
+	QLabel * Duree1, *Duree3, *Ech1, *Dispo1, *Projet1, *Parent1, *Titre1;
 	QSpinBox* Duree2, *Duree4;
 	QDateEdit* Ech2, *Dispo2;
-	std::vector<Tache*> pre;
-    QLineEdit * Projet2, *Parent2, *Titre2, *Prerequis2;
+	QLineEdit * Projet2, *Parent2, *Titre2;
 	QPushButton* Sauvegarder, *Annuler;
 	Tache* par;
 	int verif;
