@@ -211,8 +211,8 @@ void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 		if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
             _proj.creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
 		else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
-            _proj.creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
-        close();
+			_proj.creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
+		close();
     }else{
         throw CalendarException("impossible d'ajouter une sous tache a une tache non composite");
         close();

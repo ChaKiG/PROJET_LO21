@@ -36,6 +36,8 @@ Tache* Projet::trouverTache(int id) const{
 Tache & Projet::creerTache(QString type, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre, Tache* parent, Duree du){
     Tache *t = NULL;
     try{
+		if (type == "TacheUnitaire" && du > Duree(12, 0))
+			throw CalendarException("duree maximale d'une tache non preemptee : 12h");
 		if (dDispo < debut || dEcheance > fin)
 			throw CalendarException("Date de la tache incompatible avec les disponibilités du projet");
         if (type == "TacheComposite")
