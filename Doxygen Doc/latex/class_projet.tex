@@ -1,0 +1,293 @@
+\hypertarget{class_projet}{}\section{Projet Class Reference}
+\label{class_projet}\index{Projet@{Projet}}
+
+
+regroupe un ensemble de taches portant sur un certain sujet  
+
+
+
+
+{\ttfamily \#include $<$projet.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache}{Tache} \& \hyperlink{class_projet_a10477fefcbcf0f058603b22bc0a43b26}{creer\+Tache} (Q\+String type, const Q\+String \&titre, const Q\+Date \&d\+Dispo, const Q\+Date \&d\+Echeance, std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ pre=std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$(), \hyperlink{class_tache}{Tache} $\ast$parent=0, \hyperlink{class_duree}{Duree} du=\hyperlink{class_duree}{Duree}(0))
+\begin{DoxyCompactList}\small\item\em cree une tache correspondant aux arguments passés \end{DoxyCompactList}\item 
+\hypertarget{class_projet_a5d9ba2daebb428d6d5b8fa56b131ceb1}{}int {\bfseries get\+Current\+Id} ()\label{class_projet_a5d9ba2daebb428d6d5b8fa56b131ceb1}
+
+\item 
+\hypertarget{class_projet_add87a5985b93354bc4b763de259397ed}{}const std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ {\bfseries get\+Taches} () const \label{class_projet_add87a5985b93354bc4b763de259397ed}
+
+\item 
+\hyperlink{class_tache}{Tache} \& \hyperlink{class_projet_a4946787213f47a2f98eb4d720b290fdc}{get\+Tache} (const Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em cherche une tache par son titre attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre \end{DoxyCompactList}\item 
+\hyperlink{class_tache}{Tache} \& \hyperlink{class_projet_ad01ec8299256dc528c872580b2946bb9}{get\+Tache} (int id)
+\begin{DoxyCompactList}\small\item\em cherche une tache par son id \end{DoxyCompactList}\item 
+const \hyperlink{class_tache}{Tache} \& \hyperlink{class_projet_a1d7e504c6739311a8b189c9d0b17c0ff}{get\+Tache} (const Q\+String \&t) const 
+\begin{DoxyCompactList}\small\item\em cherche une tache par son titre (const) attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre \end{DoxyCompactList}\item 
+const \hyperlink{class_tache}{Tache} \& \hyperlink{class_projet_aa7ea7238294ad04594a868d887c4f327}{get\+Tache} (int id) const 
+\begin{DoxyCompactList}\small\item\em cherche une tache par son id (const) \end{DoxyCompactList}\item 
+void \hyperlink{class_projet_a6a6be3877830082584754872ca58ea3c}{supprimer\+Tache} (int id)
+\begin{DoxyCompactList}\small\item\em supprime la tache par son id \end{DoxyCompactList}\item 
+void \hyperlink{class_projet_ac806eff7ed511d375d34860ea682e465}{supprimer\+Tache} (const Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em supprime la tache par son titre attention \+: supprime la premiere tache renseignée si plusieurs taches ont le meme titre \end{DoxyCompactList}\item 
+\hypertarget{class_projet_a531e453dd67e8192bdd6be5148aac82c}{}const Q\+String {\bfseries get\+Titre} () const \label{class_projet_a531e453dd67e8192bdd6be5148aac82c}
+
+\item 
+\hypertarget{class_projet_a8f86b55e3bd1da9b4a08123633bbe6e6}{}const Q\+Date {\bfseries get\+Debut} () const \label{class_projet_a8f86b55e3bd1da9b4a08123633bbe6e6}
+
+\item 
+\hypertarget{class_projet_a13175c00718ef22e0426b48be95d58a7}{}const Q\+Date {\bfseries get\+Fin} () const \label{class_projet_a13175c00718ef22e0426b48be95d58a7}
+
+\item 
+\hypertarget{class_projet_ab907e05a7eec63516f99e3ac832fd12c}{}Q\+Tree\+Widget $\ast$ {\bfseries creer\+Arbre} () const \label{class_projet_ab907e05a7eec63516f99e3ac832fd12c}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_ac7577a415b9d5da0db0c7a2c2c23887f}{}{\bfseries Projet} (const Q\+String \&t, const Q\+Date \&deb, const Q\+Date \&fin)\label{class_projet_ac7577a415b9d5da0db0c7a2c2c23887f}
+
+\item 
+void \hyperlink{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{ajouter\+Tache} (\hyperlink{class_tache}{Tache} $\ast$t)
+\begin{DoxyCompactList}\small\item\em ajoute une tache au projet \end{DoxyCompactList}\item 
+\hyperlink{class_tache}{Tache} $\ast$ \hyperlink{class_projet_a273015eb3bdc1910712a53c484d31da9}{trouver\+Tache} (const Q\+String \&t) const 
+\begin{DoxyCompactList}\small\item\em cherche une tache par son titre attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre \end{DoxyCompactList}\item 
+\hyperlink{class_tache}{Tache} $\ast$ \hyperlink{class_projet_a8675b64f9fb5e6e7c1375a2ee5ad851f}{trouver\+Tache} (int id) const 
+\begin{DoxyCompactList}\small\item\em cherche une tache par son id \end{DoxyCompactList}\item 
+void \hyperlink{class_projet_a81773cdbd069096d98190acf02875113}{Ajouter\+Sous\+Taches\+Arbre} (\hyperlink{class_tache_composite}{Tache\+Composite} $\ast$t, Q\+Tree\+Widget\+Item \&i) const 
+\begin{DoxyCompactList}\small\item\em sert a creer l\textquotesingle{}arbre du projet \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_af1f9ce3fef8c4f42cd75e3491df38558}{}int {\bfseries current\+Id}\label{class_projet_af1f9ce3fef8c4f42cd75e3491df38558}
+
+\item 
+\hypertarget{class_projet_a9759849c856c2ac63f94751b876fd289}{}Q\+String {\bfseries titre}\label{class_projet_a9759849c856c2ac63f94751b876fd289}
+
+\item 
+\hypertarget{class_projet_a601015604334a856bb761d30ed816768}{}Q\+Date {\bfseries debut}\label{class_projet_a601015604334a856bb761d30ed816768}
+
+\item 
+\hypertarget{class_projet_af91ffd192889109af2b212d39b5b6917}{}Q\+Date {\bfseries fin}\label{class_projet_af91ffd192889109af2b212d39b5b6917}
+
+\item 
+\hypertarget{class_projet_ade04f0da5af2565b1dc57cfaa1dde6e6}{}std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ {\bfseries taches}\label{class_projet_ade04f0da5af2565b1dc57cfaa1dde6e6}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_aaaed9857b3481233fa7c581b5c86151d}{}class {\bfseries Projet\+Manager}\label{class_projet_aaaed9857b3481233fa7c581b5c86151d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+regroupe un ensemble de taches portant sur un certain sujet 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_projet_a81773cdbd069096d98190acf02875113}{}\index{Projet@{Projet}!Ajouter\+Sous\+Taches\+Arbre@{Ajouter\+Sous\+Taches\+Arbre}}
+\index{Ajouter\+Sous\+Taches\+Arbre@{Ajouter\+Sous\+Taches\+Arbre}!Projet@{Projet}}
+\subsubsection[{Ajouter\+Sous\+Taches\+Arbre}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::\+Ajouter\+Sous\+Taches\+Arbre (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache\+Composite} $\ast$}]{t, }
+\item[{Q\+Tree\+Widget\+Item \&}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_a81773cdbd069096d98190acf02875113}
+
+
+sert a creer l\textquotesingle{}arbre du projet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: tache pour laquelle on doit renseigner les enfants \\
+\hline
+{\em i} & \+: widget correspondant a t dans l\textquotesingle{}arbre \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}{}\index{Projet@{Projet}!ajouter\+Tache@{ajouter\+Tache}}
+\index{ajouter\+Tache@{ajouter\+Tache}!Projet@{Projet}}
+\subsubsection[{ajouter\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::ajouter\+Tache (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_adf4f7c0f48ee4661b57be82af2b056ae}
+
+
+ajoute une tache au projet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a10477fefcbcf0f058603b22bc0a43b26}{}\index{Projet@{Projet}!creer\+Tache@{creer\+Tache}}
+\index{creer\+Tache@{creer\+Tache}!Projet@{Projet}}
+\subsubsection[{creer\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} \& Projet\+::creer\+Tache (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{type, }
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+Date \&}]{d\+Dispo, }
+\item[{const Q\+Date \&}]{d\+Echeance, }
+\item[{std\+::vector$<$ {\bf Tache} $\ast$ $>$}]{pre = {\ttfamily std\+:\+:vector$<${\bf Tache}$\ast$$>$()}, }
+\item[{{\bf Tache} $\ast$}]{parent = {\ttfamily 0}, }
+\item[{{\bf Duree}}]{du = {\ttfamily {\bf Duree}(0)}}
+\end{DoxyParamCaption}
+)}\label{class_projet_a10477fefcbcf0f058603b22bc0a43b26}
+
+
+cree une tache correspondant aux arguments passés 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & \+: type de la tache (Tache\+Unitaire/\+Tache\+Composite/\+Tache\+Unitaire\+Preemptee) \\
+\hline
+{\em titre} & \+: titre de la tache a creer \\
+\hline
+{\em d\+Dispo} & \+: date de disponibilite de la tache \\
+\hline
+{\em d\+Echeance} & \+: date d\textquotesingle{}echeance de la tache \\
+\hline
+{\em pre} & \+: prerequis de la tache \\
+\hline
+{\em parent} & \+: parent de la tache (tache composite de niveau superieur) \\
+\hline
+{\em du} & \+: duree de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a4946787213f47a2f98eb4d720b290fdc}{}\index{Projet@{Projet}!get\+Tache@{get\+Tache}}
+\index{get\+Tache@{get\+Tache}!Projet@{Projet}}
+\subsubsection[{get\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} \& Projet\+::get\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_a4946787213f47a2f98eb4d720b290fdc}
+
+
+cherche une tache par son titre attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_ad01ec8299256dc528c872580b2946bb9}{}\index{Projet@{Projet}!get\+Tache@{get\+Tache}}
+\index{get\+Tache@{get\+Tache}!Projet@{Projet}}
+\subsubsection[{get\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} \& Projet\+::get\+Tache (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_projet_ad01ec8299256dc528c872580b2946bb9}
+
+
+cherche une tache par son id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a1d7e504c6739311a8b189c9d0b17c0ff}{}\index{Projet@{Projet}!get\+Tache@{get\+Tache}}
+\index{get\+Tache@{get\+Tache}!Projet@{Projet}}
+\subsubsection[{get\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Tache} \& Projet\+::get\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+) const}\label{class_projet_a1d7e504c6739311a8b189c9d0b17c0ff}
+
+
+cherche une tache par son titre (const) attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_aa7ea7238294ad04594a868d887c4f327}{}\index{Projet@{Projet}!get\+Tache@{get\+Tache}}
+\index{get\+Tache@{get\+Tache}!Projet@{Projet}}
+\subsubsection[{get\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Tache} \& Projet\+::get\+Tache (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+) const}\label{class_projet_aa7ea7238294ad04594a868d887c4f327}
+
+
+cherche une tache par son id (const) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a6a6be3877830082584754872ca58ea3c}{}\index{Projet@{Projet}!supprimer\+Tache@{supprimer\+Tache}}
+\index{supprimer\+Tache@{supprimer\+Tache}!Projet@{Projet}}
+\subsubsection[{supprimer\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::supprimer\+Tache (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_projet_a6a6be3877830082584754872ca58ea3c}
+
+
+supprime la tache par son id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la tache a supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_ac806eff7ed511d375d34860ea682e465}{}\index{Projet@{Projet}!supprimer\+Tache@{supprimer\+Tache}}
+\index{supprimer\+Tache@{supprimer\+Tache}!Projet@{Projet}}
+\subsubsection[{supprimer\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+::supprimer\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_ac806eff7ed511d375d34860ea682e465}
+
+
+supprime la tache par son titre attention \+: supprime la premiere tache renseignée si plusieurs taches ont le meme titre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre de la tache a supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a273015eb3bdc1910712a53c484d31da9}{}\index{Projet@{Projet}!trouver\+Tache@{trouver\+Tache}}
+\index{trouver\+Tache@{trouver\+Tache}!Projet@{Projet}}
+\subsubsection[{trouver\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} $\ast$ Projet\+::trouver\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_a273015eb3bdc1910712a53c484d31da9}
+
+
+cherche une tache par son titre attention \+: renvoit la premiere tache renseignée si plusieurs taches ont le meme titre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_a8675b64f9fb5e6e7c1375a2ee5ad851f}{}\index{Projet@{Projet}!trouver\+Tache@{trouver\+Tache}}
+\index{trouver\+Tache@{trouver\+Tache}!Projet@{Projet}}
+\subsubsection[{trouver\+Tache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tache} $\ast$ Projet\+::trouver\+Tache (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_a8675b64f9fb5e6e7c1375a2ee5ad851f}
+
+
+cherche une tache par son id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la tache \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/projet.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/projet.\+cpp\end{DoxyCompactItemize}

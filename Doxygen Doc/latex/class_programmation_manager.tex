@@ -1,0 +1,241 @@
+\hypertarget{class_programmation_manager}{}\section{Programmation\+Manager Class Reference}
+\label{class_programmation_manager}\index{Programmation\+Manager@{Programmation\+Manager}}
+
+
+regroupe toutes les programmations, l\textquotesingle{}emploi du temps est créé grace a elle  
+
+
+
+
+{\ttfamily \#include $<$programmation.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_manager_a975a9226a49d850f54d5f64a407969b2}{}bool {\bfseries creneaulibre} (const Q\+Date \&da, const Q\+Time \&h, const \hyperlink{class_duree}{Duree} \&du)\label{class_programmation_manager_a975a9226a49d850f54d5f64a407969b2}
+
+\item 
+void \hyperlink{class_programmation_manager_ad2152e1d6f91acc5542caf33252640d0}{creer\+Programmation} (\hyperlink{class_evenement}{Evenement} $\ast$event, Q\+Date date\+Choisie, Q\+Time horaire\+Choisi)
+\begin{DoxyCompactList}\small\item\em crée une programmation pour un evenement choisi \end{DoxyCompactList}\item 
+\hyperlink{class_programmation}{Programmation} \& \hyperlink{class_programmation_manager_a7b7a03494972c8140d520f3bc24abe0a}{get\+Programmation} (int id)
+\begin{DoxyCompactList}\small\item\em cherche une programmation \end{DoxyCompactList}\item 
+\hyperlink{class_programmation}{Programmation} \& \hyperlink{class_programmation_manager_a012b8871019408b1a0bc4bb40696fa08}{get\+Derniere\+Programmation} (\hyperlink{class_evenement}{Evenement} $\ast$evt)
+\begin{DoxyCompactList}\small\item\em cherche une programmation relative a un evenement \end{DoxyCompactList}\item 
+\hypertarget{class_programmation_manager_a135184cab7050ec7568eab43f46abd02}{}const std\+::vector$<$ \hyperlink{class_programmation}{Programmation} $\ast$ $>$ \& {\bfseries get\+Programmations} () const \label{class_programmation_manager_a135184cab7050ec7568eab43f46abd02}
+
+\item 
+\hypertarget{class_programmation_manager_a3305db243c119907a10646d504c99484}{}std\+::vector$<$ \hyperlink{class_programmation}{Programmation} $\ast$ $>$ {\bfseries get\+Semaine} (Q\+Date \&date) const \label{class_programmation_manager_a3305db243c119907a10646d504c99484}
+
+\item 
+void \hyperlink{class_programmation_manager_af1a24f310ba7b622d4e2641af7c069cf}{supprimer\+Programmations\+Evt} (const Q\+String p)
+\begin{DoxyCompactList}\small\item\em supprime les programmations en rapport a un evenement \end{DoxyCompactList}\item 
+void \hyperlink{class_programmation_manager_aa0dea8a1860f1fca3a462ea77ca1dc09}{supprimer\+Programmation} (int id)
+\begin{DoxyCompactList}\small\item\em supprime la programmation d\textquotesingle{}id id \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_manager_a9da2fc647972756d1f8cdf91d4017c25}{}static \hyperlink{class_programmation_manager}{Programmation\+Manager} \& {\bfseries get\+Instance} ()\label{class_programmation_manager_a9da2fc647972756d1f8cdf91d4017c25}
+
+\item 
+\hypertarget{class_programmation_manager_a94e3fcb28ea7c632dc6750c33949d712}{}static void {\bfseries liberer\+Instance} ()\label{class_programmation_manager_a94e3fcb28ea7c632dc6750c33949d712}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_programmation}{Programmation} $\ast$ \hyperlink{class_programmation_manager_a7bb1d14ed92cf719d2eb8952b5c59dd9}{trouver\+Programmation} (int id) const 
+\begin{DoxyCompactList}\small\item\em cherche une programmation \end{DoxyCompactList}\item 
+\hyperlink{class_programmation}{Programmation} $\ast$ \hyperlink{class_programmation_manager_a39d428d422191a382fa4365e0f3e4b04}{trouver\+Derniere\+Programmation} (\hyperlink{class_evenement}{Evenement} $\ast$evt) const 
+\begin{DoxyCompactList}\small\item\em cherche une programmation relative a un evenement \end{DoxyCompactList}\item 
+\hyperlink{class_programmation}{Programmation} $\ast$ \hyperlink{class_programmation_manager_a8f25dc83efdf00ab879df4f73fdad51f}{create\+Prog\+Preemptee} (\hyperlink{class_evenement}{Evenement} $\ast$event, Q\+Date date, Q\+Time horaire)
+\begin{DoxyCompactList}\small\item\em sert pour les tache preemptee fera apparaitre une fenetre pour choisir la duree de la programmation \end{DoxyCompactList}\item 
+void \hyperlink{class_programmation_manager_a3e84c7978bdce13ddcaef7e706ac2d49}{add\+Item} (\hyperlink{class_programmation}{Programmation} $\ast$t)
+\begin{DoxyCompactList}\small\item\em ajoute une programmation a la liste globale \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_manager_a2c28e7737241fc6612daccaca5b512e8}{}std\+::vector$<$ \hyperlink{class_programmation}{Programmation} $\ast$ $>$ {\bfseries programmations}\label{class_programmation_manager_a2c28e7737241fc6612daccaca5b512e8}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_manager_a8c63bee4d2cd3f1ca0ffd45bf82b7901}{}static \hyperlink{class_programmation_manager}{Programmation\+Manager} $\ast$ {\bfseries instance} = 0\label{class_programmation_manager_a8c63bee4d2cd3f1ca0ffd45bf82b7901}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_manager_a9c1d972c737582e7c27e0806a6c412cb}{}class {\bfseries Creation\+Programmation\+Preemptee}\label{class_programmation_manager_a9c1d972c737582e7c27e0806a6c412cb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+regroupe toutes les programmations, l\textquotesingle{}emploi du temps est créé grace a elle 
+
+sert a choisir la duree a programmer quand on programme une tache Preemptee 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_programmation_manager_a3e84c7978bdce13ddcaef7e706ac2d49}{}\index{Programmation\+Manager@{Programmation\+Manager}!add\+Item@{add\+Item}}
+\index{add\+Item@{add\+Item}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{add\+Item}]{\setlength{\rightskip}{0pt plus 5cm}void Programmation\+Manager\+::add\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Programmation} $\ast$}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_programmation_manager_a3e84c7978bdce13ddcaef7e706ac2d49}
+
+
+ajoute une programmation a la liste globale 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evt} & \+: evenement relatif a la programmation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_a8f25dc83efdf00ab879df4f73fdad51f}{}\index{Programmation\+Manager@{Programmation\+Manager}!create\+Prog\+Preemptee@{create\+Prog\+Preemptee}}
+\index{create\+Prog\+Preemptee@{create\+Prog\+Preemptee}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{create\+Prog\+Preemptee}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} $\ast$ Programmation\+Manager\+::create\+Prog\+Preemptee (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} $\ast$}]{event, }
+\item[{Q\+Date}]{date, }
+\item[{Q\+Time}]{horaire}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_programmation_manager_a8f25dc83efdf00ab879df4f73fdad51f}
+
+
+sert pour les tache preemptee fera apparaitre une fenetre pour choisir la duree de la programmation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \+: evenement relatif a la programmation \\
+\hline
+{\em date} & \+: date a programmer \\
+\hline
+{\em horaire} & \+: heure a programmer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_ad2152e1d6f91acc5542caf33252640d0}{}\index{Programmation\+Manager@{Programmation\+Manager}!creer\+Programmation@{creer\+Programmation}}
+\index{creer\+Programmation@{creer\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{creer\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}void Programmation\+Manager\+::creer\+Programmation (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} $\ast$}]{event, }
+\item[{Q\+Date}]{date\+Choisie, }
+\item[{Q\+Time}]{horaire\+Choisi}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_ad2152e1d6f91acc5542caf33252640d0}
+
+
+crée une programmation pour un evenement choisi 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \+: evenement relatif a la programmation \\
+\hline
+{\em date\+Choisie} & \+: date a programmer \\
+\hline
+{\em horaire\+Choisie} & \+: heure a programmer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_a012b8871019408b1a0bc4bb40696fa08}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Derniere\+Programmation@{get\+Derniere\+Programmation}}
+\index{get\+Derniere\+Programmation@{get\+Derniere\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Derniere\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} \& Programmation\+Manager\+::get\+Derniere\+Programmation (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} $\ast$}]{evt}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_a012b8871019408b1a0bc4bb40696fa08}
+
+
+cherche une programmation relative a un evenement 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evt} & \+: evenement relatif a la programmation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_a7b7a03494972c8140d520f3bc24abe0a}{}\index{Programmation\+Manager@{Programmation\+Manager}!get\+Programmation@{get\+Programmation}}
+\index{get\+Programmation@{get\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{get\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} \& Programmation\+Manager\+::get\+Programmation (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_a7b7a03494972c8140d520f3bc24abe0a}
+
+
+cherche une programmation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la programmation recherchée \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_aa0dea8a1860f1fca3a462ea77ca1dc09}{}\index{Programmation\+Manager@{Programmation\+Manager}!supprimer\+Programmation@{supprimer\+Programmation}}
+\index{supprimer\+Programmation@{supprimer\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{supprimer\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}void Programmation\+Manager\+::supprimer\+Programmation (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_aa0dea8a1860f1fca3a462ea77ca1dc09}
+
+
+supprime la programmation d\textquotesingle{}id id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la programmation a supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_af1a24f310ba7b622d4e2641af7c069cf}{}\index{Programmation\+Manager@{Programmation\+Manager}!supprimer\+Programmations\+Evt@{supprimer\+Programmations\+Evt}}
+\index{supprimer\+Programmations\+Evt@{supprimer\+Programmations\+Evt}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{supprimer\+Programmations\+Evt}]{\setlength{\rightskip}{0pt plus 5cm}void Programmation\+Manager\+::supprimer\+Programmations\+Evt (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{p}
+\end{DoxyParamCaption}
+)}\label{class_programmation_manager_af1a24f310ba7b622d4e2641af7c069cf}
+
+
+supprime les programmations en rapport a un evenement 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \+: titre de l\textquotesingle{}evenement a deprogrammer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_a39d428d422191a382fa4365e0f3e4b04}{}\index{Programmation\+Manager@{Programmation\+Manager}!trouver\+Derniere\+Programmation@{trouver\+Derniere\+Programmation}}
+\index{trouver\+Derniere\+Programmation@{trouver\+Derniere\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{trouver\+Derniere\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} $\ast$ Programmation\+Manager\+::trouver\+Derniere\+Programmation (
+\begin{DoxyParamCaption}
+\item[{{\bf Evenement} $\ast$}]{evt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_programmation_manager_a39d428d422191a382fa4365e0f3e4b04}
+
+
+cherche une programmation relative a un evenement 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evt} & \+: evenement relatif a la programmation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_programmation_manager_a7bb1d14ed92cf719d2eb8952b5c59dd9}{}\index{Programmation\+Manager@{Programmation\+Manager}!trouver\+Programmation@{trouver\+Programmation}}
+\index{trouver\+Programmation@{trouver\+Programmation}!Programmation\+Manager@{Programmation\+Manager}}
+\subsubsection[{trouver\+Programmation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Programmation} $\ast$ Programmation\+Manager\+::trouver\+Programmation (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_programmation_manager_a7bb1d14ed92cf719d2eb8952b5c59dd9}
+
+
+cherche une programmation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \+: id de la programmation recherchée \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/programmation.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/programmation.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,95 @@
+\hypertarget{class_activite_traditionnelle}{}\section{Activite\+Traditionnelle Class Reference}
+\label{class_activite_traditionnelle}\index{Activite\+Traditionnelle@{Activite\+Traditionnelle}}
+
+
+Abstrait, herite \hyperlink{class_evenement}{Evenement} toutes les activites autres que les Taches en héritent.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Inheritance diagram for Activite\+Traditionnelle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_activite_traditionnelle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_traditionnelle_a8083abcc107dc0a9144176e0ba2ba47c}{}const Q\+String \& {\bfseries get\+Lieu} () const \label{class_activite_traditionnelle_a8083abcc107dc0a9144176e0ba2ba47c}
+
+\item 
+\hypertarget{class_activite_traditionnelle_a685b1c01b046576e86a5fe04288176e5}{}virtual \hyperlink{class_duree}{Duree} \hyperlink{class_activite_traditionnelle_a685b1c01b046576e86a5fe04288176e5}{get\+Duree} () const \label{class_activite_traditionnelle_a685b1c01b046576e86a5fe04288176e5}
+
+\begin{DoxyCompactList}\small\item\em renvoit la durée de l\textquotesingle{}evenement la classe evenement ne contient pas d\textquotesingle{}attribut Durée, mais toutes ses sous classes (sauf tache Composite) en possèdent, on décide donc de la créer virtuelle pure \end{DoxyCompactList}\item 
+void \hyperlink{class_activite_traditionnelle_a2fb5b53e93f9d191388da7448041553d}{set\+Lieu} (Q\+String nouveau\+Lieu)
+\begin{DoxyCompactList}\small\item\em modifie le lieu de l\textquotesingle{}activite \end{DoxyCompactList}\item 
+void \hyperlink{class_activite_traditionnelle_ae02975177e5e78ede34eb650d36a73c3}{set\+Duree} (\hyperlink{class_duree}{Duree} nouvelle\+Duree)
+\begin{DoxyCompactList}\small\item\em modifie la duree de l\textquotesingle{}activite \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_traditionnelle_a7ef6bdda7b72d06394910f99a00e0ff4}{}{\bfseries Activite\+Traditionnelle} (const Q\+String \&titre, const Q\+String \&lieu, const \hyperlink{class_duree}{Duree} \&duree)\label{class_activite_traditionnelle_a7ef6bdda7b72d06394910f99a00e0ff4}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_traditionnelle_ac5784e2a50475073a1ff7b86798d9a08}{}Q\+String {\bfseries lieu}\label{class_activite_traditionnelle_ac5784e2a50475073a1ff7b86798d9a08}
+
+\item 
+\hypertarget{class_activite_traditionnelle_a5cf48113f2174a85db78e9ea7cd32531}{}\hyperlink{class_duree}{Duree} {\bfseries duree}\label{class_activite_traditionnelle_a5cf48113f2174a85db78e9ea7cd32531}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_activite_traditionnelle_aa1c0710d6d0e14db65589a0f0b9de29f}{}static int {\bfseries current\+Id} = 0\label{class_activite_traditionnelle_aa1c0710d6d0e14db65589a0f0b9de29f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstrait, herite \hyperlink{class_evenement}{Evenement} toutes les activites autres que les Taches en héritent. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_activite_traditionnelle_ae02975177e5e78ede34eb650d36a73c3}{}\index{Activite\+Traditionnelle@{Activite\+Traditionnelle}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Activite\+Traditionnelle@{Activite\+Traditionnelle}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+Traditionnelle\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{{\bf Duree}}]{nouvelle\+Duree}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_traditionnelle_ae02975177e5e78ede34eb650d36a73c3}
+
+
+modifie la duree de l\textquotesingle{}activite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nouvelle\+Duree} & \+: nouvlle \hyperlink{class_duree}{Duree} de l\textquotesingle{}activite \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_activite_traditionnelle_a2fb5b53e93f9d191388da7448041553d}{}\index{Activite\+Traditionnelle@{Activite\+Traditionnelle}!set\+Lieu@{set\+Lieu}}
+\index{set\+Lieu@{set\+Lieu}!Activite\+Traditionnelle@{Activite\+Traditionnelle}}
+\subsubsection[{set\+Lieu}]{\setlength{\rightskip}{0pt plus 5cm}void Activite\+Traditionnelle\+::set\+Lieu (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{nouveau\+Lieu}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_activite_traditionnelle_a2fb5b53e93f9d191388da7448041553d}
+
+
+modifie le lieu de l\textquotesingle{}activite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nouveaulieu} & \+: nouveau lieu de l\textquotesingle{}activite \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+cpp\end{DoxyCompactItemize}

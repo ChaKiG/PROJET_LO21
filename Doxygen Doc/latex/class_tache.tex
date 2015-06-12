@@ -1,0 +1,239 @@
+\hypertarget{class_tache}{}\section{Tache Class Reference}
+\label{class_tache}\index{Tache@{Tache}}
+
+
+Abstrait, herite \hyperlink{class_evenement}{Evenement} toutes les taches en héritent, unité de base d\textquotesingle{}un projet.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Inheritance diagram for Tache\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_tache_a662db9ee24100a3d52853542c98dadf7}{set\+Programme} (bool effectue)
+\begin{DoxyCompactList}\small\item\em reimplementation, permet de mettre a jour le statut de la \hyperlink{class_tache}{Tache} parente \end{DoxyCompactList}\item 
+\hypertarget{class_tache_a49df0845676da96a48b0e229f45d4b08}{}const Q\+Date \& {\bfseries get\+Date\+Disponibilite} () const \label{class_tache_a49df0845676da96a48b0e229f45d4b08}
+
+\item 
+\hypertarget{class_tache_a77b8bb68047cae864ebeb19575fcfecd}{}const Q\+Date \& {\bfseries get\+Date\+Echeance} () const \label{class_tache_a77b8bb68047cae864ebeb19575fcfecd}
+
+\item 
+\hypertarget{class_tache_a8d3cb6f1e1adc46f938f4cab89e5218b}{}\hyperlink{class_tache}{Tache} $\ast$ {\bfseries get\+Parent} ()\label{class_tache_a8d3cb6f1e1adc46f938f4cab89e5218b}
+
+\item 
+\hypertarget{class_tache_a3ea1915199eeb501ed1c5cd871992dd6}{}const \hyperlink{class_tache}{Tache} $\ast$ {\bfseries get\+Parent} () const \label{class_tache_a3ea1915199eeb501ed1c5cd871992dd6}
+
+\item 
+\hypertarget{class_tache_ae5f783fff550c19580e3de7c143eab9e}{}const std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ \& {\bfseries get\+Prerequis} () const \label{class_tache_ae5f783fff550c19580e3de7c143eab9e}
+
+\item 
+void \hyperlink{class_tache_af6f744073c271d1c8bd302d1f4a8723a}{set\+Parent} (\hyperlink{class_tache}{Tache} $\ast$n\+\_\+parent)
+\begin{DoxyCompactList}\small\item\em modifie le parent \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_ad3c79deb07748c25b6d97474571febec}{ajout\+Prerequi} (\hyperlink{class_tache}{Tache} $\ast$pre)
+\begin{DoxyCompactList}\small\item\em ajoute un prérequis, renvoit exception si probleme$>$ \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_a96bbd20d7dcbb38ce128038190a656cd}{del\+Prerequi} (\hyperlink{class_tache}{Tache} $\ast$pre)
+\begin{DoxyCompactList}\small\item\em supprimme un prérequis, renvoit exception si probleme$>$ \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_a68b96ac5212ecb13d0923f79da857183}{ajout\+Prerequis} (std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ vec)
+\begin{DoxyCompactList}\small\item\em ajoute une liste prérequis, renvoit exception si probleme$>$ \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_a0fa9ada5b4236a1fb4f8876c3d220c59}{set\+Prerequis} (std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ vec)
+\begin{DoxyCompactList}\small\item\em remet a 0 les prerequis et ajoute les nouveaux$>$ renvoit exception et remets les prerequis a l\textquotesingle{}etat antérieur si nouveaux prerequis impossibles \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_ad12e97235d69bd52f3c00c0dad21a3cf}{set\+Date\+Disponibilite} (const Q\+Date \&d\+Dispo)
+\begin{DoxyCompactList}\small\item\em modifie la date de disponibilite \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_a73c12eb28e5130e986b3e2909735f012}{set\+Date\+Echeance} (const Q\+Date \&d\+Echeance)
+\begin{DoxyCompactList}\small\item\em modifie la date d\textquotesingle{}echeance \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_a40fdf3048f276628904c5da0c971e314}{set\+Dates\+Disponibilite\+Echeance} (const Q\+Date \&d\+Dispo, const Q\+Date \&d\+Echeance)
+\begin{DoxyCompactList}\small\item\em modifie la date d\textquotesingle{}echeance et disponibilite \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_aefe43451eb0c8140f5bfab7b376ef4fe}{}{\bfseries Tache} (int id, const Q\+String \&titre, const Q\+Date \&d\+Dispo, const Q\+Date \&d\+Echeance, std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ prerequis=std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$(), \hyperlink{class_tache}{Tache} $\ast$parent=0)\label{class_tache_aefe43451eb0c8140f5bfab7b376ef4fe}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_ac8758b826b1be639dad8bcb556659a36}{}Q\+Date {\bfseries date\+Dispo}\label{class_tache_ac8758b826b1be639dad8bcb556659a36}
+
+\item 
+\hypertarget{class_tache_a7671c127da40ae35075f069a64396f45}{}Q\+Date {\bfseries date\+Echeance}\label{class_tache_a7671c127da40ae35075f069a64396f45}
+
+\item 
+\hypertarget{class_tache_a272b3f2cf7cba4a1a7980063563f8b88}{}\hyperlink{class_tache}{Tache} $\ast$ {\bfseries parent}\label{class_tache_a272b3f2cf7cba4a1a7980063563f8b88}
+
+\item 
+\hypertarget{class_tache_ae1f847bb410d1c0b4c252d7add695ddf}{}std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ {\bfseries prerequis}\label{class_tache_ae1f847bb410d1c0b4c252d7add695ddf}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstrait, herite \hyperlink{class_evenement}{Evenement} toutes les taches en héritent, unité de base d\textquotesingle{}un projet. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tache_ad3c79deb07748c25b6d97474571febec}{}\index{Tache@{Tache}!ajout\+Prerequi@{ajout\+Prerequi}}
+\index{ajout\+Prerequi@{ajout\+Prerequi}!Tache@{Tache}}
+\subsubsection[{ajout\+Prerequi}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::ajout\+Prerequi (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{pre}
+\end{DoxyParamCaption}
+)}\label{class_tache_ad3c79deb07748c25b6d97474571febec}
+
+
+ajoute un prérequis, renvoit exception si probleme$>$ 
+
+verifier si pas de boucles ou appartient prerequis
+
+
+\begin{DoxyParams}{Parameters}
+{\em pre} & \+: prerequis a ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a68b96ac5212ecb13d0923f79da857183}{}\index{Tache@{Tache}!ajout\+Prerequis@{ajout\+Prerequis}}
+\index{ajout\+Prerequis@{ajout\+Prerequis}!Tache@{Tache}}
+\subsubsection[{ajout\+Prerequis}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::ajout\+Prerequis (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Tache} $\ast$ $>$}]{vec}
+\end{DoxyParamCaption}
+)}\label{class_tache_a68b96ac5212ecb13d0923f79da857183}
+
+
+ajoute une liste prérequis, renvoit exception si probleme$>$ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \+: prerequis a ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a96bbd20d7dcbb38ce128038190a656cd}{}\index{Tache@{Tache}!del\+Prerequi@{del\+Prerequi}}
+\index{del\+Prerequi@{del\+Prerequi}!Tache@{Tache}}
+\subsubsection[{del\+Prerequi}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::del\+Prerequi (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{pre}
+\end{DoxyParamCaption}
+)}\label{class_tache_a96bbd20d7dcbb38ce128038190a656cd}
+
+
+supprimme un prérequis, renvoit exception si probleme$>$ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pre} & \+: prerequis a supprimmer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_ad12e97235d69bd52f3c00c0dad21a3cf}{}\index{Tache@{Tache}!set\+Date\+Disponibilite@{set\+Date\+Disponibilite}}
+\index{set\+Date\+Disponibilite@{set\+Date\+Disponibilite}!Tache@{Tache}}
+\subsubsection[{set\+Date\+Disponibilite}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Date\+Disponibilite (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date \&}]{d\+Dispo}
+\end{DoxyParamCaption}
+)}\label{class_tache_ad12e97235d69bd52f3c00c0dad21a3cf}
+
+
+modifie la date de disponibilite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+Dispo} & \+: nouvelle date de disponibilite \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a73c12eb28e5130e986b3e2909735f012}{}\index{Tache@{Tache}!set\+Date\+Echeance@{set\+Date\+Echeance}}
+\index{set\+Date\+Echeance@{set\+Date\+Echeance}!Tache@{Tache}}
+\subsubsection[{set\+Date\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Date\+Echeance (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date \&}]{d\+Echeance}
+\end{DoxyParamCaption}
+)}\label{class_tache_a73c12eb28e5130e986b3e2909735f012}
+
+
+modifie la date d\textquotesingle{}echeance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+Echeance} & \+: nouvelle date d\textquotesingle{}echeance \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a40fdf3048f276628904c5da0c971e314}{}\index{Tache@{Tache}!set\+Dates\+Disponibilite\+Echeance@{set\+Dates\+Disponibilite\+Echeance}}
+\index{set\+Dates\+Disponibilite\+Echeance@{set\+Dates\+Disponibilite\+Echeance}!Tache@{Tache}}
+\subsubsection[{set\+Dates\+Disponibilite\+Echeance}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Dates\+Disponibilite\+Echeance (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date \&}]{d\+Dispo, }
+\item[{const Q\+Date \&}]{d\+Echeance}
+\end{DoxyParamCaption}
+)}\label{class_tache_a40fdf3048f276628904c5da0c971e314}
+
+
+modifie la date d\textquotesingle{}echeance et disponibilite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+Dispo} & \+: nouvelle date de disponibilite \\
+\hline
+{\em d\+Echeance} & \+: nouvelle date d\textquotesingle{}echeance \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_af6f744073c271d1c8bd302d1f4a8723a}{}\index{Tache@{Tache}!set\+Parent@{set\+Parent}}
+\index{set\+Parent@{set\+Parent}!Tache@{Tache}}
+\subsubsection[{set\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Parent (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} $\ast$}]{n\+\_\+parent}
+\end{DoxyParamCaption}
+)}\label{class_tache_af6f744073c271d1c8bd302d1f4a8723a}
+
+
+modifie le parent 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+parent} & \+: nouveau parent de la tache \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a0fa9ada5b4236a1fb4f8876c3d220c59}{}\index{Tache@{Tache}!set\+Prerequis@{set\+Prerequis}}
+\index{set\+Prerequis@{set\+Prerequis}!Tache@{Tache}}
+\subsubsection[{set\+Prerequis}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Prerequis (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Tache} $\ast$ $>$}]{vec}
+\end{DoxyParamCaption}
+)}\label{class_tache_a0fa9ada5b4236a1fb4f8876c3d220c59}
+
+
+remet a 0 les prerequis et ajoute les nouveaux$>$ renvoit exception et remets les prerequis a l\textquotesingle{}etat antérieur si nouveaux prerequis impossibles 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \+: prerequis a ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_a662db9ee24100a3d52853542c98dadf7}{}\index{Tache@{Tache}!set\+Programme@{set\+Programme}}
+\index{set\+Programme@{set\+Programme}!Tache@{Tache}}
+\subsubsection[{set\+Programme}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Programme (
+\begin{DoxyParamCaption}
+\item[{bool}]{effectue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_tache_a662db9ee24100a3d52853542c98dadf7}
+
+
+reimplementation, permet de mettre a jour le statut de la \hyperlink{class_tache}{Tache} parente 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effectue} & \+: dis si l\textquotesingle{}activite est programmée ou non \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_evenement_ad4baf55b2e276b86ca5c5fd77c01f5d3}{Evenement}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+cpp\end{DoxyCompactItemize}

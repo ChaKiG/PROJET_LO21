@@ -1,0 +1,191 @@
+\hypertarget{class_projet_manager}{}\section{Projet\+Manager Class Reference}
+\label{class_projet_manager}\index{Projet\+Manager@{Projet\+Manager}}
+
+
+permet la gestion de tous les projets  
+
+
+
+
+{\ttfamily \#include $<$projet.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_projet_manager_a31177b18642c37e2dd80fcbdac7a15fd}{ajouter\+Projet} (const Q\+String \&t, const Q\+Date \&dispo, const Q\+Date \&echeance)
+\begin{DoxyCompactList}\small\item\em crée et ajoute un projet a la liste des projets \end{DoxyCompactList}\item 
+\hypertarget{class_projet_manager_a71cc215b928dfc0da7a87df0f24b8cfa}{}const std\+::vector$<$ \hyperlink{class_projet}{Projet} $\ast$ $>$ \& {\bfseries get\+Projets} () const \label{class_projet_manager_a71cc215b928dfc0da7a87df0f24b8cfa}
+
+\item 
+\hyperlink{class_projet}{Projet} \& \hyperlink{class_projet_manager_a71f8824b361c273c30c14986d3a641db}{get\+Projet} (const Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em cherche un projet \end{DoxyCompactList}\item 
+const \hyperlink{class_projet}{Projet} \& \hyperlink{class_projet_manager_a900b7454a6f57b6a239162c33f066b0b}{get\+Projet} (const Q\+String \&t) const 
+\begin{DoxyCompactList}\small\item\em cherche un projet (const) \end{DoxyCompactList}\item 
+const \hyperlink{class_projet}{Projet} \& \hyperlink{class_projet_manager_a1118bd68adead7ff90830384e392c947}{get\+Projet} (const \hyperlink{class_tache}{Tache} $\ast$tache\+Cherchee) const 
+\begin{DoxyCompactList}\small\item\em cherche le projet dont fait partie une certaine tache \end{DoxyCompactList}\item 
+void \hyperlink{class_projet_manager_a67cd6f8a8e91786cfc6102f2839401e5}{supprimer\+Projet} (const Q\+String t)
+\begin{DoxyCompactList}\small\item\em supprime un projet \end{DoxyCompactList}\item 
+\hypertarget{class_projet_manager_a057f1a7825e4756b3f4ea9b1b5f8a54c}{}Q\+Tree\+Widget $\ast$ {\bfseries creer\+Arbre\+Projets} ()\label{class_projet_manager_a057f1a7825e4756b3f4ea9b1b5f8a54c}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_manager_af0b8d536c3d208289033d6a3b757fac9}{}static \hyperlink{class_projet_manager}{Projet\+Manager} \& {\bfseries get\+Instance} ()\label{class_projet_manager_af0b8d536c3d208289033d6a3b757fac9}
+
+\item 
+\hypertarget{class_projet_manager_ab1b9396cdda866051d03ac5eae7f7e9d}{}static void {\bfseries liberer\+Instance} ()\label{class_projet_manager_ab1b9396cdda866051d03ac5eae7f7e9d}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projet}{Projet} $\ast$ \hyperlink{class_projet_manager_a1e76111b8ecc4b380b92b04c00615885}{trouver\+Projet} (const Q\+String \&t) const 
+\begin{DoxyCompactList}\small\item\em cherche un projet \end{DoxyCompactList}\item 
+void \hyperlink{class_projet_manager_a2acde1e0f205d0fc990e0740b412c1fa}{Ajouter\+Sous\+Taches\+Arbre} (\hyperlink{class_tache_composite}{Tache\+Composite} $\ast$t, Q\+Tree\+Widget\+Item \&i)
+\begin{DoxyCompactList}\small\item\em permet la creation de l\textquotesingle{}arbre des projets \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_manager_a634dad7bcef1aef9fbd15679336f8559}{}std\+::vector$<$ \hyperlink{class_projet}{Projet} $\ast$ $>$ {\bfseries projets}\label{class_projet_manager_a634dad7bcef1aef9fbd15679336f8559}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_projet_manager_a11cde5b59fcb4870c618c53ee3ab55dc}{}static \hyperlink{class_projet_manager}{Projet\+Manager} $\ast$ {\bfseries instance} = 0\label{class_projet_manager_a11cde5b59fcb4870c618c53ee3ab55dc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+permet la gestion de tous les projets 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_projet_manager_a31177b18642c37e2dd80fcbdac7a15fd}{}\index{Projet\+Manager@{Projet\+Manager}!ajouter\+Projet@{ajouter\+Projet}}
+\index{ajouter\+Projet@{ajouter\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{ajouter\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+Manager\+::ajouter\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t, }
+\item[{const Q\+Date \&}]{dispo, }
+\item[{const Q\+Date \&}]{echeance}
+\end{DoxyParamCaption}
+)}\label{class_projet_manager_a31177b18642c37e2dd80fcbdac7a15fd}
+
+
+crée et ajoute un projet a la liste des projets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre du projet \\
+\hline
+{\em dispo} & \+: date de disponibilité du projet \\
+\hline
+{\em echeance} & \+: date d\textquotesingle{}exheance du projet \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a2acde1e0f205d0fc990e0740b412c1fa}{}\index{Projet\+Manager@{Projet\+Manager}!Ajouter\+Sous\+Taches\+Arbre@{Ajouter\+Sous\+Taches\+Arbre}}
+\index{Ajouter\+Sous\+Taches\+Arbre@{Ajouter\+Sous\+Taches\+Arbre}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{Ajouter\+Sous\+Taches\+Arbre}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+Manager\+::\+Ajouter\+Sous\+Taches\+Arbre (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache\+Composite} $\ast$}]{t, }
+\item[{Q\+Tree\+Widget\+Item \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_manager_a2acde1e0f205d0fc990e0740b412c1fa}
+
+
+permet la creation de l\textquotesingle{}arbre des projets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: tache pour laquelle on doit renseigner les enfants \\
+\hline
+{\em i} & \+: widget correspondant a t dans l\textquotesingle{}arbre \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a71f8824b361c273c30c14986d3a641db}{}\index{Projet\+Manager@{Projet\+Manager}!get\+Projet@{get\+Projet}}
+\index{get\+Projet@{get\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{get\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projet} \& Projet\+Manager\+::get\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_manager_a71f8824b361c273c30c14986d3a641db}
+
+
+cherche un projet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre du projet cherché \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a900b7454a6f57b6a239162c33f066b0b}{}\index{Projet\+Manager@{Projet\+Manager}!get\+Projet@{get\+Projet}}
+\index{get\+Projet@{get\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{get\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Projet}\& Projet\+Manager\+::get\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+) const}\label{class_projet_manager_a900b7454a6f57b6a239162c33f066b0b}
+
+
+cherche un projet (const) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre du projet cherché \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a1118bd68adead7ff90830384e392c947}{}\index{Projet\+Manager@{Projet\+Manager}!get\+Projet@{get\+Projet}}
+\index{get\+Projet@{get\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{get\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Projet} \& Projet\+Manager\+::get\+Projet (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tache} $\ast$}]{tache\+Cherchee}
+\end{DoxyParamCaption}
+) const}\label{class_projet_manager_a1118bd68adead7ff90830384e392c947}
+
+
+cherche le projet dont fait partie une certaine tache 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tache\+Cherchee} & \+: tache cherchee \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a67cd6f8a8e91786cfc6102f2839401e5}{}\index{Projet\+Manager@{Projet\+Manager}!supprimer\+Projet@{supprimer\+Projet}}
+\index{supprimer\+Projet@{supprimer\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{supprimer\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+Manager\+::supprimer\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{t}
+\end{DoxyParamCaption}
+)}\label{class_projet_manager_a67cd6f8a8e91786cfc6102f2839401e5}
+
+
+supprime un projet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre du projet a supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_projet_manager_a1e76111b8ecc4b380b92b04c00615885}{}\index{Projet\+Manager@{Projet\+Manager}!trouver\+Projet@{trouver\+Projet}}
+\index{trouver\+Projet@{trouver\+Projet}!Projet\+Manager@{Projet\+Manager}}
+\subsubsection[{trouver\+Projet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projet} $\ast$ Projet\+Manager\+::trouver\+Projet (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}\label{class_projet_manager_a1e76111b8ecc4b380b92b04c00615885}
+
+
+cherche un projet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \+: titre du projet cherché \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/projet.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/projet.\+cpp\end{DoxyCompactItemize}

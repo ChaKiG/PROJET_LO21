@@ -1,0 +1,102 @@
+\hypertarget{class_evenement}{}\section{Evenement Class Reference}
+\label{class_evenement}\index{Evenement@{Evenement}}
+
+
+Abstrait toutes les taches et activités programmées en héritent.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Inheritance diagram for Evenement\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.544304cm]{class_evenement}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_evenement_a28a67eded4a392879afc44c6a37a6c94}{}int {\bfseries get\+Id} () const \label{class_evenement_a28a67eded4a392879afc44c6a37a6c94}
+
+\item 
+\hypertarget{class_evenement_adf40be537c30e34f70cd0e62c0239607}{}const Q\+String \& {\bfseries get\+Titre} () const \label{class_evenement_adf40be537c30e34f70cd0e62c0239607}
+
+\item 
+void \hyperlink{class_evenement_ac74631f811449f10b2069f5d0a2f2ad2}{set\+Titre} (const Q\+String \&t)
+\begin{DoxyCompactList}\small\item\em permet de modifier le titre de l\textquotesingle{}event \end{DoxyCompactList}\item 
+\hypertarget{class_evenement_ae19e4e2d2c5ee5a78d7eb99f3ddecf3a}{}virtual \hyperlink{class_duree}{Duree} \hyperlink{class_evenement_ae19e4e2d2c5ee5a78d7eb99f3ddecf3a}{get\+Duree} () const =0\label{class_evenement_ae19e4e2d2c5ee5a78d7eb99f3ddecf3a}
+
+\begin{DoxyCompactList}\small\item\em renvoit la durée de l\textquotesingle{}evenement la classe evenement ne contient pas d\textquotesingle{}attribut Durée, mais toutes ses sous classes (sauf tache Composite) en possèdent, on décide donc de la créer virtuelle pure \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_evenement_ad4baf55b2e276b86ca5c5fd77c01f5d3}{set\+Programme} (bool effectue)
+\begin{DoxyCompactList}\small\item\em change l\textquotesingle{}etat (programme/non programme) \end{DoxyCompactList}\item 
+\hypertarget{class_evenement_af8af8009f07901c4017636c310082e66}{}bool {\bfseries is\+Programme} ()\label{class_evenement_af8af8009f07901c4017636c310082e66}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_evenement_aeba272d8dceb6584f479232f68cf589b}{}{\bfseries Evenement} (int id, const Q\+String \&t)\label{class_evenement_aeba272d8dceb6584f479232f68cf589b}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_evenement_a5e3e95ca2853b020205a607d3f8d254b}{}Q\+String {\bfseries titre}\label{class_evenement_a5e3e95ca2853b020205a607d3f8d254b}
+
+\item 
+\hypertarget{class_evenement_a3f90a64a77837a821463422608603b88}{}int {\bfseries id}\label{class_evenement_a3f90a64a77837a821463422608603b88}
+
+\item 
+\hypertarget{class_evenement_a9ebea5ef4d9e3a92619d2da9e97b7b4b}{}bool {\bfseries prog}\label{class_evenement_a9ebea5ef4d9e3a92619d2da9e97b7b4b}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstrait toutes les taches et activités programmées en héritent. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_evenement_ad4baf55b2e276b86ca5c5fd77c01f5d3}{}\index{Evenement@{Evenement}!set\+Programme@{set\+Programme}}
+\index{set\+Programme@{set\+Programme}!Evenement@{Evenement}}
+\subsubsection[{set\+Programme}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Evenement\+::set\+Programme (
+\begin{DoxyParamCaption}
+\item[{bool}]{effectue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_evenement_ad4baf55b2e276b86ca5c5fd77c01f5d3}
+
+
+change l\textquotesingle{}etat (programme/non programme) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effectue} & \+: dis si l\textquotesingle{}activite est programmée ou non \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_tache_a662db9ee24100a3d52853542c98dadf7}{Tache}.
+
+\hypertarget{class_evenement_ac74631f811449f10b2069f5d0a2f2ad2}{}\index{Evenement@{Evenement}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!Evenement@{Evenement}}
+\subsubsection[{set\+Titre}]{\setlength{\rightskip}{0pt plus 5cm}void Evenement\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)}\label{class_evenement_ac74631f811449f10b2069f5d0a2f2ad2}
+
+
+permet de modifier le titre de l\textquotesingle{}event 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & nouveau titre \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+cpp\end{DoxyCompactItemize}

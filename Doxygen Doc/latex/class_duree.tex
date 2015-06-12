@@ -1,0 +1,174 @@
+\hypertarget{class_duree}{}\section{Duree Class Reference}
+\label{class_duree}\index{Duree@{Duree}}
+
+
+Classe permettant la gestion d\textquotesingle{}une duree.  
+
+
+
+
+{\ttfamily \#include $<$duree.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_duree_a9031ee4cb937a2cb48a833924e0d8175}{Duree} (unsigned int h, unsigned int m)
+\begin{DoxyCompactList}\small\item\em Constructeur deux arguments \+: heure et minutes. \end{DoxyCompactList}\item 
+\hyperlink{class_duree_a29ce444d85f2870058025ce5db0802a5}{Duree} (unsigned int m=0)
+\begin{DoxyCompactList}\small\item\em surcharge Constructeur unargument \+: minutes \end{DoxyCompactList}\item 
+\hyperlink{class_duree_a419162e60eca1314a3611752ab3d68cd}{Duree} (const \hyperlink{class_duree}{Duree} \&other)
+\begin{DoxyCompactList}\small\item\em Constructeur de recopie. \end{DoxyCompactList}\item 
+void \hyperlink{class_duree_a9d38c17651a31e52a19252a891933da4}{set\+Duree} (unsigned int heures, unsigned int minutes)
+\begin{DoxyCompactList}\small\item\em modifier la duree \end{DoxyCompactList}\item 
+void \hyperlink{class_duree_acf2e742070a8b558ff7c5fab3f2ec472}{set\+Duree} (unsigned int minutes)
+\begin{DoxyCompactList}\small\item\em surcharge pour modifier heure \end{DoxyCompactList}\item 
+\hypertarget{class_duree_a0e25c3388ea08f41140aee71ffaae4ee}{}unsigned int {\bfseries get\+Duree\+En\+Minutes} () const \label{class_duree_a0e25c3388ea08f41140aee71ffaae4ee}
+
+\item 
+\hypertarget{class_duree_acaf629d6df6668a2c2d9a7f5bffeb9e1}{}double {\bfseries get\+Duree\+En\+Heures} () const \label{class_duree_acaf629d6df6668a2c2d9a7f5bffeb9e1}
+
+\item 
+\hypertarget{class_duree_a3a6bfde3c641f15c68ac4f88303ce275}{}int {\bfseries get\+Reste\+Duree\+En\+Minutes} () const \label{class_duree_a3a6bfde3c641f15c68ac4f88303ce275}
+
+\item 
+\hypertarget{class_duree_aa44bd9ae4f27fe00204543feeaefe2ca}{}\hyperlink{class_duree}{Duree} {\bfseries operator+} (unsigned int min) const \label{class_duree_aa44bd9ae4f27fe00204543feeaefe2ca}
+
+\item 
+\hypertarget{class_duree_adf484fa269dc25a6247cd25795bd72ea}{}\hyperlink{class_duree}{Duree} {\bfseries operator-\/} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_adf484fa269dc25a6247cd25795bd72ea}
+
+\item 
+\hypertarget{class_duree_a9866be4c92f15c2c5ddd0ccdaab566df}{}\hyperlink{class_duree}{Duree} {\bfseries operator+=} (\hyperlink{class_duree}{Duree} const \&other)\label{class_duree_a9866be4c92f15c2c5ddd0ccdaab566df}
+
+\item 
+\hypertarget{class_duree_a243ef035ea34f4c6e34f928b8e9924ab}{}\hyperlink{class_duree}{Duree} {\bfseries operator-\/=} (\hyperlink{class_duree}{Duree} const \&other)\label{class_duree_a243ef035ea34f4c6e34f928b8e9924ab}
+
+\item 
+\hypertarget{class_duree_a230a64859fa89a4d3c983d96af0a5925}{}bool {\bfseries operator==} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_a230a64859fa89a4d3c983d96af0a5925}
+
+\item 
+\hypertarget{class_duree_a91e334a82cec62fd43e4c80db0acfe13}{}bool {\bfseries operator$>$=} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_a91e334a82cec62fd43e4c80db0acfe13}
+
+\item 
+\hypertarget{class_duree_ae82a6ed05f23dde893b83b5f31dd20a2}{}bool {\bfseries operator$<$=} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_ae82a6ed05f23dde893b83b5f31dd20a2}
+
+\item 
+\hypertarget{class_duree_a2dc45a74a26a1fd35605aca6b321208b}{}bool {\bfseries operator$<$} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_a2dc45a74a26a1fd35605aca6b321208b}
+
+\item 
+\hypertarget{class_duree_ad76fa253fe864da9713fefc77f12e181}{}bool {\bfseries operator$>$} (\hyperlink{class_duree}{Duree} const \&other) const \label{class_duree_ad76fa253fe864da9713fefc77f12e181}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_duree_a27de9771cfe31979ebed0b01eeb946cf}{nb\+Minutes}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe permettant la gestion d\textquotesingle{}une duree. 
+
+La classe gere la lecture d\textquotesingle{}une liste de morceaux 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_duree_a9031ee4cb937a2cb48a833924e0d8175}{}\index{Duree@{Duree}!Duree@{Duree}}
+\index{Duree@{Duree}!Duree@{Duree}}
+\subsubsection[{Duree}]{\setlength{\rightskip}{0pt plus 5cm}Duree\+::\+Duree (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{h, }
+\item[{unsigned int}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_duree_a9031ee4cb937a2cb48a833924e0d8175}
+
+
+Constructeur deux arguments \+: heure et minutes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & nombre d\textquotesingle{}heures \\
+\hline
+{\em m} & nombre de minutes (fonctionne si m$>$60) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_duree_a29ce444d85f2870058025ce5db0802a5}{}\index{Duree@{Duree}!Duree@{Duree}}
+\index{Duree@{Duree}!Duree@{Duree}}
+\subsubsection[{Duree}]{\setlength{\rightskip}{0pt plus 5cm}Duree\+::\+Duree (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{m = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_duree_a29ce444d85f2870058025ce5db0802a5}
+
+
+surcharge Constructeur unargument \+: minutes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & nombre de minutes (fonctionne si m$>$60) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_duree_a419162e60eca1314a3611752ab3d68cd}{}\index{Duree@{Duree}!Duree@{Duree}}
+\index{Duree@{Duree}!Duree@{Duree}}
+\subsubsection[{Duree}]{\setlength{\rightskip}{0pt plus 5cm}Duree\+::\+Duree (
+\begin{DoxyParamCaption}
+\item[{const {\bf Duree} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_duree_a419162e60eca1314a3611752ab3d68cd}
+
+
+Constructeur de recopie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{class_duree}{Duree} a recopier \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_duree_a9d38c17651a31e52a19252a891933da4}{}\index{Duree@{Duree}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Duree@{Duree}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}void Duree\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{heures, }
+\item[{unsigned int}]{minutes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_duree_a9d38c17651a31e52a19252a891933da4}
+
+
+modifier la duree 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heures} & nombre d\textquotesingle{}heures \\
+\hline
+{\em minutes} & nombre de minute (fonctionne si minutes$>$60) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_duree_acf2e742070a8b558ff7c5fab3f2ec472}{}\index{Duree@{Duree}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Duree@{Duree}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}void Duree\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{minutes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_duree_acf2e742070a8b558ff7c5fab3f2ec472}
+
+
+surcharge pour modifier heure 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & duree totale en minute \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_duree_a27de9771cfe31979ebed0b01eeb946cf}{}\index{Duree@{Duree}!nb\+Minutes@{nb\+Minutes}}
+\index{nb\+Minutes@{nb\+Minutes}!Duree@{Duree}}
+\subsubsection[{nb\+Minutes}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Duree\+::nb\+Minutes\hspace{0.3cm}{\ttfamily [private]}}\label{class_duree_a27de9771cfe31979ebed0b01eeb946cf}
+\hyperlink{class_duree}{Duree} en minute 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/duree.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/duree.\+cpp\end{DoxyCompactItemize}

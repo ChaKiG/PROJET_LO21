@@ -1,0 +1,134 @@
+\hypertarget{class_tache_unitaire_preemptee}{}\section{Tache\+Unitaire\+Preemptee Class Reference}
+\label{class_tache_unitaire_preemptee}\index{Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}}
+
+
+\hyperlink{class_tache}{Tache} Preemptee tache simple, mais faisable en plusieurs fois.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Inheritance diagram for Tache\+Unitaire\+Preemptee\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache_unitaire_preemptee}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_tache_unitaire_preemptee_a4061516eb33059f302d5ebe1ad580e2d}{set\+Duree\+Effectuee} (const \hyperlink{class_duree}{Duree} \&d\+Effectuee)
+\begin{DoxyCompactList}\small\item\em remets a zero la duree effectuee et rajoute celle en argument \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_unitaire_preemptee_af30a0fd0691b514d356321a45c57661c}{add\+Duree\+Effectuee} (const \hyperlink{class_duree}{Duree} \&d\+Effectuee)
+\begin{DoxyCompactList}\small\item\em rajoute la duree effectuee \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_unitaire_preemptee_a1151a6443d9692a6a01f78dcb490aa4a}{sub\+Duree\+Effectuee} (const \hyperlink{class_duree}{Duree} \&d\+Supprimmee)
+\begin{DoxyCompactList}\small\item\em enleve la duree non effectuee \end{DoxyCompactList}\item 
+\hypertarget{class_tache_unitaire_preemptee_a9e2e18ad2e951c52fd66ab4a9e7937f7}{}const \hyperlink{class_duree}{Duree} \& {\bfseries get\+Duree\+Effectuee} () const \label{class_tache_unitaire_preemptee_a9e2e18ad2e951c52fd66ab4a9e7937f7}
+
+\item 
+\hypertarget{class_tache_unitaire_preemptee_a82eb73b30e1cfcbff1a15625637811b0}{}\hyperlink{class_duree}{Duree} {\bfseries get\+Duree\+Restante} () const \label{class_tache_unitaire_preemptee_a82eb73b30e1cfcbff1a15625637811b0}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_preemptee_afdfea43ca79a7c1ea154499bbeb34af5}{}{\bfseries Tache\+Unitaire\+Preemptee} (int id, const Q\+String \&titre, const Q\+Date \&d\+Dispo, const Q\+Date \&d\+Echeance, \hyperlink{class_duree}{Duree} duree, const std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ pre, \hyperlink{class_tache}{Tache} $\ast$parent)\label{class_tache_unitaire_preemptee_afdfea43ca79a7c1ea154499bbeb34af5}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_tache_unitaire_preemptee_ab3b4effe2c4d6a9bb1e63e4d177c1ef0}{check\+Possible} (std\+::string op, \hyperlink{class_duree}{Duree} d)
+\begin{DoxyCompactList}\small\item\em verifie si la duree après opération est possible, renvoit exception si non \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_preemptee_a73fdde2eeaff2f58445f1882aec44321}{}\hyperlink{class_duree}{Duree} {\bfseries duree\+Effectuee}\label{class_tache_unitaire_preemptee_a73fdde2eeaff2f58445f1882aec44321}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_preemptee_ab87b41c3faa36955cc370972f5cce344}{}class {\bfseries Projet}\label{class_tache_unitaire_preemptee_ab87b41c3faa36955cc370972f5cce344}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_tache}{Tache} Preemptee tache simple, mais faisable en plusieurs fois. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tache_unitaire_preemptee_af30a0fd0691b514d356321a45c57661c}{}\index{Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}!add\+Duree\+Effectuee@{add\+Duree\+Effectuee}}
+\index{add\+Duree\+Effectuee@{add\+Duree\+Effectuee}!Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}}
+\subsubsection[{add\+Duree\+Effectuee}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+Preemptee\+::add\+Duree\+Effectuee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Duree} \&}]{d\+Effectuee}
+\end{DoxyParamCaption}
+)}\label{class_tache_unitaire_preemptee_af30a0fd0691b514d356321a45c57661c}
+
+
+rajoute la duree effectuee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+Effectuee} & \+: duree a additionner \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_unitaire_preemptee_ab3b4effe2c4d6a9bb1e63e4d177c1ef0}{}\index{Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}!check\+Possible@{check\+Possible}}
+\index{check\+Possible@{check\+Possible}!Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}}
+\subsubsection[{check\+Possible}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+Preemptee\+::check\+Possible (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{op, }
+\item[{{\bf Duree}}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_tache_unitaire_preemptee_ab3b4effe2c4d6a9bb1e63e4d177c1ef0}
+
+
+verifie si la duree après opération est possible, renvoit exception si non 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & \+: operation a effectuer sur la duree \\
+\hline
+{\em d} & \+: duree avec laquelle effectuer l\textquotesingle{}operation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_unitaire_preemptee_a4061516eb33059f302d5ebe1ad580e2d}{}\index{Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}!set\+Duree\+Effectuee@{set\+Duree\+Effectuee}}
+\index{set\+Duree\+Effectuee@{set\+Duree\+Effectuee}!Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}}
+\subsubsection[{set\+Duree\+Effectuee}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+Preemptee\+::set\+Duree\+Effectuee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Duree} \&}]{d\+Effectuee}
+\end{DoxyParamCaption}
+)}\label{class_tache_unitaire_preemptee_a4061516eb33059f302d5ebe1ad580e2d}
+
+
+remets a zero la duree effectuee et rajoute celle en argument 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nouvelle\+Duree} & \+: nouvelle duree de l\textquotesingle{}activite \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tache_unitaire_preemptee_a1151a6443d9692a6a01f78dcb490aa4a}{}\index{Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}!sub\+Duree\+Effectuee@{sub\+Duree\+Effectuee}}
+\index{sub\+Duree\+Effectuee@{sub\+Duree\+Effectuee}!Tache\+Unitaire\+Preemptee@{Tache\+Unitaire\+Preemptee}}
+\subsubsection[{sub\+Duree\+Effectuee}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+Preemptee\+::sub\+Duree\+Effectuee (
+\begin{DoxyParamCaption}
+\item[{const {\bf Duree} \&}]{d\+Supprimmee}
+\end{DoxyParamCaption}
+)}\label{class_tache_unitaire_preemptee_a1151a6443d9692a6a01f78dcb490aa4a}
+
+
+enleve la duree non effectuee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+Supprimmee} & \+: duree a soustraire \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+cpp\end{DoxyCompactItemize}

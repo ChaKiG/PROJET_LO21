@@ -1,0 +1,70 @@
+\hypertarget{class_tache_unitaire}{}\section{Tache\+Unitaire Class Reference}
+\label{class_tache_unitaire}\index{Tache\+Unitaire@{Tache\+Unitaire}}
+
+
+\hyperlink{class_tache}{Tache} simple tache simple, d\textquotesingle{}une certaine durée, a effectuer en une fois.  
+
+
+
+
+{\ttfamily \#include $<$evenement.\+h$>$}
+
+Inheritance diagram for Tache\+Unitaire\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache_unitaire}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_aeea74499e37ea186a85edb21503a9758}{}virtual \hyperlink{class_duree}{Duree} \hyperlink{class_tache_unitaire_aeea74499e37ea186a85edb21503a9758}{get\+Duree} () const \label{class_tache_unitaire_aeea74499e37ea186a85edb21503a9758}
+
+\begin{DoxyCompactList}\small\item\em renvoit la durée de l\textquotesingle{}evenement la classe evenement ne contient pas d\textquotesingle{}attribut Durée, mais toutes ses sous classes (sauf tache Composite) en possèdent, on décide donc de la créer virtuelle pure \end{DoxyCompactList}\item 
+void \hyperlink{class_tache_unitaire_a4472e37f36d315d2e02fe8d743bc6616}{set\+Duree} (\hyperlink{class_duree}{Duree} \&nouvelle\+Duree)
+\begin{DoxyCompactList}\small\item\em modifie la duree de la tache \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_a7091788806d9ce59ba1f6b1dc1e3a92b}{}{\bfseries Tache\+Unitaire} (int id, const Q\+String \&titre, const Q\+Date \&d\+Dispo, const Q\+Date \&d\+Echeance, \hyperlink{class_duree}{Duree} duree, const std\+::vector$<$ \hyperlink{class_tache}{Tache} $\ast$ $>$ pre, \hyperlink{class_tache}{Tache} $\ast$parent)\label{class_tache_unitaire_a7091788806d9ce59ba1f6b1dc1e3a92b}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_aca42cdc08900e1419b872c2261c220a5}{}\hyperlink{class_duree}{Duree} {\bfseries duree}\label{class_tache_unitaire_aca42cdc08900e1419b872c2261c220a5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_unitaire_ab87b41c3faa36955cc370972f5cce344}{}class {\bfseries Projet}\label{class_tache_unitaire_ab87b41c3faa36955cc370972f5cce344}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_tache}{Tache} simple tache simple, d\textquotesingle{}une certaine durée, a effectuer en une fois. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tache_unitaire_a4472e37f36d315d2e02fe8d743bc6616}{}\index{Tache\+Unitaire@{Tache\+Unitaire}!set\+Duree@{set\+Duree}}
+\index{set\+Duree@{set\+Duree}!Tache\+Unitaire@{Tache\+Unitaire}}
+\subsubsection[{set\+Duree}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+Unitaire\+::set\+Duree (
+\begin{DoxyParamCaption}
+\item[{{\bf Duree} \&}]{nouvelle\+Duree}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_tache_unitaire_a4472e37f36d315d2e02fe8d743bc6616}
+
+
+modifie la duree de la tache 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nouvelle\+Duree} & \+: nouvelle duree de l\textquotesingle{}activite \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/evenement.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{class_programmation}{}\section{Programmation Class Reference}
+\label{class_programmation}\index{Programmation@{Programmation}}
+
+
+entree de l\textquotesingle{}emploi du temps, referencie un evenement  
+
+
+
+
+{\ttfamily \#include $<$programmation.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_ad55acbdd7059371d5b2ebf0a2b43597a}{}const Q\+Date \& {\bfseries get\+Date\+Choisie} () const \label{class_programmation_ad55acbdd7059371d5b2ebf0a2b43597a}
+
+\item 
+\hypertarget{class_programmation_a95a28145c5eca80db8e7804404519595}{}const Q\+Time \& {\bfseries get\+Horaire\+Choisi} () const \label{class_programmation_a95a28145c5eca80db8e7804404519595}
+
+\item 
+\hypertarget{class_programmation_a0cbf62a3f0efd174de69e7019e0dc8ed}{}const \hyperlink{class_duree}{Duree} \& {\bfseries get\+Duree} () const \label{class_programmation_a0cbf62a3f0efd174de69e7019e0dc8ed}
+
+\item 
+\hypertarget{class_programmation_a7cd81da6d10a29782d21e6eb0d0910d6}{}void {\bfseries set\+Date\+Choisie} (Q\+Date d)\label{class_programmation_a7cd81da6d10a29782d21e6eb0d0910d6}
+
+\item 
+\hypertarget{class_programmation_ab8d0445e7fcca977527e6cdcc6237fba}{}void {\bfseries set\+Horaire\+Choisi} (Q\+Time t)\label{class_programmation_ab8d0445e7fcca977527e6cdcc6237fba}
+
+\item 
+\hypertarget{class_programmation_a54812c3cd58224600a3d62738946a3c4}{}void {\bfseries set\+Duree} (\hyperlink{class_duree}{Duree} d)\label{class_programmation_a54812c3cd58224600a3d62738946a3c4}
+
+\item 
+\hypertarget{class_programmation_ab4373ed1d42d39a830fdbac7385e69eb}{}int {\bfseries get\+Id} () const \label{class_programmation_ab4373ed1d42d39a830fdbac7385e69eb}
+
+\item 
+\hypertarget{class_programmation_afdb51dc8924974a73bc750096ae0151c}{}\hyperlink{class_evenement}{Evenement} $\ast$ {\bfseries get\+Event} ()\label{class_programmation_afdb51dc8924974a73bc750096ae0151c}
+
+\item 
+\hypertarget{class_programmation_a8a8e262d61a00c2e2d46c1aad7c895ff}{}const Q\+Time {\bfseries get\+Horaire\+Fin} () const \label{class_programmation_a8a8e262d61a00c2e2d46c1aad7c895ff}
+
+\item 
+\hypertarget{class_programmation_ae5e3c4dc5b6310e1b054a64b3eaee5fe}{}bool {\bfseries operator$>$} (const \hyperlink{class_programmation}{Programmation} \&other) const \label{class_programmation_ae5e3c4dc5b6310e1b054a64b3eaee5fe}
+
+\item 
+\hypertarget{class_programmation_a47bd954f67af45e8543efe792be05395}{}bool {\bfseries operator$<$} (const \hyperlink{class_programmation}{Programmation} \&other) const \label{class_programmation_a47bd954f67af45e8543efe792be05395}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_a7a32bea3ba1f02444f74dd38baaf9e8d}{}{\bfseries Programmation} (\hyperlink{class_evenement}{Evenement} $\ast$event, const Q\+Date \&date\+Choisie, const Q\+Time \&horaire\+Choisi, \hyperlink{class_duree}{Duree} dur=\hyperlink{class_duree}{Duree}(0))\label{class_programmation_a7a32bea3ba1f02444f74dd38baaf9e8d}
+
+\item 
+\hypertarget{class_programmation_ac999e116031fbc745dc32e0e6f8e2732}{}\hyperlink{class_programmation}{Programmation} {\bfseries operator=} (\hyperlink{class_programmation}{Programmation} \&other)\label{class_programmation_ac999e116031fbc745dc32e0e6f8e2732}
+
+\item 
+\hypertarget{class_programmation_ad6600e4dcea95c4f91e211b3a1700bce}{}{\bfseries Programmation} (\hyperlink{class_programmation}{Programmation} \&other)\label{class_programmation_ad6600e4dcea95c4f91e211b3a1700bce}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_a94015d566f0afca80fea7b888f93c727}{}int {\bfseries id}\label{class_programmation_a94015d566f0afca80fea7b888f93c727}
+
+\item 
+\hypertarget{class_programmation_ac4d9c0b80ab3b203122b94d690871100}{}Q\+Date {\bfseries date\+Choisie}\label{class_programmation_ac4d9c0b80ab3b203122b94d690871100}
+
+\item 
+\hypertarget{class_programmation_a7b51bcd99f633bb34903c9471ccc792b}{}Q\+Time {\bfseries horaire\+Choisi}\label{class_programmation_a7b51bcd99f633bb34903c9471ccc792b}
+
+\item 
+\hypertarget{class_programmation_a1cdf70965e5af5a917e3bc7c922a735e}{}\hyperlink{class_duree}{Duree} {\bfseries duree}\label{class_programmation_a1cdf70965e5af5a917e3bc7c922a735e}
+
+\item 
+\hypertarget{class_programmation_ac64a1d3793894549ff5b3a2c9015aef2}{}\hyperlink{class_evenement}{Evenement} $\ast$ {\bfseries evt}\label{class_programmation_ac64a1d3793894549ff5b3a2c9015aef2}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_a7a72d00fe285adc58d40405cb7b709d5}{}static int {\bfseries current\+Id} = 0\label{class_programmation_a7a72d00fe285adc58d40405cb7b709d5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_programmation_ade7bfcbf8cec66b12064c8ff25993d73}{}class {\bfseries Programmation\+Manager}\label{class_programmation_ade7bfcbf8cec66b12064c8ff25993d73}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+entree de l\textquotesingle{}emploi du temps, referencie un evenement 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/programmation.\+h\item 
+C\+:/\+Users/\+Fixe/\+Desktop/\+Programmation/\+P\+R\+O\+J\+E\+T\+\_\+\+L\+O21/\+Projet/programmation.\+cpp\end{DoxyCompactItemize}
