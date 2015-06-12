@@ -7,7 +7,7 @@
 /*
 * \file evenement.h
 * \brief Contient Classe permettant la gestion d'une duree
-* \author Thomas Pelletier, Paul Buzaud, Amélie Thery
+* \author Thomas Pelletier, Paul Buzaud, AmÃ©lie Thery
 * \version 1
 * \date 07/06/2015
 */

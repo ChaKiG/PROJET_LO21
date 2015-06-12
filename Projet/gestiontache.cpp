@@ -80,7 +80,7 @@ GestionSousTache::GestionSousTache(Projet &proj, Tache &tache) : _proj(proj), _t
 	Titre1 = new QLabel("Titre de la tache:");
     Titre2 = new QLineEdit("");
 
-	Parent1 = new QLabel("Sous-tache de: (attention cette tache doit être composite)");
+	Parent1 = new QLabel("Sous-tache de: (attention cette tache doit Ãªtre composite)");
     Parent2 = new QLineEdit(_tache.getTitre());
 
 	Dispo1 = new QLabel("A partir de:");
@@ -113,7 +113,7 @@ GestionSousTache::GestionSousTache(Projet &proj, Tache &tache) : _proj(proj), _t
 
 }
 
-void GestionTache::affichercomposite(){ //si composite est cochée, et que preemptive était cochée avant on enlève les durees
+void GestionTache::affichercomposite(){ //si composite est cochÃ©e, et que preemptive Ã©tait cochÃ©e avant on enlÃ¨ve les durees
 	if (verif == 1){
 		lay->removeWidget(Sauvegarder);
 		lay->removeWidget(Annuler);
@@ -134,7 +134,7 @@ void GestionTache::affichercomposite(){ //si composite est cochée, et que preemp
 
 }
 
-void GestionSousTache::affichercomposite(){ //si composite est cochée, et que preemptive était cochée avant on enlève les durees
+void GestionSousTache::affichercomposite(){ //si composite est cochÃ©e, et que preemptive Ã©tait cochÃ©e avant on enlÃ¨ve les durees
 	if (verif == 1){
 		lay->removeWidget(Sauvegarder);
 		lay->removeWidget(Annuler);
@@ -155,7 +155,7 @@ void GestionSousTache::affichercomposite(){ //si composite est cochée, et que pr
 
 }
 
-void GestionTache::afficherpreemptive(){ // ajout des durées pour unitaire et préemptive
+void GestionTache::afficherpreemptive(){ // ajout des durÃ©es pour unitaire et prÃ©emptive
 	lay->removeWidget(Sauvegarder);
 	lay->removeWidget(Annuler);
 	lay->addWidget(Duree1);
@@ -172,7 +172,7 @@ void GestionTache::afficherpreemptive(){ // ajout des durées pour unitaire et pr
 
 }
 
-void GestionSousTache::afficherpreemptive(){ // ajout des durées pour unitaire et préemptive
+void GestionSousTache::afficherpreemptive(){ // ajout des durÃ©es pour unitaire et prÃ©emptive
 	lay->removeWidget(Sauvegarder);
 	lay->removeWidget(Annuler);
 	lay->addWidget(Duree1);
@@ -190,12 +190,12 @@ void GestionSousTache::afficherpreemptive(){ // ajout des durées pour unitaire e
 }
 
 
-void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
-	if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
+void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliquÃ©
+	if (Composite->isChecked()) //creation d'une tache composite si composite est cochÃ©e
 		_proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
-    else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
+    else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochÃ©e
         _proj->creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
-	else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
+	else // creation d'une tache unitaire si unitaire est cochÃ©e ou si rien n'est cochÃ©
         _proj->creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
 	new GestionProj();
     close();
@@ -204,14 +204,14 @@ void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 
 
 
-void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
+void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliquÃ©
     if (dynamic_cast<TacheComposite*>(&_tache))
 	{
-		if (Composite->isChecked()) //creation d'une tache composite si composite est cochée
+		if (Composite->isChecked()) //creation d'une tache composite si composite est cochÃ©e
             _proj.creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date(),  std::vector<Tache*>(), &_tache);
-		if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
+		if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochÃ©e
             _proj.creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
-		else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
+		else // creation d'une tache unitaire si unitaire est cochÃ©e ou si rien n'est cochÃ©
             _proj.creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
         close();
     }else{

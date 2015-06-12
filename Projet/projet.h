@@ -1,4 +1,4 @@
-#ifndef PROJET_H
+﻿#ifndef PROJET_H
 #define PROJET_H
 #include "duree.h"
 #include <QDate>

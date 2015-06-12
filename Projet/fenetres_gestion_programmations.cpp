@@ -104,10 +104,10 @@ CreationActivite::CreationActivite(QWidget * parent){
 	typeActi->setMinimum(0);
 	typeActi->setMaximum(15);
 	textacti = new QLabel("Rentrez le(s) nom(s) du/des participants");
-	text = new QLabel("Choisissez le nombre de participants à l'activité");
+	text = new QLabel("Choisissez le nombre de participants Ã  l'activitÃ©");
 	text1 = new QLabel("Choisissez la date et l'heure de debut ");
-	text2 = new QLabel("Choisissez la durée de votre activité");
-	text3 = new QLabel("Choisissez un titre à votre activité");
+	text2 = new QLabel("Choisissez la durÃ©e de votre activitÃ©");
+	text3 = new QLabel("Choisissez un titre Ã  votre activitÃ©");
 	titre = new QLineEdit();
 	debut = new QDateTimeEdit(QDateTime::currentDateTime());
 	heure = new QSpinBox();

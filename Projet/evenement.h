@@ -1,4 +1,4 @@
-#ifndef EVENEMENT_H
+﻿#ifndef EVENEMENT_H
 #define EVENEMENT_H
 
 #include <vector>

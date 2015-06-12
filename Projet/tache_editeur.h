@@ -1,4 +1,4 @@
-#ifndef TACHE_EDITEUR_H
+﻿#ifndef TACHE_EDITEUR_H
 #define TACHE_EDITEUR_H
 
 #include "projet.h"

@@ -10,9 +10,9 @@ TacheEditeur::TacheEditeur(Projet *projet, Tache * tacheToEdit, QWidget* parent)
     titre = new QLineEdit(_tache->getTitre());
     box->addWidget(label_t, 1, 0);
     box->addWidget(titre, 1, 1, 1, 4);
-    label_dispo = new QLabel("disponibilité");
+    label_dispo = new QLabel("disponibilitÃ©");
     dispo = new QDateEdit(_tache->getDateDisponibilite());
-    label_echeance = new QLabel("échéance");
+    label_echeance = new QLabel("Ã©chÃ©ance");
     echeance = new QDateEdit(_tache->getDateEcheance());
     saveButton = new QPushButton("sauvegarder");
     ajoutPre = new QPushButton("ajout Prerequis");
@@ -23,7 +23,7 @@ TacheEditeur::TacheEditeur(Projet *projet, Tache * tacheToEdit, QWidget* parent)
 
 
     prerequis = new QListWidget();
-    labelPrerequis = new QLabel("Prérequis :");
+    labelPrerequis = new QLabel("PrÃ©requis :");
     box->addWidget(labelPrerequis, 2, 3);
     box->addWidget(prerequis, 3, 3, 3, 1);
     box->addWidget(ajoutPre,3,4);
@@ -56,7 +56,7 @@ TacheEditeur::TacheEditeur(Projet *projet, Tache * tacheToEdit, QWidget* parent)
     else{					//si tache Unitaire
         label_pre = new QLabel();
         box->addWidget(label_pre, 0, 6);
-        labelDureeInitiale = new QLabel("durée Initiale");
+        labelDureeInitiale = new QLabel("durÃ©e Initiale");
         heureDebut = new QSpinBox(this);
         minDebut = new QSpinBox(this);
 
@@ -64,7 +64,7 @@ TacheEditeur::TacheEditeur(Projet *projet, Tache * tacheToEdit, QWidget* parent)
             label_pre->setText("Tache preemptee");
             heureEffectue = new QSpinBox(this);
             minEffectue = new QSpinBox(this);
-            labelDureeEffectue = new QLabel("durée Effectuée (si preemptive)");
+            labelDureeEffectue = new QLabel("durÃ©e EffectuÃ©e (si preemptive)");
             heureEffectue->setValue(((TacheUnitairePreemptee*)_tache)->getDureeEffectuee().getDureeEnHeures());
             heureEffectue->setSuffix(" heure(s)");
             minEffectue->setValue(((TacheUnitairePreemptee*)_tache)->getDureeEffectuee().getResteDureeEnMinutes());

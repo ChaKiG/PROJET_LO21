@@ -1,4 +1,4 @@
-#ifndef FEN_PROG
+﻿#ifndef FEN_PROG
 #define FEN_PROG
 
 #include <QLabel>

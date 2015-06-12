@@ -226,7 +226,7 @@ void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChois
 		}
 	}
 	else 
-		throw CalendarException("evenement deja programmé");
+		throw CalendarException("evenement deja programmÃ©");
 }
 
 

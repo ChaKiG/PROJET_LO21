@@ -1,4 +1,4 @@
-#include "duree.h"
+﻿#include "duree.h"
 
 Duree Duree::operator-(Duree const & other) const{
 	return Duree(nbMinutes - other.nbMinutes);
