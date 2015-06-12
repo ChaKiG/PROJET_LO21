@@ -177,7 +177,8 @@ bool ProgrammationManager::creneaulibre(const QDate& da, const QTime& progHorair
 }
 
 
-void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi, Duree duree){
+void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi){
+	Duree duree;
 	if (dynamic_cast<Tache*>(event)){
 		std::vector<Tache*> pre = ((Tache*)event)->getPrerequis();
 		std::vector<Tache*>::iterator ite = pre.begin();

@@ -279,7 +279,7 @@ void exportProjet::expprojet(){
 		file = text;
 		QFile newfile(file + ".xml");
 		if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-			throw CalendarException(QString("erreur sauvegarde t�ches : ouverture fichier xml"));
+            throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
 		QXmlStreamWriter stream(&newfile);
 		stream.setAutoFormatting(true);
 		stream.writeStartDocument();

@@ -84,29 +84,61 @@ private:
 	*/
     Programmation* trouverProgrammation(int id) const;
 	/*!
-	*  \brief cherche une programmation
-	*  \param id : id de la programmation recherchée
+	*  \brief cherche une programmation relative a un evenement
+	*  \param evt : evenement relatif a la programmation
 	*/
 	Programmation* trouverDerniereProgrammation(Evenement * evt) const;
+	/*!
+	*  \brief sert pour les tache preemptee
+	*  fera apparaitre une fenetre pour choisir la duree de la programmation
+	*  \param event : evenement relatif a la programmation
+	*  \param date : date a programmer
+	*  \param horaire : heure a programmer
+	*/
 	Programmation* createProgPreemptee(Evenement * event, QDate date, QTime horaire);
+	/*!
+	*  \brief ajoute une programmation a la liste globale
+	*  \param evt : evenement relatif a la programmation
+	*/
 	void addItem(Programmation* t);
 
 
 public:
-    static ProgrammationManager& getInstance();
-	static void libererInstance();
+    static ProgrammationManager& getInstance();     //<!signleton, on ne considere qu'un emploi du temps>
+	static void libererInstance();                 //<!signleton, on ne considere qu'un emploi du temps>
 	bool creneaulibre(const QDate& da, const QTime& h, const Duree& du);
 
-    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi, Duree d = 0);
-
+	/*!
+	*  \brief crée une programmation pour un evenement choisi
+	*  \param event : evenement relatif a la programmation
+	*  \param dateChoisie : date a programmer
+	*  \param horaireChoisie : heure a programmer
+	*/
+    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi);
+	
+	/*!
+	*  \brief cherche une programmation
+	*  \param id : id de la programmation recherchée
+	*/
 	Programmation& getProgrammation(int id);
+	/*!
+	*  \brief cherche une programmation relative a un evenement
+	*  \param evt : evenement relatif a la programmation
+	*/
 	Programmation& getDerniereProgrammation(Evenement * evt);
 
+	const std::vector<Programmation*> & getProgrammations() const {return programmations; } //<!renvoit la liste des programmations>
+	std::vector<Programmation*> getSemaine(QDate & date) const;  //<!renvoit les programmations ayant lieu a une semaine particuliere>
 	
-	const std::vector<Programmation*> & getProgrammations() const {return programmations; }
-	std::vector<Programmation*> getSemaine(QDate & date) const;
-	
+	/*!
+	*  \brief supprime les programmations en rapport a un evenement 
+	*  \param p : titre de l'evenement a deprogrammer
+	*/
 	void supprimerProgrammationsEvt(const QString p);
+	/*!
+	*  \brief supprime la programmation d'id id
+	*  \param id : id de la programmation a supprimer
+	*/
 	void supprimerProgrammation(int id);	
 };
 
@@ -116,7 +148,9 @@ public:
 ///////////			  cette fenetre permet de l'avoir                        ///////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+/*! \class ProgrammationManager
+* \brief sert a choisir la duree a programmer quand on programme une tache Preemptee
+*/
 class CreationProgrammationPreemptee : public QWidget {
 	friend class ProgrammationManager;
 	Q_OBJECT

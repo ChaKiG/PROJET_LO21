@@ -44,7 +44,7 @@ void FenetreDepart::save(){
 		file = text;
 		QFile newfile(file + ".xml");
 		if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-			throw CalendarException(QString("erreur sauvegarde t�ches : ouverture fichier xml"));
+            throw CalendarException(QString("erreur sauvegarde tâches : ouverture fichier xml"));
 		QXmlStreamWriter stream(&newfile);
 		stream.setAutoFormatting(true);
 		stream.writeStartDocument();
@@ -778,7 +778,7 @@ void FenetreDepart::load()
 											}
                                             tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
 											//qDebug()<<"ajout tache "<<identificateur<<"\n";
-											ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi, duree);
+											ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
 
 										}
 										else {
@@ -841,7 +841,7 @@ void FenetreDepart::load()
 												}
 												//qDebug()<<"ajout tache "<<identificateur<<"\n";
                                                 tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
-                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi, duree);
+                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
 
 											}
 											else{
@@ -908,7 +908,7 @@ void FenetreDepart::load()
 													}
 													//qDebug()<<"ajout tache "<<identificateur<<"\n";
 													Rdv * rdv = new Rdv(titre, duree, lieu, interlocuteur);
-													ProgrammationManager::getInstance().creerProgrammation(rdv, dateChoisie, HoraireChoisi, duree);
+													ProgrammationManager::getInstance().creerProgrammation(rdv, dateChoisie, HoraireChoisi);
 
 												}
 												else
@@ -1000,7 +1000,7 @@ void FenetreDepart::load()
 														qDebug() << "part3";
 														Reunion * reunion = new Reunion(titre, duree, lieu, personnes);
 														qDebug() << "part6";
-														ProgrammationManager::getInstance().creerProgrammation(reunion, dateChoisie, HoraireChoisi, duree);
+														ProgrammationManager::getInstance().creerProgrammation(reunion, dateChoisie, HoraireChoisi);
 														qDebug() << "part5";
 													}
 												}//fin du premier else
