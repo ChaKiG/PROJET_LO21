@@ -152,7 +152,6 @@ void GestionSousTache::affichercomposite(){ //si composite est cochée, et que p
 		lay->update();
 	}
 
-
 }
 
 void GestionTache::afficherpreemptive(){ // ajout des durées pour unitaire et préemptive

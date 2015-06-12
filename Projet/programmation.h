@@ -78,6 +78,10 @@ private:
 
     ProgrammationManager(){}   //<!private, l'appel se fait par getinstance()>
     ~ProgrammationManager();   //<!private, la suppression se fait par libereInstance()>
+	/*!
+	*  \brief renvoit un pointeur sur une programmation
+	*  \param id : id de la programmation recherchée
+	*/
     Programmation* trouverProgrammation(int id) const;
 	Programmation* trouverDerniereProgrammation(Evenement * evt) const;
 	Programmation* createProgPreemptee(Evenement * event, QDate date, QTime horaire);

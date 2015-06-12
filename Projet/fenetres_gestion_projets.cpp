@@ -69,6 +69,7 @@ void GestionProj::ajoutTacheRacine(){
         }
         else
             throw CalendarException("aucun projet selectionné");
+		close();
     }catch (CalendarException & e){
         QMessageBox::information(this,"erreur", e.getInfo());
     }
@@ -85,6 +86,7 @@ void GestionProj::ajoutTache(){
                 new GestionSousTache(ptr_proj, ptr_tache);
             else
                 throw CalendarException("tache parente non composite");
+			close();
         }else
             throw CalendarException("aucun projet selectionné");
     }catch (CalendarException & e){
