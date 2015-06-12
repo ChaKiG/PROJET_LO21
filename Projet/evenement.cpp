@@ -19,13 +19,14 @@ Evenement::~Evenement(){}
 
 Tache::Tache(int id, const QString & titre, const QDate & dDispo, const QDate & dEcheance, std::vector<Tache*> pre, Tache* parnt):
 Evenement(id, titre), dateDispo(dDispo), dateEcheance(dEcheance), parent(NULL), prerequis(std::vector<Tache*>()){
-    if(dynamic_cast<TacheComposite*>(parnt)){
+	setDatesDisponibiliteEcheance(dDispo, dEcheance);
+	if (dynamic_cast<TacheComposite*>(parnt)){
             parent = parnt;
             ((TacheComposite*)parent)->ajouterSousTache(this);
     }else if (parnt != NULL)
-        throw CalendarException("parent non composite");
-    setDatesDisponibiliteEcheance(dDispo, dEcheance);
-    ajoutPrerequis(pre);
+		throw CalendarException("parent non composite");
+	ajoutPrerequis(pre);
+    
 }
 
 void Tache::setProgramme(bool effectue) {
