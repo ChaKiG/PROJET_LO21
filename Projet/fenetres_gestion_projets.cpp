@@ -268,7 +268,6 @@ exportProjet::exportProjet(){
 	QObject::connect(valider, SIGNAL(clicked()), this, SLOT(expprojet()));
 }
 
-
 void exportProjet::expprojet(){
 
 	bool ok;
@@ -283,150 +282,150 @@ void exportProjet::expprojet(){
 		QXmlStreamWriter stream(&newfile);
 		stream.setAutoFormatting(true);
 		stream.writeStartDocument();
+            stream.writeStartElement("Projet");
+            stream.writeAttribute("nom", box->currentText());
+            stream.writeAttribute("debut", ProjetManager::getInstance().getProjet(box->currentText()).getDebut().toString(Qt::ISODate));
+            stream.writeAttribute("fin", ProjetManager::getInstance().getProjet(box->currentText()).getFin().toString(Qt::ISODate));
+            stream.writeStartElement("Taches");
+            std::vector<Tache*> vectprojet = ProjetManager::getInstance().getProjet(box->currentText()).getTaches();
+            std::vector<Tache*>::iterator ite = vectprojet.begin();
+            while (ite != vectprojet.end()){
+                if (dynamic_cast<const TacheUnitairePreemptee*>(*ite)){
+                    stream.writeStartElement("TacheUnitairePreemptee");
+                    stream.writeTextElement("id", QString::number((*ite)->getId()));
+                    stream.writeTextElement("titre", (*ite)->getTitre());
+                    stream.writeTextElement("dateDispo", dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
+                    stream.writeTextElement("dateEcheance", dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDateEcheance().toString(Qt::ISODate));
+                    QString str;
+                    str.setNum(dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDuree().getDureeEnMinutes());
+                    stream.writeTextElement("duree", str);
+                    QString str1;
+                    str1.setNum(dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDureeEffectuee().getDureeEnMinutes());
+                    stream.writeTextElement("dureeEffectuee", str1);
+                    stream.writeEndElement();
+                }
+                else{
+                    if (dynamic_cast<const TacheUnitaire*>(*ite)){
+                        stream.writeStartElement("TacheUnitaire");
+                        stream.writeTextElement("id", QString::number((*ite)->getId()));
+                        stream.writeTextElement("titre", dynamic_cast<const TacheUnitaire*>(*ite)->getTitre());
+                        stream.writeTextElement("dateDispo", dynamic_cast<const TacheUnitaire*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
+                        stream.writeTextElement("dateEcheance", dynamic_cast<const TacheUnitaire*>(*ite)->getDateEcheance().toString(Qt::ISODate));
 
-		stream.writeStartElement("Projet");
-		stream.writeAttribute("nom", box->currentText());
-		stream.writeAttribute("debut", ProjetManager::getInstance().getProjet(box->currentText()).getDebut().toString(Qt::ISODate));
-		stream.writeAttribute("fin", ProjetManager::getInstance().getProjet(box->currentText()).getFin().toString(Qt::ISODate));
-		stream.writeStartElement("Taches");
-		std::vector<Tache*> vectprojet = ProjetManager::getInstance().getProjet(box->currentText()).getTaches();
-		std::vector<Tache*>::iterator ite = vectprojet.begin();
-		while (ite != vectprojet.end()){
-			if (dynamic_cast<const TacheUnitairePreemptee*>(*ite)){
-				stream.writeStartElement("TacheUnitairePreemptee");
-				stream.writeTextElement("id", QString::number((*ite)->getId()));
-				stream.writeTextElement("titre", (*ite)->getTitre());
-				stream.writeTextElement("dateDispo", dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
-				stream.writeTextElement("dateEcheance", dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDateEcheance().toString(Qt::ISODate));
-				QString str;
-				str.setNum(dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDuree().getDureeEnMinutes());
-				stream.writeTextElement("duree", str);
-				QString str1;
-				str1.setNum(dynamic_cast<const TacheUnitairePreemptee*>(*ite)->getDureeEffectuee().getDureeEnMinutes());
-				stream.writeTextElement("dureeEffectuee", str1);
-				stream.writeEndElement();
-			}
-			else{
-				if (dynamic_cast<const TacheUnitaire*>(*ite)){
-					stream.writeStartElement("TacheUnitaire");
-					stream.writeTextElement("id", QString::number((*ite)->getId()));
-					stream.writeTextElement("titre", dynamic_cast<const TacheUnitaire*>(*ite)->getTitre());
-					stream.writeTextElement("dateDispo", dynamic_cast<const TacheUnitaire*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
-					stream.writeTextElement("dateEcheance", dynamic_cast<const TacheUnitaire*>(*ite)->getDateEcheance().toString(Qt::ISODate));
+                        QString str;
+                        str.setNum(dynamic_cast<const TacheUnitaire*>(*ite)->getDuree().getDureeEnMinutes());
 
-					QString str;
-					str.setNum(dynamic_cast<const TacheUnitaire*>(*ite)->getDuree().getDureeEnMinutes());
+                        stream.writeTextElement("duree", str);
+                        stream.writeEndElement();
+                    }
 
-					stream.writeTextElement("duree", str);
-					stream.writeEndElement();
-				}
+                    else{
+                        if (dynamic_cast<const TacheComposite*>(*ite)){
+                            stream.writeStartElement("TacheComposite");
+                            stream.writeTextElement("id", QString::number((*ite)->getId()));
+                            stream.writeTextElement("titre", dynamic_cast<const TacheComposite*>(*ite)->getTitre());
+                            stream.writeTextElement("dateDispo", dynamic_cast<const TacheComposite*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
+                            stream.writeTextElement("dateEcheance", dynamic_cast<const TacheComposite*>(*ite)->getDateEcheance().toString(Qt::ISODate));
+                            stream.writeEndElement();
+                        }
+                    }
+                }
+                ite++;
+            }
+            stream.writeEndElement();
+            stream.writeStartElement("Dependances");
 
-				else{
-					if (dynamic_cast<const TacheComposite*>(*ite)){
-						stream.writeStartElement("TacheComposite");
-						stream.writeTextElement("id", QString::number((*ite)->getId()));
-						stream.writeTextElement("titre", dynamic_cast<const TacheComposite*>(*ite)->getTitre());
-						stream.writeTextElement("dateDispo", dynamic_cast<const TacheComposite*>(*ite)->getDateDisponibilite().toString(Qt::ISODate));
-						stream.writeTextElement("dateEcheance", dynamic_cast<const TacheComposite*>(*ite)->getDateEcheance().toString(Qt::ISODate));
-						stream.writeEndElement();
-					}
-				}
-			}
-			ite++;
-		}
-		stream.writeEndElement();
-		stream.writeStartElement("Dependances");
+            //enregistrement des liens entre les taches (tableaux de pointeurs etc...
+            std::vector<Tache*> vectprojet1 = ProjetManager::getInstance().getProjet(box->currentText()).getTaches();
+            std::vector<Tache*>::iterator ite1 = vectprojet1.begin();
+            while (ite1 != vectprojet1.end()){
+                if (dynamic_cast<const TacheUnitairePreemptee*>(*ite1)){
+                    stream.writeStartElement("TacheUnitairePreemptee");
+                    stream.writeTextElement("id", QString::number((*ite1)->getId()));
 
-		//enregistrement des liens entre les taches (tableaux de pointeurs etc...
-		std::vector<Tache*> vectprojet1 = ProjetManager::getInstance().getProjet(box->currentText()).getTaches();
-		std::vector<Tache*>::iterator ite1 = vectprojet1.begin();
-        while (ite1 != vectprojet1.end()){
-			if (dynamic_cast<const TacheUnitairePreemptee*>(*ite1)){
-				stream.writeStartElement("TacheUnitairePreemptee");
-				stream.writeTextElement("id", QString::number((*ite1)->getId()));
+                    if (dynamic_cast<const TacheUnitaire*>(*ite1)->getParent() != NULL){
+                        QString str2;
+                        str2 = dynamic_cast<const TacheUnitaire*>(*ite1)->getParent()->getTitre();
+                        stream.writeTextElement("parent", str2);
+                    }
+                    else
+                        stream.writeTextElement("parent", "NULL");
 
-				if (dynamic_cast<const TacheUnitaire*>(*ite1)->getParent() != NULL){
-					QString str2;
-					str2.setNum(dynamic_cast<const TacheUnitaire*>(*ite1)->getParent()->getId());
-					stream.writeTextElement("parent", str2);
-				}
-				else
-					stream.writeTextElement("parent", "0");
+                    stream.writeStartElement("prerequis");
+                    const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
 
-				stream.writeStartElement("prerequis");
-				const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
+                    for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++){
 
-				for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++){
+                        stream.writeTextElement("id", (*it)->getTitre());
+                    }
 
-					stream.writeTextElement("id", QString::number((*it)->getId()));
-				}
+                    stream.writeEndElement();
+                    stream.writeEndElement();
+                }
+                else{
+                    if (dynamic_cast<const TacheUnitaire*>(*ite1)){
+                        stream.writeStartElement("TacheUnitaire");
+                        stream.writeTextElement("id", QString::number((*ite1)->getId()));
 
-				stream.writeEndElement();
-				stream.writeEndElement();
-			}
-			else{
-				if (dynamic_cast<const TacheUnitaire*>(*ite1)){
-					stream.writeStartElement("TacheUnitaire");
-					stream.writeTextElement("id", QString::number((*ite1)->getId()));
+                        if (dynamic_cast<const TacheUnitaire*>(*ite1)->getParent() != NULL){
+                            QString str2;
+                            str2 = dynamic_cast<const TacheUnitaire*>(*ite1)->getParent()->getTitre();
+                            stream.writeTextElement("parent", str2);
+                        }
+                        else
+                        {
+                            stream.writeTextElement("parent", "NULL");
+                        }
+                        stream.writeStartElement("prerequis");
+                        const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
 
-					if (dynamic_cast<const TacheUnitaire*>(*ite1)->getParent() != NULL){
-						QString str2;
-						str2.setNum(dynamic_cast<const TacheUnitaire*>(*ite1)->getParent()->getId());
-						stream.writeTextElement("parent", str2);
-					}
-					else
-					{
-						stream.writeTextElement("parent", "0");
-					}
-					stream.writeStartElement("prerequis");
-					const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
+                        for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++)
+                        {
 
-					for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++)
-					{
+                            stream.writeTextElement("id", (*it)->getTitre());
+                        }
 
-						stream.writeTextElement("id", QString::number((*it)->getId()));
-					}
+                        stream.writeEndElement();
+                        stream.writeEndElement();
+                    }
 
-					stream.writeEndElement();
-					stream.writeEndElement();
-				}
+                    else{
+                        if (dynamic_cast<const TacheComposite*>(*ite1)){
+                            stream.writeStartElement("TacheComposite");
+                            stream.writeTextElement("id", QString::number((*ite1)->getId()));
+                            if (dynamic_cast<const TacheComposite*>(*ite1)->getParent() != NULL){
+                                QString str2;
+                                str2 = dynamic_cast<const TacheComposite*>(*ite1)->getParent()->getTitre();
+                                stream.writeTextElement("parent", str2);
+                            }
+                            else
+                                stream.writeTextElement("parent", "NULL");
 
-				else{
-					if (dynamic_cast<const TacheComposite*>(*ite1)){
-						stream.writeStartElement("TacheComposite");
-						stream.writeTextElement("id", QString::number((*ite1)->getId()));
-						if (dynamic_cast<const TacheComposite*>(*ite1)->getParent() != NULL){
-							QString str2;
-							str2.setNum(dynamic_cast<const TacheComposite*>(*ite1)->getParent()->getId());
-							stream.writeTextElement("parent", str2);
-						}
-						else
-							stream.writeTextElement("parent", "0");
+                            stream.writeStartElement("prerequis");
+                            const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
 
-						stream.writeStartElement("prerequis");
-						const std::vector<Tache*> vectprerequis = dynamic_cast<const Tache*>(*ite1)->getPrerequis();
+                            for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++){
 
-						for (std::vector<Tache*>::const_iterator it = vectprerequis.begin(); it<vectprerequis.end(); it++){
+                                stream.writeTextElement("id", (*it)->getTitre());
+                            }
 
-							stream.writeTextElement("id", QString::number((*it)->getId()));
-						}
+                            stream.writeEndElement();
+                            stream.writeStartElement("sousTaches");
+                            const std::vector<Tache*> vectsoustaches = dynamic_cast<const TacheComposite*>(*ite1)->getSousTaches();
 
-						stream.writeEndElement();
-						stream.writeStartElement("sousTaches");
-						const std::vector<Tache*> vectsoustaches = dynamic_cast<const TacheComposite*>(*ite1)->getSousTaches();
+                            for (std::vector<Tache*>::const_iterator it = vectsoustaches.begin(); it<vectsoustaches.end(); it++){
 
-						for (std::vector<Tache*>::const_iterator it = vectsoustaches.begin(); it<vectsoustaches.end(); it++){
+                                stream.writeTextElement("id", (*it)->getTitre());
+                            }
+                            stream.writeEndElement();
+                            stream.writeEndElement();
+                        }
+                    }
+                }
+                ite1++;
+            }
+            stream.writeEndElement();
 
-							stream.writeTextElement("id", QString::number((*it)->getId()));
-						}
-						stream.writeEndElement();
-						stream.writeEndElement();
-					}
-				}
-			}
-			ite1++;
-		}
-		stream.writeEndElement();
 		stream.writeEndElement();
 		stream.writeEndDocument();
 		newfile.close();
@@ -444,6 +443,7 @@ void exportProjet::retour()
 	new GestionProj();
 	close();
 }
+
 
 
 
@@ -490,10 +490,9 @@ void importProjet::retour()
 
 
 
-
 void importProjet::load()
 {
-	//try{
+    try{
 		//qDebug()<<"debut load\n";
 		file = textedit->text();
 		QDate debut, dfin;
@@ -516,394 +515,400 @@ void importProjet::load()
 			if (token == QXmlStreamReader::StartDocument) continue;
 			// If token is StartElement, we'll see if we can read it.
 			if (token == QXmlStreamReader::StartElement) {
+                QDate ddebutProj, dfinProj;
+                QString strdebut, strfin;
+                QString nomProj;
+                        if (xml.name() == "Projet") {
+                            QXmlStreamAttributes attributes = xml.attributes();
+                            if (attributes.hasAttribute("nom"))
+                            {
+                                nomProj = attributes.value("nom").toString();
+
+                            }
+                            if (attributes.hasAttribute("debut"))
+                            {
+                                ddebutProj = QDate::fromString(attributes.value("debut").toString(), Qt::ISODate);
+                            }
+                            if (attributes.hasAttribute("fin"))
+                            {
+                                dfinProj = QDate::fromString(attributes.value("fin").toString(), Qt::ISODate);
+                            }
+
+                            ProjetManager::getInstance().ajouterProjet(nomProj, ddebutProj, dfinProj);
+                            while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Projet")) {
+
+                                if (token == QXmlStreamReader::StartElement) {
+
+                                    //on crée toutes les taches
+                                    if (xml.name() == "Taches")
+                                    {
+                                        xml.readNext();
+
+                                        while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Taches")) {
+                                            if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                                                if (xml.name() == "TacheUnitaire") {
+
+                                                    int id;
+                                                    QString titre;
+                                                    QDate dateDispo;
+                                                    QDate dateEcheance;
+                                                    Duree duree;
+
+                                                    xml.readNext();
+                                                    //We're going to loop over the things because the order might change.
+                                                    //We'll continue the loop until we hit an EndElement named TacheUnitaire.
+
+
+                                                    while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitaire")) {
+                                                        if (xml.tokenType() == QXmlStreamReader::StartElement) {
+                                                            // We've found identificteur.
+                                                            if (xml.name() == "id") {
+                                                                xml.readNext(); id = xml.text().toString().toUInt();
+
+                                                            }
+
+                                                            // We've found titre.
+                                                            if (xml.name() == "titre") {
+                                                                xml.readNext(); titre = xml.text().toString();
+
+                                                            }
+                                                            // We've found disponibilite
+                                                            if (xml.name() == "dateDispo") {
+                                                                xml.readNext();
+                                                                dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
+
+                                                            }
+                                                            // We've found echeance
+                                                            if (xml.name() == "dateEcheance") {
+                                                                xml.readNext();
+                                                                dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
+
+                                                            }
+                                                            // We've found duree
+                                                            if (xml.name() == "duree") {
+                                                                xml.readNext();
+                                                                duree.setDuree(xml.text().toString().toUInt());
+
+                                                            }
+                                                        }
+                                                        // ...and next...
+                                                        xml.readNext();
+
+                                                    }
+                                                    //qDebug()<<"ajout tache "<<identificateur<<"\n";
+                                                    ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheUnitaire", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
+
+                                                }
+                                                else {
+                                                    if (xml.name() == "TacheUnitairePreemptee") {
+
+                                                        int id;
+                                                        QString titre;
+                                                        QDate dateDispo;
+                                                        QDate dateEcheance;
+                                                        Duree duree;
+                                                        Duree dureeEffectuee;
+
+                                                        xml.readNext();
+                                                        //We're going to loop over the things because the order might change.
+                                                        //We'll continue the loop until we hit an EndElement named TacheUnitaire.
+
+
+                                                        while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitairePreemptee")) {
+                                                            if (xml.tokenType() == QXmlStreamReader::StartElement) {
+                                                                // We've found identificteur.
+                                                                if (xml.name() == "id") {
+                                                                    xml.readNext(); id = xml.text().toString().toUInt();
+
+                                                                }
+
+                                                                // We've found titre.
+                                                                if (xml.name() == "titre") {
+                                                                    xml.readNext(); titre = xml.text().toString();
+
+                                                                }
+                                                                // We've found disponibilite
+                                                                if (xml.name() == "dateDispo") {
+                                                                    xml.readNext();
+                                                                    dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
+
+                                                                }
+                                                                // We've found echeance
+                                                                if (xml.name() == "dateEcheance") {
+                                                                    xml.readNext();
+                                                                    dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
+
+                                                                }
+                                                                // We've found duree
+                                                                if (xml.name() == "duree") {
+                                                                    xml.readNext();
+                                                                    duree.setDuree(xml.text().toString().toUInt());
+
+                                                                }
+                                                                if (xml.name() == "dureeEffectuee") {
+                                                                    xml.readNext();
+                                                                    dureeEffectuee.setDuree(xml.text().toString().toUInt());
+
+                                                                }
+                                                            }
+                                                            // ...and next...
+                                                            xml.readNext();
+
+                                                        }
+                                                        //qDebug()<<"ajout tache "<<identificateur<<"\n";
+                                                        Tache & t = ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheUnitairePreemptee", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
+                                                        ((TacheUnitairePreemptee&)t).addDureeEffectuee(dureeEffectuee);
+                                                    }
+                                                    else{
+                                                        if (xml.name() == "TacheComposite") {
+
+                                                            int id;
+                                                            QString titre;
+                                                            QDate dateDispo;
+                                                            QDate dateEcheance;
+
+
+                                                            xml.readNext();
+                                                            //We're going to loop over the things because the order might change.
+                                                            //We'll continue the loop until we hit an EndElement named TacheUnitaire.
+
+
+                                                            while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheComposite")) {
+                                                                if (xml.tokenType() == QXmlStreamReader::StartElement) {
+                                                                    // We've found identificteur.
+                                                                    if (xml.name() == "id") {
+                                                                        xml.readNext(); id = xml.text().toString().toUInt();
+
+                                                                    }
+
+                                                                    // We've found titre.
+                                                                    if (xml.name() == "titre") {
+                                                                        xml.readNext(); titre = xml.text().toString();
+
+                                                                    }
+                                                                    // We've found disponibilite
+                                                                    if (xml.name() == "dateDispo") {
+                                                                        xml.readNext();
+                                                                        dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
+                                                                        //qDebug()<<"disp="<<disponibilite.toString()<<"\n";
+                                                                    }
+                                                                    // We've found echeance
+                                                                    if (xml.name() == "dateEcheance") {
+                                                                        xml.readNext();
+                                                                        dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
+                                                                        //qDebug()<<"echeance="<<echeance.toString()<<"\n";
+                                                                    }
+
+                                                                }
+                                                                // ...and next...
+                                                                xml.readNext();
+
+                                                            }
+                                                            //qDebug()<<"ajout tache "<<identificateur<<"\n";
+                                                            ProjetManager::getInstance().getProjet(nomProj).creerTache("TacheComposite", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL);
+                                                        }
+                                                    }//fin du premier else
+                                                }//fin du deuxieme else
+                                            }
+                                                xml.readNext();
+                                            }//fin de l'ajout d'une tache
+                                            xml.readNext();
+                                        }//fin de l'ajout des Taches
+
+                                    //on crée les dépendances entre les taches
+                                    if (xml.name() == "Dependances")
+                                    {
+
+                                        xml.readNext();
+
+                                        while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Dependances")) {
+                                            if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                                                if ((xml.name() == "TacheUnitaire") || (xml.name() == "TacheUnitairePreemptee")) {
+
+                                                    int id;
+                                                    QString parentid;
+                                                    Tache * parent = NULL;
+                                                    QString idpre = 0;
+                                                    Tache * temprerequis;
+                                                    std::vector<Tache*>prerequis;
+
+                                                    xml.readNext();
+                                                    //We're going to loop over the things because the order might change.
+                                                    //We'll continue the loop until we hit an EndElement named TacheUnitaire.
+
+
+                                                    while (!(xml.tokenType() == QXmlStreamReader::EndElement && ((xml.name() == "TacheUnitaire") || (xml.name() == "TacheUnitairePreemptee")))) {
+
+                                                        if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                                                            // We've found identificteur.
+                                                            if (xml.name() == "id") {
+                                                                xml.readNext(); id = xml.text().toString().toUInt();
+                                                                //qDebug()<<"id="<<identificateur<<"\n";
+                                                            }
+
+                                                            // We've found titre.
+                                                            if (xml.name() == "parent") {
+                                                                xml.readNext(); parentid = xml.text().toString();
+                                                                if (parentid != "NULL"){
+                                                                    parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
+                                                                }
+                                                            }
+
+                                                            if (xml.name() == "prerequis") {
+                                                                xml.readNext();
+                                                                while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "prerequis")) {
+                                                                    if (xml.tokenType() == QXmlStreamReader::StartElement) {
+                                                                        if (xml.name() == "id") {
+                                                                            xml.readNext(); idpre = xml.text().toString();
+
+                                                                            temprerequis = &ProjetManager::getInstance().getProjet(nomProj).getTache(idpre);
+                                                                            prerequis.push_back(temprerequis);
+                                                                        }
+
+                                                                    }
+                                                                    xml.readNext();
+                                                                }
+
+                                                            }
+                                                        }
+                                                        // ...and next...
+                                                        xml.readNext();
+
+                                                    }
+                                                    //qDebug()<<"ajout tache "<<identificateur<<"\n";
+                                                    ProjetManager::getInstance().getProjet(nomProj).getTache(id).ajoutPrerequis(prerequis);
+                                                    if (parent)
+                                                    {
+                                                        ProjetManager::getInstance().getProjet(nomProj).getTache(id).setParent(parent);
+                                                    }
+                                                    prerequis.clear();
+                                                }
+                                                else {
+                                                    if (xml.name() == "TacheComposite") {
+
+                                                        int id;
+                                                        QString parentid;
+                                                        Tache * parent = NULL;
+                                                        QString idpre = 0;
+                                                        Tache * temprerequis;
+                                                        std::vector<Tache*> prerequis;
+                                                        QString idsoustaches = 0;
+                                                        Tache * soustache;
+                                                        std::vector<Tache*> soustaches;
+
+                                                        xml.readNext();
+                                                        //We're going to loop over the things because the order might change.
+                                                        //We'll continue the loop until we hit an EndElement named TacheUnitaire.
+
+
+                                                        while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheComposite")) {
+
+                                                            if (xml.tokenType() == QXmlStreamReader::StartElement) {
+                                                                // We've found identificteur.
+                                                                if (xml.name() == "id") {
+                                                                    xml.readNext(); id = xml.text().toString().toUInt();
+
+                                                                }
+
+                                                                // We've found titre.
+                                                                if (xml.name() == "parent") {
+                                                                    xml.readNext(); parentid = xml.text().toString();
+
+                                                                    if (parentid != "NULL"){
+                                                                        parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
+
+                                                                    }
+                                                                }
+
+                                                                if (xml.name() == "prerequis") {
+                                                                    xml.readNext();
+                                                                    while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "prerequis")) {
+                                                                        if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                                                                            if (xml.name() == "id") {
+                                                                                xml.readNext(); idpre = xml.text().toString();
+
+                                                                                temprerequis = &ProjetManager::getInstance().getProjet(nomProj).getTache(idpre);
+                                                                                prerequis.push_back(temprerequis);
+                                                                            }
+
+                                                                        }
+                                                                        xml.readNext();
+                                                                    }
+
+                                                                }
+
+                                                                if (xml.name() == "sousTaches") {
+                                                                    xml.readNext();
+                                                                    while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "sousTaches")) {
+                                                                        if (xml.tokenType() == QXmlStreamReader::StartElement) {
+
+                                                                            if (xml.name() == "id") {
+
+                                                                                xml.readNext(); idsoustaches = xml.text().toString();
+
+
+                                                                                soustache = &ProjetManager::getInstance().getProjet(nomProj).getTache(idsoustaches);
+                                                                                soustaches.push_back(soustache);
+                                                                            }
+
+                                                                        }
+                                                                        xml.readNext();
+                                                                    }
+
+                                                                }
+                                                                // ...and next..
+                                                            }
+                                                            xml.readNext();
+
+
+                                                        }
+
+                                                        ProjetManager::getInstance().getProjet(nomProj).getTache(id).ajoutPrerequis(prerequis);
+                                                        if (parent)
+                                                        {
+                                                            ProjetManager::getInstance().getProjet(nomProj).getTache(id).setParent(parent);
+                                                        }
+                                                        dynamic_cast<TacheComposite*>(&ProjetManager::getInstance().getProjet(nomProj).getTache(id))->ajouterSousTaches(soustaches);
+
+                                                        soustaches.clear();
+                                                        prerequis.clear();
+
+                                                    }
+
+                                                }//fin de la dependance
+
+                                            }//fin de l'ajout des Taches
+                                            xml.readNext();
+                                        }
+
+                                    }
+                                }
+                                //fin des 2 elements
+                                // Error handling
+                                xml.readNext();
+                            }//fin du while
+                        }//test
+                    }
 				// If it's named projet, we'll create a project.
-				if (xml.name() == "Projet") {
-					QXmlStreamAttributes attributes = xml.attributes();
-					if (attributes.hasAttribute("nom"))
-					{
-						nom = attributes.value("nom").toString();
-
-					}
-					if (attributes.hasAttribute("debut"))
-					{
-						strdebut = attributes.value("debut").toString();
-						debut.fromString(strdebut, Qt::ISODate);
-					}
-					if (attributes.hasAttribute("fin"))
-					{
-						strfin = attributes.value("fin").toString();
-						dfin.fromString(strfin, Qt::ISODate);
-					}
-
-					ProjetManager::getInstance().ajouterProjet(nom, debut, dfin);
-					while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Projet")) {
-
-						if (token == QXmlStreamReader::StartElement) {
-
-							//on crée toutes les taches
-							if (xml.name() == "Taches")
-							{
-								xml.readNext();
-
-								while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Taches")) {
-									if (xml.tokenType() == QXmlStreamReader::StartElement) {
-
-										if (xml.name() == "TacheUnitaire") {
-											qDebug() << "new tache\n";
-											int id;
-											QString titre;
-											QDate dateDispo;
-											QDate dateEcheance;
-											Duree duree;
-
-											xml.readNext();
-											//We're going to loop over the things because the order might change.
-											//We'll continue the loop until we hit an EndElement named TacheUnitaire.
-
-
-											while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitaire")) {
-												if (xml.tokenType() == QXmlStreamReader::StartElement) {
-													// We've found identificteur.
-													if (xml.name() == "id") {
-														xml.readNext(); id = xml.text().toString().toUInt();
-														//qDebug()<<"id="<<identificateur<<"\n";
-													}
-
-													// We've found titre.
-													if (xml.name() == "titre") {
-														xml.readNext(); titre = xml.text().toString();
-														//qDebug()<<"titre="<<titre<<"\n";
-													}
-													// We've found disponibilite
-													if (xml.name() == "dateDispo") {
-														xml.readNext();
-														dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
-														//qDebug()<<"disp="<<disponibilite.toString()<<"\n";
-													}
-													// We've found echeance
-													if (xml.name() == "dateEcheance") {
-														xml.readNext();
-														dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
-														//qDebug()<<"echeance="<<echeance.toString()<<"\n";
-													}
-													// We've found duree
-													if (xml.name() == "duree") {
-														xml.readNext();
-														duree.setDuree(xml.text().toString().toUInt());
-														//qDebug()<<"duree="<<duree.getDureeEnMinutes()<<"\n";
-													}
-												}
-												// ...and next...
-												xml.readNext();
-
-											}
-											//qDebug()<<"ajout tache "<<identificateur<<"\n";
-											ProjetManager::getInstance().getProjet(nom).creerTache("TacheUnitaire", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
-
-										}
-										else {
-											if (xml.name() == "TacheUnitairePreemptee") {
-												qDebug() << "new tache\n";
-												int id;
-												QString titre;
-												QDate dateDispo;
-												QDate dateEcheance;
-												Duree duree;
-												Duree dureeEffectuee;
-
-												xml.readNext();
-												//We're going to loop over the things because the order might change.
-												//We'll continue the loop until we hit an EndElement named TacheUnitaire.
-
-
-												while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitairePreemptee")) {
-													if (xml.tokenType() == QXmlStreamReader::StartElement) {
-														// We've found identificteur.
-														if (xml.name() == "id") {
-															xml.readNext(); id = xml.text().toString().toUInt();
-															//qDebug()<<"id="<<identificateur<<"\n";
-														}
-
-														// We've found titre.
-														if (xml.name() == "titre") {
-															xml.readNext(); titre = xml.text().toString();
-															//qDebug()<<"titre="<<titre<<"\n";
-														}
-														// We've found disponibilite
-														if (xml.name() == "dateDispo") {
-															xml.readNext();
-															dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
-															//qDebug()<<"disp="<<disponibilite.toString()<<"\n";
-														}
-														// We've found echeance
-														if (xml.name() == "dateEcheance") {
-															xml.readNext();
-															dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
-															//qDebug()<<"echeance="<<echeance.toString()<<"\n";
-														}
-														// We've found duree
-														if (xml.name() == "duree") {
-															xml.readNext();
-															duree.setDuree(xml.text().toString().toUInt());
-															//qDebug()<<"duree="<<duree.getDureeEnMinutes()<<"\n";
-														}
-														if (xml.name() == "dureeEffectuee") {
-															xml.readNext();
-															dureeEffectuee.setDuree(xml.text().toString().toUInt());
-															//qDebug()<<"duree="<<duree.getDureeEnMinutes()<<"\n";
-														}
-													}
-													// ...and next...
-													xml.readNext();
-
-												}
-												//qDebug()<<"ajout tache "<<identificateur<<"\n";
-												Tache & t = ProjetManager::getInstance().getProjet(nom).creerTache("TacheUnitairePreemptee", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL, duree);
-												((TacheUnitairePreemptee&)t).addDureeEffectuee(dureeEffectuee);
-											}
-											else{
-												if (xml.name() == "TacheComposite") {
-													qDebug() << "new tache\n";
-													int id;
-													QString titre;
-													QDate dateDispo;
-													QDate dateEcheance;
-
-
-													xml.readNext();
-													//We're going to loop over the things because the order might change.
-													//We'll continue the loop until we hit an EndElement named TacheUnitaire.
-
-
-													while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheComposite")) {
-														if (xml.tokenType() == QXmlStreamReader::StartElement) {
-															// We've found identificteur.
-															if (xml.name() == "id") {
-																xml.readNext(); id = xml.text().toString().toUInt();
-																//qDebug()<<"id="<<identificateur<<"\n";
-															}
-
-															// We've found titre.
-															if (xml.name() == "titre") {
-																xml.readNext(); titre = xml.text().toString();
-																//qDebug()<<"titre="<<titre<<"\n";
-															}
-															// We've found disponibilite
-															if (xml.name() == "dateDispo") {
-																xml.readNext();
-																dateDispo = QDate::fromString(xml.text().toString(), Qt::ISODate);
-																//qDebug()<<"disp="<<disponibilite.toString()<<"\n";
-															}
-															// We've found echeance
-															if (xml.name() == "dateEcheance") {
-																xml.readNext();
-																dateEcheance = QDate::fromString(xml.text().toString(), Qt::ISODate);
-																//qDebug()<<"echeance="<<echeance.toString()<<"\n";
-															}
-
-														}
-														// ...and next...
-														xml.readNext();
-
-													}
-													//qDebug()<<"ajout tache "<<identificateur<<"\n";
-													ProjetManager::getInstance().getProjet(nom).creerTache("TacheComposite", titre, dateDispo, dateEcheance, std::vector<Tache*>(), NULL);
-												}
-											}//fin du premier else
-										}//fin du deuxieme else
-										xml.readNext();
-									}//fin de l'ajout d'une tache
-									xml.readNext();
-								}//fin de l'ajout des Taches
-							}
-							//on crée les dépendances entre les taches
-							if (xml.name() == "Dependances")
-							{
-								qDebug() << "new dependance\n";
-								xml.readNext();
-
-								while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Dependances")) {
-									if (xml.tokenType() == QXmlStreamReader::StartElement) {
-
-										if ((xml.name() == "TacheUnitaire") || (xml.name() == "TacheUnitairePreemptee")) {
-											qDebug() << "set dependance\n";
-											int id;
-											int parentid;
-											Tache * parent;
-											int idpre;
-											Tache * temprerequis;
-											std::vector<Tache*>prerequis;
-
-											xml.readNext();
-											//We're going to loop over the things because the order might change.
-											//We'll continue the loop until we hit an EndElement named TacheUnitaire.
-
-
-											while (!(xml.tokenType() == QXmlStreamReader::EndElement && ((xml.name() == "TacheUnitaire") || (xml.name() == "TacheUnitairePreemptee")))) {
-												qDebug() << "trouve1\n";
-												if (xml.tokenType() == QXmlStreamReader::StartElement) {
-													qDebug() << "set dependance1 \n";
-													// We've found identificteur.
-													if (xml.name() == "id") {
-														xml.readNext(); id = xml.text().toString().toUInt();
-														//qDebug()<<"id="<<identificateur<<"\n";
-													}
-
-													// We've found titre.
-													if (xml.name() == "parent") {
-														xml.readNext(); parentid = xml.text().toString().toUInt();
-														if (parentid != 0){
-															parentid += ProjetManager::getInstance().getProjet(nom).getCurrentId();
-															parent = &ProjetManager::getInstance().getProjet(nom).getTache(parentid);
-														}
-													}
-
-													if (xml.name() == "prerequis") {
-														xml.readNext();
-														while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "prerequis")) {
-															if (xml.tokenType() == QXmlStreamReader::StartElement) {
-																if (xml.name() == "id") {
-																	xml.readNext(); idpre = xml.text().toString().toUInt();
-																	idpre += ProjetManager::getInstance().getProjet(nom).getCurrentId();
-																	temprerequis = &ProjetManager::getInstance().getProjet(nom).getTache(idpre);
-																	prerequis.push_back(temprerequis);
-																}
-
-															}
-															xml.readNext();
-														}
-
-													}
-												}
-												// ...and next...
-												xml.readNext();
-
-											}
-											//qDebug()<<"ajout tache "<<identificateur<<"\n";
-											ProjetManager::getInstance().getProjet(nom).getTache(id).ajoutPrerequis(prerequis);
-											ProjetManager::getInstance().getProjet(nom).getTache(id).setParent(parent);
-											prerequis.clear();
-										}
-										else {
-											if (xml.name() == "TacheComposite") {
-												qDebug() << "set dependance2 \n";
-												int id;
-												int parentid;
-												Tache * parent;
-												int idpre;
-												Tache * temprerequis;
-												std::vector<Tache*> prerequis;
-												int idsoustaches;
-												Tache * soustache;
-												std::vector<Tache*> soustaches;
-
-												xml.readNext();
-												//We're going to loop over the things because the order might change.
-												//We'll continue the loop until we hit an EndElement named TacheUnitaire.
-
-
-												while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheComposite")) {
-													qDebug() << "trouve2";
-													if (xml.tokenType() == QXmlStreamReader::StartElement) {
-														// We've found identificteur.
-														if (xml.name() == "id") {
-															xml.readNext(); id = xml.text().toString().toUInt();
-															qDebug() << "id est mis\n";
-														}
-
-														// We've found titre.
-														if (xml.name() == "parent") {
-															xml.readNext(); parentid = xml.text().toString().toUInt();
-															qDebug() << "parent0 \n";
-															if (parentid != 0){
-																parentid += ProjetManager::getInstance().getProjet(nom).getCurrentId();
-																parent = &ProjetManager::getInstance().getProjet(nom).getTache(parentid);
-																qDebug() << "parent different 0 \n";
-															}
-														}
-
-														if (xml.name() == "prerequis") {
-															xml.readNext();
-															while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "prerequis")) {
-																if (xml.tokenType() == QXmlStreamReader::StartElement) {
-																	qDebug() << "prerequis\n";
-																	if (xml.name() == "id") {
-																		xml.readNext(); idpre = xml.text().toString().toUInt();
-																		idpre += ProjetManager::getInstance().getProjet(nom).getCurrentId();
-																		temprerequis = &ProjetManager::getInstance().getProjet(nom).getTache(idpre);
-																		prerequis.push_back(temprerequis);
-																	}
-
-																}
-																xml.readNext();
-															}
-
-														}
-
-														if (xml.name() == "sousTaches") {
-															xml.readNext();
-															while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "sousTaches")) {
-																if (xml.tokenType() == QXmlStreamReader::StartElement) {
-																	qDebug() << "soustache\n";
-																	if (xml.name() == "id") {
-																		qDebug() << "soustache2\n";
-																		xml.readNext(); idsoustaches = xml.text().toString().toUInt();
-																		idsoustaches += ProjetManager::getInstance().getProjet(nom).getCurrentId();
-																		soustache = &ProjetManager::getInstance().getProjet(nom).getTache(idsoustaches);
-																		soustaches.push_back(soustache);
-																	}
-
-																}
-																xml.readNext();
-															}
-
-														}
-														// ...and next..
-													}
-													xml.readNext();
-
-
-												}
-												qDebug() << "entré donné";
-												ProjetManager::getInstance().getProjet(nom).getTache(id).ajoutPrerequis(prerequis);
-												ProjetManager::getInstance().getProjet(nom).getTache(id).setParent(parent);
-												dynamic_cast<TacheComposite*>(&ProjetManager::getInstance().getProjet(nom).getTache(id))->ajouterSousTaches(soustaches);
-												qDebug() << "sorti donné";
-												soustaches.clear();
-												prerequis.clear();
-
-											}
-
-										}//fin de la dependance
-
-									}//fin de l'ajout des Taches
-									xml.readNext();
-								}
-
-							}
-
-						}
-						//fin des 2 elements
-						// Error handling
-						xml.readNext();
-					}//fin du while
-				}//test
-			}
-		}//fin du while fichier
+}
 
 		if (xml.hasError()) {
 			QString str3 = "Erreur lecteur fichier taches parser xml";
 
 			throw CalendarException(str3);
 		}
-
-
+new GestionProj;
+close();
 		// Removes any device() or data from the reader * and resets its internal state to the initial state.
 		xml.clear();
-/*	}
+    }
 	catch (CalendarException & e){
 		QMessageBox::information(this, "erreur", e.getInfo());
-	}*/
+    }
 	//qDebug()<<"fin load\n";
 }//fin de la lecture
 
