@@ -344,11 +344,14 @@ void FenetreDepart::load()
 									}
 									if (attributes.hasAttribute("debut"))
 									{
-										ddebutProj = QDate::fromString(attributes.value("debut").toString(), Qt::ISODate);
+                                     ddebutProj = QDate::fromString(attributes.value("debut").toString(), Qt::ISODate);
+
 									}
 									if (attributes.hasAttribute("fin"))
 									{
-										dfinProj = QDate::fromString(attributes.value("fin").toString(), Qt::ISODate);
+
+                                         dfinProj = QDate::fromString(attributes.value("fin").toString(), Qt::ISODate);
+
 									}
 
 									ProjetManager::getInstance().ajouterProjet(nomProj, ddebutProj, dfinProj);
@@ -535,7 +538,7 @@ void FenetreDepart::load()
 											//on crée les dépendances entre les taches
 											if (xml.name() == "Dependances")
 											{
-
+                                                qDebug()<<"dependances";
 												xml.readNext();
 
 												while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "Dependances")) {
@@ -568,6 +571,7 @@ void FenetreDepart::load()
 																	// We've found titre.
 																	if (xml.name() == "parent") {
 																		xml.readNext(); parentid = xml.text().toString();
+
 																		if (parentid != "NULL"){
 																			parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
 																		}
@@ -575,6 +579,7 @@ void FenetreDepart::load()
 
 																	if (xml.name() == "prerequis") {
 																		xml.readNext();
+
 																		while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "prerequis")) {
 																			if (xml.tokenType() == QXmlStreamReader::StartElement) {
 																				if (xml.name() == "id") {
@@ -633,7 +638,7 @@ void FenetreDepart::load()
 																		if (xml.name() == "parent") {
 																			xml.readNext(); parentid = xml.text().toString();
 
-																			if (parentid != "NULL"){
+                                                                            if (parentid != "NULL"){
 																				parent = &ProjetManager::getInstance().getProjet(nomProj).getTache(parentid);
 
 																			}
@@ -663,6 +668,7 @@ void FenetreDepart::load()
 																				if (xml.tokenType() == QXmlStreamReader::StartElement) {
 
 																					if (xml.name() == "id") {
+
 
 																						xml.readNext(); idsoustaches = xml.text().toString();
 
@@ -736,16 +742,17 @@ void FenetreDepart::load()
 											while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitaire")) {
 												if (xml.tokenType() == QXmlStreamReader::StartElement) {
 													// We've found identificteur.
-                                                    							if (xml.name() == "id") {
-                                                      
+                                                    if (xml.name() == "id") {
+
 														xml.readNext(); id = xml.text().toString().toUInt();
-                                              
+
+
 													}
-                                                						 if (xml.name() == "Projet") {
-	                                                      
-                                                						 xml.readNext(); projet = xml.text().toString();
-                                                        
-                                                    								}
+                                                    if (xml.name() == "Projet") {
+
+                                                        xml.readNext(); projet = xml.text().toString();
+
+                                                    }
 													// We've found titre.
 													if (xml.name() == "titre") {
 														xml.readNext(); titre = xml.text().toString();
@@ -775,7 +782,7 @@ void FenetreDepart::load()
 											}
                                             tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
 											//qDebug()<<"ajout tache "<<identificateur<<"\n";
-											ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
+                                            ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
 
 										}
 										else {
@@ -798,16 +805,17 @@ void FenetreDepart::load()
 												while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitairePreempte")) {
 													if (xml.tokenType() == QXmlStreamReader::StartElement) {
 														// We've found identificteur.
+
 														if (xml.name() == "id") {
-															qDebug() << "id1";
+                                                            qDebug()<<"cool";
 															xml.readNext(); id = xml.text().toString().toUInt();
-                                                            qDebug() << "idpreempte";
+
 
 														}
                                                         if (xml.name() == "Projet") {
-                                                            
+
                                                             xml.readNext(); projet = xml.text().toString();
-                                                            
+
                                                         }
 														// We've found titre.
 														if (xml.name() == "titre") {
@@ -827,9 +835,10 @@ void FenetreDepart::load()
 
 														}
 														// We've found duree
-														if (xml.name() == "dureeEffectuee") {
+                                                        if (xml.name() == "dureeEffectuee") {
 															xml.readNext();
 															duree.setDuree(xml.text().toString().toUInt());
+                                                            qDebug()<<xml.text().toString();
 														}
 													}
 													// ...and next...
@@ -838,7 +847,7 @@ void FenetreDepart::load()
 												}
 												//qDebug()<<"ajout tache "<<identificateur<<"\n";
                                                 tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
-                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
+                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi,duree);
 
 											}
 											else{

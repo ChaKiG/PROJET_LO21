@@ -95,7 +95,7 @@ private:
 	*  \param date : date a programmer
 	*  \param horaire : heure a programmer
 	*/
-	Programmation* createProgPreemptee(Evenement * event, QDate date, QTime horaire);
+    Programmation* createProgPreemptee(Evenement * event, QDate date, QTime horaire, Duree d=0);
 	/*!
 	*  \brief ajoute une programmation a la liste globale
 	*  \param evt : evenement relatif a la programmation
@@ -114,7 +114,7 @@ public:
 	*  \param dateChoisie : date a programmer
 	*  \param horaireChoisie : heure a programmer
 	*/
-    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi);
+    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi, Duree d =0);
 	
 	/*!
 	*  \brief cherche une programmation

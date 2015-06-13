@@ -8,7 +8,13 @@ int Programmation::currentId = 0;
 Programmation::Programmation(Evenement * event, const QDate & dateChoisie, const QTime & horaireChoisi, Duree dur) : id(++currentId), dateChoisie(dateChoisie), horaireChoisi(horaireChoisi), duree(dur), evt(event){
 	try{
 		if (dynamic_cast<TacheUnitairePreemptee*>(event))
+        {
+            if(dur==0)
+            {
 			((TacheUnitairePreemptee*)event)->addDureeEffectuee(dur);
+            }
+
+         }
 		else
             event->setProgramme(true);
 	}
@@ -91,8 +97,8 @@ void ProgrammationManager::addItem(Programmation* t){
 	programmations.push_back(t);
 }
 
-Programmation* ProgrammationManager::createProgPreemptee(Evenement * event, QDate date, QTime horaire){
-	return new Programmation(event, date, horaire);
+Programmation* ProgrammationManager::createProgPreemptee(Evenement * event, QDate date, QTime horaire, Duree d){
+    return new Programmation(event, date, horaire,d);
 }
 
 
@@ -177,7 +183,7 @@ bool ProgrammationManager::creneaulibre(const QDate& da, const QTime& progHorair
 }
 
 
-void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi){
+void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi,Duree d){
 	Duree duree;
 	if (dynamic_cast<Tache*>(event)){
 		std::vector<Tache*> pre = ((Tache*)event)->getPrerequis();
@@ -203,7 +209,7 @@ void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChois
 			throw CalendarException("on ne peut pas programmer des taches composites");
 		else{
 			if (dynamic_cast<TacheUnitairePreemptee*>(event)){
-				new CreationProgrammationPreemptee(event, dateChoisie, horaireChoisi);
+                new CreationProgrammationPreemptee(event, dateChoisie, horaireChoisi,d);
 			}
 			else
 				if (dynamic_cast<TacheUnitaire*>(event)){
@@ -319,7 +325,7 @@ CreationProgrammationPreemptee::CreationProgrammationPreemptee(Evenement * e, QD
 	}
 	else{
 		if (ProgrammationManager::getInstance().creneaulibre(_date, _horaire, dur.getDureeEnMinutes())){
-			Programmation * prog = ProgrammationManager::getInstance().createProgPreemptee(event, _date, _horaire);
+            Programmation * prog = ProgrammationManager::getInstance().createProgPreemptee(event, _date, _horaire,dur);
 			try{
 				prog->setDuree(dur);
 				ProgrammationManager::getInstance().addItem(prog);
