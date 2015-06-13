@@ -344,13 +344,11 @@ void FenetreDepart::load()
 									}
 									if (attributes.hasAttribute("debut"))
 									{
-										strdebut = attributes.value("debut").toString();
-										ddebutProj = QDate::fromString(strdebut, Qt::ISODate);
+										ddebutProj = QDate::fromString(attributes.value("debut").toString(), Qt::ISODate);
 									}
 									if (attributes.hasAttribute("fin"))
 									{
-										strfin = attributes.value("fin").toString();
-										dfinProj = QDate::fromString(strfin, Qt::ISODate);
+										dfinProj = QDate::fromString(attributes.value("fin").toString(), Qt::ISODate);
 									}
 
 									ProjetManager::getInstance().ajouterProjet(nomProj, ddebutProj, dfinProj);
@@ -738,17 +736,16 @@ void FenetreDepart::load()
 											while (!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "TacheUnitaire")) {
 												if (xml.tokenType() == QXmlStreamReader::StartElement) {
 													// We've found identificteur.
-                                                    if (xml.name() == "id") {
-                                                        qDebug() << "iduni0";
+                                                    							if (xml.name() == "id") {
+                                                      
 														xml.readNext(); id = xml.text().toString().toUInt();
-                                                        qDebug() << "iduni";
-
+                                              
 													}
-                                                    if (xml.name() == "Projet") {
-                                                        qDebug() << "iduni0";
-                                                        xml.readNext(); projet = xml.text().toString().toUInt();
-                                                        qDebug() << "iduni";
-                                                    }
+                                                						 if (xml.name() == "Projet") {
+	                                                      
+                                                						 xml.readNext(); projet = xml.text().toString();
+                                                        
+                                                    								}
 													// We've found titre.
 													if (xml.name() == "titre") {
 														xml.readNext(); titre = xml.text().toString();
@@ -808,9 +805,9 @@ void FenetreDepart::load()
 
 														}
                                                         if (xml.name() == "Projet") {
-                                                            qDebug() << "iduni0";
-                                                            xml.readNext(); projet = xml.text().toString().toUInt();
-                                                            qDebug() << "iduni";
+                                                            
+                                                            xml.readNext(); projet = xml.text().toString();
+                                                            
                                                         }
 														// We've found titre.
 														if (xml.name() == "titre") {
@@ -830,7 +827,7 @@ void FenetreDepart::load()
 
 														}
 														// We've found duree
-														if (xml.name() == "duree") {
+														if (xml.name() == "dureeEffectuee") {
 															xml.readNext();
 															duree.setDuree(xml.text().toString().toUInt());
 														}
