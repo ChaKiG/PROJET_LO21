@@ -194,7 +194,7 @@ void GestionTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
 		_proj->creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date());
     else if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
         _proj->creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
-	else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
+	else if (Unitaire->isChecked())// creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
         _proj->creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), NULL, Duree(Duree2->value(), Duree4->value()));
 	new GestionProj();
     close();
@@ -210,7 +210,7 @@ void GestionSousTache::creertache(){ //lorsque le bouton sauvegarder est cliqué
             _proj.creerTache("TacheComposite", Titre2->text(), Dispo2->date(), Ech2->date(),  std::vector<Tache*>(), &_tache);
 		if (Preemptive->isChecked()) //creation d'une tache preemptive si preemptive est cochée
             _proj.creerTache("TacheUnitairePreemptee", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
-		else // creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
+		else if (Unitaire->isChecked())// creation d'une tache unitaire si unitaire est cochée ou si rien n'est coché
 			_proj.creerTache("TacheUnitaire", Titre2->text(), Dispo2->date(), Ech2->date(), std::vector<Tache*>(), &_tache, Duree(Duree2->value(), Duree4->value()));
 		close();
     }else{
