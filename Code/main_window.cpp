@@ -835,7 +835,7 @@ void FenetreDepart::load()
 
 														}
 														// We've found duree
-                                                        if (xml.name() == "dureeEffectuee") {
+                                                        if (xml.name() == "duree") {
 															xml.readNext();
 															duree.setDuree(xml.text().toString().toUInt());
                                                             qDebug()<<xml.text().toString();
