@@ -12,13 +12,14 @@ int main(int argc, char* argv[]) {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////           obtention managers           //////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	ProjetManager & projM = ProjetManager::getInstance();
-/*
+    ProjetManager & projM = ProjetManager::getInstance();
+    ProgrammationManager & progM = ProgrammationManager::getInstance();
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////                 creation de projets                 ////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	projM.ajouterProjet("proj1", QDate::currentDate().addDays(1), QDate::currentDate().addDays(30));
-	projM.ajouterProjet("proj2", QDate::currentDate().addDays(2), QDate::currentDate().addDays(25));
+    projM.ajouterProjet("proj1", QDate::currentDate().addDays(-5), QDate::currentDate().addDays(30));
+    projM.ajouterProjet("proj2", QDate::currentDate().addDays(-1), QDate::currentDate().addDays(25));
 		
 
 
@@ -29,14 +30,14 @@ int main(int argc, char* argv[]) {
 	////////////////        insertion/creation des taches dans les projets        //////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    projM.getProjet("proj1").creerTache("TacheComposite", "TacheComposite_Proj1_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(20));
+    projM.getProjet("proj1").creerTache("TacheComposite", "TacheComposite_Proj1_1", QDate::currentDate().addDays(-3), QDate::currentDate().addDays(20));
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Tache* par_1 = &projM.getProjet("proj1").getTache("TacheComposite_Proj1_1");
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    projM.getProjet("proj1").creerTache("TacheComposite", "SousTache1_Composite", QDate::currentDate().addDays(4), QDate::currentDate().addDays(15), std::vector<Tache*>(), par_1);
+    projM.getProjet("proj1").creerTache("TacheComposite", "SousTache1_Composite", QDate::currentDate(), QDate::currentDate().addDays(15), std::vector<Tache*>(), par_1);
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +45,7 @@ int main(int argc, char* argv[]) {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    projM.getProjet("proj1").creerTache("TacheComposite", "SousSousTache1_composite", QDate::currentDate().addDays(6), QDate::currentDate().addDays(12), std::vector<Tache*>(), par_2);
+    projM.getProjet("proj1").creerTache("TacheComposite", "SousSousTache1_composite", QDate::currentDate().addDays(1), QDate::currentDate().addDays(4), std::vector<Tache*>(), par_2);
 	
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,28 +53,32 @@ int main(int argc, char* argv[]) {
 
 	std::vector<Tache*> pre_1;
     pre_1.push_back(&projM.getProjet("proj1").getTache("SousSousTache1_composite"));
-    projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(12), QDate::currentDate().addDays(13), pre_1, par_2, Duree(120));
+    projM.getProjet("proj1").creerTache("TacheUnitaire", "SousTache2", QDate::currentDate().addDays(4), QDate::currentDate().addDays(13), pre_1, par_2, Duree(120));
 
 
 
-    projM.getProjet("proj1").creerTache("TacheUnitairePreemptee", "SouSousSousTache", QDate::currentDate().addDays(7), QDate::currentDate().addDays(10), std::vector<Tache*>(), par_3, Duree(150));
+    projM.getProjet("proj1").creerTache("TacheUnitairePreemptee", "SouSousSousTache", QDate::currentDate().addDays(2), QDate::currentDate().addDays(4), std::vector<Tache*>(), par_3, Duree(150));
     projM.getProjet("proj1").creerTache("TacheUnitairePreemptee", "TacheUnitaire1_Preemptee", QDate::currentDate().addDays(7), QDate::currentDate().addDays(10), std::vector<Tache*>(), NULL, Duree(150));
-	projM.getProjet("proj1").creerTache("TacheUnitaire", "TacheUnitaire2", QDate::currentDate().addDays(10), QDate::currentDate().addDays(20), std::vector<Tache*>(), NULL, Duree(60));
+    projM.getProjet("proj1").creerTache("TacheUnitaire", "TacheUnitaire2", QDate::currentDate().addDays(5), QDate::currentDate().addDays(20), std::vector<Tache*>(), NULL, Duree(60));
 
-    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(9), std::vector<Tache*>(), NULL, Duree(60));
+    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_1", QDate::currentDate().addDays(3), QDate::currentDate().addDays(5), std::vector<Tache*>(), NULL, Duree(60));
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	std::vector<Tache*> pre_6;
 	pre_6.push_back(&projM.getProjet("proj2").getTache("TacheUnitaireProj2_1"));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_2", QDate::currentDate().addDays(10), QDate::currentDate().addDays(15), pre_6, NULL, Duree(60));
+    projM.getProjet("proj2").creerTache("TacheUnitaire", "TacheUnitaireProj2_2", QDate::currentDate().addDays(8), QDate::currentDate().addDays(15), pre_6, NULL, Duree(60));
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////           creation de programmations (preeempte et NON preemptee)          ///////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-*/
+    progM.creerProgrammation(&projM.getProjet("proj1").getTache(6), QDate::currentDate().addDays(2), QTime(9,0,0));
+    progM.creerProgrammation(&projM.getProjet("proj1").getTache(5), QDate::currentDate().addDays(3), QTime(14,0,0), Duree(2,0));
+    progM.creerProgrammation(&projM.getProjet("proj2").getTache(0), QDate::currentDate().addDays(3), QTime(8,0,0));
+
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////        entree programme        ////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////

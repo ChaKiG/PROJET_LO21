@@ -286,14 +286,19 @@ ProgrammationEditeur::~ProgrammationEditeur(){
 
 
 void ProgrammationEditeur::save(){
-	_prog.setDateChoisie(debut_j->date());
-	_prog.setDuree(Duree(dur_m->value() + 60 * dur_h->value()));
-	_prog.setHoraireChoisi(QTime(debut_h_h->value(), debut_h_m->value()));
-	close();
+    try{
+        _prog.setDateChoisie(debut_j->date());
+        _prog.setHoraireChoisi(QTime(debut_h_h->value(), debut_h_m->value()));
+        if(dynamic_cast<TacheUnitairePreemptee*>(_prog.getEvent()))
+            _prog.setDuree(Duree(dur_m->value() + 60 * dur_h->value()));
+    }catch (CalendarException & e){
+            QMessageBox::information(NULL,"erreur",e.getInfo());
+    }
+    close();
 }
 
 void ProgrammationEditeur::delprog(){
-	if (dynamic_cast<ActiviteTraditionnelle*>(_prog.getEvent())){
+    if (dynamic_cast<ActiviteTraditionnelle*>(_prog.getEvent())){
 		if (QMessageBox::Yes == QMessageBox(QMessageBox::Information, "sur ?", "Ceci supprimmera definitivement l'activite", QMessageBox::Yes | QMessageBox::No).exec())
 			ProgrammationManager::getInstance().supprimerProgrammation(_prog.getId());
 	}

@@ -33,7 +33,7 @@ private:
     Duree duree;          //<!duree de la programmation>
     Evenement * evt;      //<!evenement relatif a la programmation (Tache ou Activite)>
 
-    Programmation(Evenement * event, const QDate & dateChoisie, const QTime& horaireChoisi, Duree dur = Duree(0));
+    Programmation(Evenement * event, const QDate & dateChoisie, const QTime& horaireChoisi, Duree dur = Duree(0), bool isImport = false);
 	Programmation operator=(Programmation & other);
 	Programmation(Programmation & other);
 
@@ -114,7 +114,7 @@ public:
 	*  \param dateChoisie : date a programmer
 	*  \param horaireChoisie : heure a programmer
 	*/
-    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi, Duree d =0);
+    void creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi, Duree d =0, bool isImport = false);
 	
 	/*!
 	*  \brief cherche une programmation

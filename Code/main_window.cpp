@@ -782,7 +782,7 @@ void FenetreDepart::load()
 											}
                                             tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
 											//qDebug()<<"ajout tache "<<identificateur<<"\n";
-                                            ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi);
+                                            ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi, 0, true);
 
 										}
 										else {
@@ -847,7 +847,7 @@ void FenetreDepart::load()
 												}
 												//qDebug()<<"ajout tache "<<identificateur<<"\n";
                                                 tache = &ProjetManager::getInstance().getProjet(projet).getTache(titre);
-                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi,duree);
+                                                ProgrammationManager::getInstance().creerProgrammation(tache, dateChoisie, HoraireChoisi,duree, true);
 
 											}
 											else{
@@ -914,7 +914,7 @@ void FenetreDepart::load()
 													}
 													//qDebug()<<"ajout tache "<<identificateur<<"\n";
 													Rdv * rdv = new Rdv(titre, duree, lieu, interlocuteur);
-													ProgrammationManager::getInstance().creerProgrammation(rdv, dateChoisie, HoraireChoisi);
+                                                    ProgrammationManager::getInstance().creerProgrammation(rdv, dateChoisie, HoraireChoisi, true);
 
 												}
 												else
@@ -1006,7 +1006,7 @@ void FenetreDepart::load()
 														qDebug() << "part3";
 														Reunion * reunion = new Reunion(titre, duree, lieu, personnes);
 														qDebug() << "part6";
-														ProgrammationManager::getInstance().creerProgrammation(reunion, dateChoisie, HoraireChoisi);
+                                                        ProgrammationManager::getInstance().creerProgrammation(reunion, dateChoisie, HoraireChoisi, 0, true);
 														qDebug() << "part5";
 													}
 												}//fin du premier else

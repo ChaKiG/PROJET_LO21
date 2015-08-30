@@ -115,15 +115,30 @@ void TacheUnitairePreemptee::setDureeEffectuee(const Duree& dEffectuee) {
 
 	checkPossible("=", dEffectuee);
 	dureeEffectuee = dEffectuee;
+    int dRes = getDuree().getDureeEnMinutes() - dureeEffectuee.getDureeEnMinutes();
+    if (dRes == 0)
+        setProgramme(true);
+    if (dRes > 0)
+        setProgramme(false);
 }
 void TacheUnitairePreemptee::addDureeEffectuee(const Duree& dEffectuee) {
 	checkPossible("+=", dEffectuee);
 	dureeEffectuee += dEffectuee;
+    int dRes = getDuree().getDureeEnMinutes() - dureeEffectuee.getDureeEnMinutes();
+    if (dRes == 0)
+        setProgramme(true);
+    if (dRes > 0)
+        setProgramme(false);
 }
 
 void TacheUnitairePreemptee::subDureeEffectuee(const Duree& dSupprimmee) {
 	checkPossible("-=", dSupprimmee);
 	dureeEffectuee -= dSupprimmee;
+    int dRes = getDuree().getDureeEnMinutes() - dureeEffectuee.getDureeEnMinutes();
+    if (dRes == 0)
+        setProgramme(true);
+    if (dRes > 0)
+        setProgramme(false);
 }
 
 void TacheUnitairePreemptee::checkPossible(std::string op, Duree d) {
@@ -136,14 +151,10 @@ void TacheUnitairePreemptee::checkPossible(std::string op, Duree d) {
         nDuree -= d.getDureeEnMinutes();
     else
         throw CalendarException("operation non reconnue");
-    if (nDuree < 0)
+    int dRes = getDuree().getDureeEnMinutes() - nDuree;
+    if (dRes < 0)
         throw CalendarException("duree effectuee < 0");
-    int nbMinRestantes = getDuree().getDureeEnMinutes() - nDuree;
-    if (nbMinRestantes == 0)
-        setProgramme(true);
-    if (nbMinRestantes > 0)
-        setProgramme(false);
-    if (nbMinRestantes < 0)
+    if (dRes < 0)
         throw CalendarException("tentative de programmer plus longtemps que la duree");
 }
 

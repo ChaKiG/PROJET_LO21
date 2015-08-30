@@ -5,22 +5,20 @@
 
 int Programmation::currentId = 0;
 
-Programmation::Programmation(Evenement * event, const QDate & dateChoisie, const QTime & horaireChoisi, Duree dur) : id(++currentId), dateChoisie(dateChoisie), horaireChoisi(horaireChoisi), duree(dur), evt(event){
-	try{
-		if (dynamic_cast<TacheUnitairePreemptee*>(event))
-        {
-            if(dur==0)
-            {
-			((TacheUnitairePreemptee*)event)->addDureeEffectuee(dur);
-            }
-
-         }
-		else
-            event->setProgramme(true);
-	}
-	catch (CalendarException & e){
-		QMessageBox::information(NULL, "erreur", e.getInfo());
-	}
+Programmation::Programmation(Evenement * event, const QDate & dateChoisie, const QTime & horaireChoisi, Duree dur, bool isImport) : id(++currentId), dateChoisie(dateChoisie), horaireChoisi(horaireChoisi), duree(dur), evt(event){
+    if(!isImport){
+        try{
+            if (dynamic_cast<TacheComposite*>(event))
+                throw CalendarException("tentative de programmer une tache composite");
+            else if (dynamic_cast<TacheUnitairePreemptee*>(event))
+                ((TacheUnitairePreemptee*)event)->addDureeEffectuee(dur);
+            else
+                event->setProgramme(true);
+        }
+        catch (CalendarException & e){
+            QMessageBox::information(NULL, "erreur", e.getInfo());
+        }
+    }
 }
 
 
@@ -183,57 +181,63 @@ bool ProgrammationManager::creneaulibre(const QDate& da, const QTime& progHorair
 }
 
 
-void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi,Duree d){
-	Duree duree;
-	if (dynamic_cast<Tache*>(event)){
-		std::vector<Tache*> pre = ((Tache*)event)->getPrerequis();
-		std::vector<Tache*>::iterator ite = pre.begin();
-		while (ite != pre.end()){
-			if ((*ite)->isProgramme()){
-				Programmation & prog = getDerniereProgrammation(*ite);
-				if (prog.getDateChoisie() == dateChoisie)
-					if (prog.getHoraireFin() > horaireChoisi)
-						throw CalendarException("prerequis programme apres cette tache");
-				if (prog.getDateChoisie() > dateChoisie)
-					throw CalendarException("prerequis programme apres cette tache");
-			}
-			else{
-				throw CalendarException("prerequis non programme");
-				return;
-			}
-			ite++;
-		}
-	}
-	if (!event->isProgramme()){
-		if (dynamic_cast<TacheComposite*>(event))
-			throw CalendarException("on ne peut pas programmer des taches composites");
-		else{
-			if (dynamic_cast<TacheUnitairePreemptee*>(event)){
-                new CreationProgrammationPreemptee(event, dateChoisie, horaireChoisi,d);
-			}
-			else
-				if (dynamic_cast<TacheUnitaire*>(event)){
-				duree = ((TacheUnitaire*)event)->getDuree();
-				if (creneaulibre(dateChoisie, horaireChoisi, duree)){
-					Programmation * prog = new Programmation(event, dateChoisie, horaireChoisi, duree);
-					programmations.push_back(prog);
-				}
-				else
-					throw CalendarException("horaire indisponible");
-				}
-				else{
-					if (creneaulibre(dateChoisie, horaireChoisi, duree)){
-						duree = ((ActiviteTraditionnelle*)event)->getDuree();
-						Programmation * prog = new Programmation(event, dateChoisie, horaireChoisi, duree);
-						programmations.push_back(prog);
-					}
-					else
-						throw CalendarException("horaire indisponible");
-				}
-		}
-	}
-	else 
-		throw CalendarException("evenement deja programmé");
+void ProgrammationManager::creerProgrammation(Evenement * event, QDate dateChoisie, QTime horaireChoisi,Duree d, bool isImport){
+    if(!isImport){
+        Duree duree;
+        if (dynamic_cast<Tache*>(event)){
+            std::vector<Tache*> pre = ((Tache*)event)->getPrerequis();
+            std::vector<Tache*>::iterator ite = pre.begin();
+            while (ite != pre.end()){
+                if ((*ite)->isProgramme()){
+                    Programmation & prog = getDerniereProgrammation(*ite);
+                    if (prog.getDateChoisie() == dateChoisie)
+                        if (prog.getHoraireFin() > horaireChoisi)
+                            throw CalendarException("prerequis programme apres cette tache");
+                    if (prog.getDateChoisie() > dateChoisie)
+                        throw CalendarException("prerequis programme apres cette tache");
+                }
+                else{
+                    throw CalendarException("prerequis non programme");
+                    return;
+                }
+                ite++;
+            }
+        }
+        if (!event->isProgramme()){
+            if (dynamic_cast<TacheComposite*>(event))
+                throw CalendarException("on ne peut pas programmer des taches composites");
+            else{
+                if (dynamic_cast<TacheUnitairePreemptee*>(event)){
+                    new CreationProgrammationPreemptee(event, dateChoisie, horaireChoisi,d);
+                }
+                else
+                    if (dynamic_cast<TacheUnitaire*>(event)){
+                    duree = ((TacheUnitaire*)event)->getDuree();
+                    if (creneaulibre(dateChoisie, horaireChoisi, duree)){
+                        Programmation * prog = new Programmation(event, dateChoisie, horaireChoisi, duree);
+                        programmations.push_back(prog);
+                    }
+                    else
+                        throw CalendarException("horaire indisponible");
+                    }
+                    else{
+                        if (creneaulibre(dateChoisie, horaireChoisi, duree)){
+                            duree = ((ActiviteTraditionnelle*)event)->getDuree();
+                            Programmation * prog = new Programmation(event, dateChoisie, horaireChoisi, duree);
+                            programmations.push_back(prog);
+                        }
+                        else
+                            throw CalendarException("horaire indisponible");
+                    }
+            }
+        }
+        else
+            throw CalendarException("evenement deja programmé");
+    }
+    else{
+        Programmation * prog = new Programmation(event, dateChoisie, horaireChoisi, d);
+        programmations.push_back(prog);
+    }
 }
 
 

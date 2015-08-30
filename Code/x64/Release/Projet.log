@@ -1,0 +1,57 @@
+﻿La génération a démarré 21/06/2015 21:51:45.
+     1>Projet "C:\Users\Fixe\Desktop\Programmation\PROJET_LO21\Code\Projet.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>CustomBuild:
+         Moc'ing emploidutemps.h...
+         Moc'ing fenetres_gestion_programmations.h...
+         Moc'ing fenetres_gestion_projets.h...
+         Moc'ing gestiontache.h...
+         Moc'ing main_window.h...
+         Moc'ing programmation.h...
+         Moc'ing tache_editeur.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /IC:\qt\5.4\msvc2013_64\include /IC:\qt\5.4\msvc2013_64\include\QtWidgets /IC:\qt\5.4\msvc2013_64\include\QtGui /IC:\qt\5.4\msvc2013_64\include\QtANGLE /IC:\qt\5.4\msvc2013_64\include\QtXml /IC:\qt\5.4\msvc2013_64\include\QtTest /IC:\qt\5.4\msvc2013_64\include\QtCore /Irelease /I"C:\qt\5.4\msvc2013_64\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /D _CONSOLE /D UNICODE /D WIN32 /D WIN64 /D "SRCDIR=\"C:/Users/Fixe/Desktop/Programmation/PROJET_LO21/Code/\"" /D QT_NO_DEBUG /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_XML_LIB /D QT_TESTLIB_LIB /D QT_CORE_LIB /D "QT_TESTCASE_BUILDDIR=\"C:/Users/Fixe/Desktop/Programmation/PROJET_LO21/Code\"" /D NDEBUG /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -Zc:strictStrings -w34100 -w34189 duree.cpp emploidutemps.cpp evenement.cpp fenetres_gestion_programmations.cpp fenetres_gestion_projets.cpp gestiontache.cpp main.cpp main_window.cpp programmation.cpp projet.cpp Release\moc_emploidutemps.cpp Release\moc_fenetres_gestion_programmations.cpp Release\moc_fenetres_gestion_projets.cpp Release\moc_gestiontache.cpp Release\moc_main_window.cpp Release\moc_programmation.cpp Release\moc_tache_editeur.cpp tache_editeur.cpp
+         duree.cpp
+         emploidutemps.cpp
+         evenement.cpp
+         fenetres_gestion_programmations.cpp
+         fenetres_gestion_projets.cpp
+         gestiontache.cpp
+         main.cpp
+         main_window.cpp
+         programmation.cpp
+         projet.cpp
+         moc_emploidutemps.cpp
+         moc_fenetres_gestion_programmations.cpp
+         moc_fenetres_gestion_projets.cpp
+         moc_gestiontache.cpp
+         moc_main_window.cpp
+         moc_programmation.cpp
+         moc_tache_editeur.cpp
+         tache_editeur.cpp
+         Génération de code en cours...
+     1>c:\users\fixe\desktop\programmation\projet_lo21\code\projet.cpp(58): warning C4715: 'Projet::creerTache' : les chemins de contrôle ne retournent pas tous une valeur
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"release\\Projet.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2013_64\lib /LIBPATH:C:\qt\5.4\msvc2013_64\lib C:\Qt\5.4\msvc2013_64\lib\Qt5Widgets.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Gui.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Xml.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Test.lib C:\Qt\5.4\msvc2013_64\lib\Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"release\Projet.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\duree.obj
+         x64\Release\emploidutemps.obj
+         x64\Release\evenement.obj
+         x64\Release\fenetres_gestion_programmations.obj
+         x64\Release\fenetres_gestion_projets.obj
+         x64\Release\gestiontache.obj
+         x64\Release\main.obj
+         x64\Release\main_window.obj
+         x64\Release\programmation.obj
+         x64\Release\projet.obj
+         x64\Release\moc_emploidutemps.obj
+         x64\Release\moc_fenetres_gestion_programmations.obj
+         x64\Release\moc_fenetres_gestion_projets.obj
+         x64\Release\moc_gestiontache.obj
+         x64\Release\moc_main_window.obj
+         x64\Release\moc_programmation.obj
+         x64\Release\moc_tache_editeur.obj
+         x64\Release\tache_editeur.obj
+         Projet.vcxproj -> C:\Users\Fixe\Desktop\Programmation\PROJET_LO21\Code\release\Projet.exe
+     1>Génération du projet "C:\Users\Fixe\Desktop\Programmation\PROJET_LO21\Code\Projet.vcxproj" terminée (Build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:15.66
